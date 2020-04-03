@@ -45,7 +45,7 @@ button
     position: fixed
     background: rgba(0, 0, 0, .7)
     opacity: 1
-    animation: fade-in 1s ease
+    animation: fade-in .6s ease
 
 #popup-container
     z-index: 100
@@ -62,6 +62,7 @@ button
     top: 50%
     left: 50%
     transform: translateY(-50%) translateX(-50%)
+    animation: move-up 1s ease
     h3
         font-size: 1.8rem
         text-align: center
@@ -194,3 +195,9 @@ button
         opacity: 0
     100%
         opacity: 1
+
+@keyframes move-up
+    0%
+        transform: translateY(0%) translateX(-50%)
+    100%
+        transform: translateY(-50%) translateX(-50%)
