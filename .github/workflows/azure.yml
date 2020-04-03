@@ -1,8 +1,5 @@
 on:
   push:
-    
-  release:
-    types: [created]
 
 env:
   AZURE_WEBAPP_NAME: dothemath-api
