@@ -2,7 +2,7 @@ on:
   push:
 
 env:
-  AZURE_WEBAPP_NAME: dothemath-api
+  AZURE_WEBAPP_NAME: dothemath
 
 jobs:
   build-and-deploy:
