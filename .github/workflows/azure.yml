@@ -18,4 +18,4 @@ jobs:
         ftp-server: ftps://waws-prod-db3-139.ftp.azurewebsites.windows.net/site/wwwroot
         ftp-username: dothemath\$dothemath
         ftp-password: ${{ secrets.FTP_PASSWORD }}
-        git-ftp-args: --all --remote-root /root/site/wwwroot
+        git-ftp-args: --all --remote-root /root
