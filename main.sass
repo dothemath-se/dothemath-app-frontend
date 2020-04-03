@@ -44,6 +44,8 @@ button
     height: 100vh
     position: fixed
     background: rgba(0, 0, 0, .7)
+    opacity: 1
+    animation: fade-in 1s ease
 
 #popup-container
     z-index: 100
@@ -184,3 +186,11 @@ button
             transform: scale(0.95)
             box-shadow: none
             transition: box-shadow, transform .05s ease
+
+//Animations
+
+@keyframes fade-in
+    0%
+        opacity: 0
+    100%
+        opacity: 1
