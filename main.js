@@ -21,13 +21,14 @@ function init () {
             var tag = document.createElement('span')
             check.setAttribute('src', 'icons/square-regular.svg')
             check.setAttribute('onclick', 'toggleCheck(this)')
+            check.setAttribute('class', 'toggle-check')
             tag.innerHTML = text
             checksContainer.appendChild(check)
             checksContainer.appendChild(tag)
             fragment.appendChild(checksContainer)
         })
 
-        nameForm.innerHTML += '<input id="name-input" type="text" placeholder="Hi, my name is..."><button class="btn--primary" type="button" onclick="closePopUp()">ENTER</button>'
+        nameForm.innerHTML += '<input id="name-input" type="text" placeholder="Hi, my name is..."><button id="enter-name-btn" class="btn--primary" type="button" onclick="closePopUp()" disabled>ENTER</button>'
         popupContainer.appendChild(title)
         nameForm.appendChild(fragment)
         popupContainer.appendChild(nameForm)
@@ -40,14 +41,26 @@ function init () {
 }
 
 function toggleCheck (target) {
-    if (target.classList.contains('toggled')) {
+    if (target.classList.contains('checked')) {
         target.setAttribute('src', 'icons/square-regular.svg')
-        target.classList.remove('toggled')
+        target.classList.remove('checked')
     }
     else {
         target.setAttribute('src', 'icons/check-square-solid.svg')
-        target.classList.add('toggled')
-    }   
+        target.classList.add('checked')
+    }
+    buttonActivate()
+}
+
+function buttonActivate() {
+    var checks = document.querySelectorAll('.toggle-check')
+    var toggledChecks = document.querySelectorAll('.checked')
+    if (checks.length == toggledChecks.length) {
+        document.querySelector('#enter-name-btn').removeAttribute('disabled')
+    }
+    else { 
+        document.querySelector('#enter-name-btn').setAttribute('disabled', '')
+    }
 }
 
 function chooseSubject (subjects) {
@@ -86,6 +99,7 @@ function closePopUp () {
         document.cookie ='name=' + nameInput.value
         document.querySelector('#popup').remove()
         document.querySelector('#window-wrapper').style.filter = 'none'
+        chooseSubject(['Matte 1', 'Matte 2'])
     }
     else if (nameInput.value && nameInput.value.length <= 1) {
         nameInput.value = 'Name too short'
@@ -93,7 +107,6 @@ function closePopUp () {
     else {
         nameInput.value = 'Did you forget something?'
     }
-    chooseSubject(['Matte 1', 'Matte 2'])
 }
 
 function populateChat (toFrom, userName, message) {
