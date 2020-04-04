@@ -3,12 +3,20 @@ function init () {
         document.querySelector('#window-wrapper').style.filter = 'blur(5px)'
 
         var namePopup = document.createElement('div')
+        var popupContainer = document.createElement('div')
+        var title = document.createElement('h3')
+        var nameForm = document.createElement('form')
 
         namePopup.setAttribute('id', 'popup')
-        namePopup.innerHTML= '<div id="popup-container"><h3>Hey there buddy! <br> Who are you?</h3><form id="name-form" action=""><input id="name-input" type="text" placeholder="Hi, my name is..."><button class="btn--primary" onclick="closePopUp()">ENTER</button></form></div>'
+        popupContainer.setAttribute('id', 'popup-container')
+        nameForm.setAttribute('id', 'name-form')
+        title.innerHTML = 'What\'s your name?'
+        nameForm.innerHTML= '<input id="name-input" type="text" placeholder="Hi, my name is..."><button class="btn--primary" type="button" onclick="closePopUp()">ENTER</button>'
 
+        popupContainer.appendChild(title)
+        popupContainer.appendChild(nameForm)
+        namePopup.appendChild(popupContainer)
         document.body.appendChild(namePopup)
-
     }
     else {
         chooseSubject(['Matte 1', 'Matte 2'])
@@ -40,7 +48,6 @@ function chooseSubject (subjects) {
 }
 
 function subjectSelection(target) {
-    console.log('you chose: ' + target.innerHTML)
     document.querySelector('#popup').remove()
     document.querySelector('#window-wrapper').style.filter = 'none'
 }
