@@ -38,6 +38,6 @@ function populateChat (toFrom, message) {
         chatMessage.innerHTML = message
         newChatBubble.appendChild(chatMessage)
         chatContainer.insertBefore(newChatBubble, chatContainer.firstChild)
-        chatContainer.scrollTop = elem.scrollHeight
+        chatContainer.scrollTop = chatContainer.scrollHeight
     }
 }
