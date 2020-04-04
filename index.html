@@ -9,10 +9,10 @@
     <script src="main.js"></script>
     <script>
         $(function () {
-            var socket = io('localhost:3000');
+            const socket = io('https://ec3c1d00.ngrok.io');
             $('form').submit(function(e){
                 e.preventDefault(); // prevents page reloading
-                socket.emit('chat message', $('#chat-input').val());
+                socket.emit('send_message', $('#chat-input').val());
                 populateChat($('#chat-input').val());
                 $('#chat-input').val('');
                 return false;
@@ -29,9 +29,6 @@
             <div id="chat-wrapper">
                 <div id="conversation-container">
                     <div class="chat-bubble--from">
-                        <p class="chat-text">Wow! That's some amazing math!</p>
-                    </div>
-                    <div class="chat-bubble--to">
                         <p class="chat-text">Did you know 1+1 = 11?</p>
                     </div>
                 </div>

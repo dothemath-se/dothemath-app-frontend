@@ -13,10 +13,11 @@ function closePopUp () {
 }
 
 function populateChat (message) {
+    var chatContainer = document.querySelector('#conversation-container')
     if (message) {
         var newChatBubble = document.createElement('div')
         newChatBubble.setAttribute('class', 'chat-bubble--to')
         newChatBubble.innerHTML = '<p class="chat-text">' + message + '</p>'
-        document.querySelector('#conversation-container').appendChild(newChatBubble)
+        document.querySelector('#conversation-container').insertBefore(newChatBubble, chatContainer.firstChild)
     }
 }
