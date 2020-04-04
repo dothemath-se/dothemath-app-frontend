@@ -9,20 +9,23 @@
     <script src="main.js"></script>
     <script>
         $(function () {
+            var userName = document.cookie.replace(/(?:(?:^|.*;\s*)name\s*\=\s*([^;]*).*$)|^.*$/, "$1");
             const socket = io('https://133454f1.ngrok.io');
             $('form').submit(function(e){
                 e.preventDefault(); // prevents page reloading
-                socket.emit('establish_session', { studentName: document.cookie.replace(/(?:(?:^|.*;\s*)name\s*\=\s*([^;]*).*$)|^.*$/, "$1")});
-                socket.emit('send_message', { text:$('#chat-input').val()});
+                socket.emit('establish_session', { studentName: userName});
+                socket.emit('send_message', { text: $('#chat-input').val() }, () => {
+                    document.querySelector('.sending').classList.remove('sending')
+                });
                 socket.on('message', ({text, name}) => {
-                    populateChat('from', `${name}: ${text}`);
+                    populateChat('from', `${name}`, `${text}`);
                 });
                 socket.on('channel_list', channels => {
                     channels.forEach(channel => {
                         console.log(`${channel.id}: ${channel.name}`)
                     });
                 });
-                populateChat('to', $('#chat-input').val());
+                populateChat('to', userName, $('#chat-input').val());
                 $('#chat-input').val('');
                 return false;
             });

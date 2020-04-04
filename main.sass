@@ -149,6 +149,7 @@ button
         display: flex
         align-items: center
         padding: 1.2rem
+        opacity: 1
         box-shadow: 0 0 15px 0 rgba(0, 0, 0, .3)
         &::after
             content: ""
@@ -158,8 +159,10 @@ button
             height: 0 
             border-top: 12px solid transparent
             border-bottom: 12px solid transparent
+    .sending
+        opacity: .3
         .chat-text
-            font-size: 1.8rem
+            font-size: 1rem
     .chat-bubble--from
         background: $primary-color
         &::after

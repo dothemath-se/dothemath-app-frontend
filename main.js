@@ -33,7 +33,7 @@ function chooseSubject (subjects) {
     subjectsPopup.setAttribute('id', 'popup')
     subjectsContainer.setAttribute('id', 'subjects-container')
 
-    title.innerHTML = 'Välj ämne'
+    title.innerHTML = 'Choose subject'
 
     subjectsContainer.appendChild(title)
     subjects.forEach((subject) => {
@@ -48,6 +48,7 @@ function chooseSubject (subjects) {
 }
 
 function subjectSelection(target) {
+    var selectedSubject = target
     document.querySelector('#popup').remove()
     document.querySelector('#window-wrapper').style.filter = 'none'
 }
@@ -68,7 +69,7 @@ function closePopUp () {
     chooseSubject(['Matte 1', 'Matte 2'])
 }
 
-function populateChat (toFrom, message) {
+function populateChat (toFrom, userName, message) {
     var chatContainer = document.querySelector('#conversation-container')
     if (message) {
         var newChatBubble = document.createElement('div')
@@ -76,6 +77,9 @@ function populateChat (toFrom, message) {
 
         newChatBubble.setAttribute('class', 'chat-bubble--' + toFrom)
         chatMessage.setAttribute('class', 'chat-text')
+        if (toFrom == 'to') {
+            newChatBubble.classList.add('sending')
+        }
 
         chatMessage.innerHTML = message
         newChatBubble.appendChild(chatMessage)
