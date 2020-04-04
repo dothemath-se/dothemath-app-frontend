@@ -3,8 +3,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="main.min.css">
+    <link rel="stylesheet" type="text/css" href="main.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
     <script src="main.js"></script>
+    <!--<script>
+        $(function () {
+            var socket = io();
+            $('form').submit(function(e){
+                e.preventDefault(); // prevents page reloading
+                socket.emit('chat message', $('#chat-input').val());
+                $('#m').val('');
+                return false;
+            });
+        });
+    </script>-->
 </head>
 <body>
     <div id="window-wrapper">
@@ -21,10 +34,10 @@
                         <p class="chat-text">Did you know 1+1 = 11?</p>
                     </div>
                 </div>
-                <div id="chat-input">
-                    <input type="text" placeholder="How can we help you?">
+                <form id="chat-container" action="">
+                    <input id="chat-input" autocomplete="off" type="text" placeholder="How can we help you?">
                     <button>send</button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
