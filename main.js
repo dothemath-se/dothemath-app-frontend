@@ -1,15 +1,15 @@
+const socket = io('https://133454f1.ngrok.io');
+
 var subjectsAvailable = []
 var subjectIds = []
 
+document.addEventListener("DOMContentLoaded", function(event) {
+    initSockets()
+    init()
+});
+
 function initSockets() {
     var userName = document.cookie.replace(/(?:(?:^|.*;\s*)name\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-    const socket = io('https://133454f1.ngrok.io');
-    socket.on('channel_list', channels => {
-        channels.forEach(channel => {
-            subjectsAvailable.push(`${channel.name}`)
-            subjectIds.push(`${channel.id}`)
-        });
-    });
     socket.emit('establish_session', { studentName: userName});
     $('form').submit(function(e){
         e.preventDefault(); // prevents page reloading
@@ -17,7 +17,7 @@ function initSockets() {
             document.querySelector('.sending').classList.remove('sending')
         });
         socket.on('message', ({text, name}) => {
-            populateChat('from', `${name}`, `${text}`);
+            populateChat('from', name, text);
         });
         populateChat('to', userName, $('#chat-input').val());
         $('#chat-input').val('');
@@ -64,7 +64,14 @@ function init () {
         document.body.appendChild(namePopup)
     }
     else {
-        chooseSubject(subjectsAvailable)
+        document.querySelector('#window-wrapper').style.filter = 'blur(5px)'
+        socket.on('channel_list', channels => {
+            channels.forEach(channel => {
+                subjectsAvailable.push(channel.name)
+                subjectIds.push(channel.id)
+            });
+            chooseSubject(subjectsAvailable)
+        });
     }
 }
 
@@ -91,10 +98,7 @@ function buttonActivate() {
     }
 }
 
-function chooseSubject (subjects) {
-    console.log(subjects)
-    document.querySelector('#window-wrapper').style.filter = 'blur(5px)'
-    
+function chooseSubject (subjects) {    
     var subjectsPopup = document.createElement('div')
     var subjectsContainer = document.createElement('div')
     var title = document.createElement('h2')
