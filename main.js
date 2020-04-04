@@ -6,14 +6,30 @@ function init () {
         var popupContainer = document.createElement('div')
         var title = document.createElement('h3')
         var nameForm = document.createElement('form')
+        var checkTexts = ['I\'m over the age of 16.', 'I agree to the privacy policy']
+        var checksContainer = document.createElement('div')
+        var fragment = document.createDocumentFragment()
 
         namePopup.setAttribute('id', 'popup')
         popupContainer.setAttribute('id', 'popup-container')
         nameForm.setAttribute('id', 'name-form')
-        title.innerHTML = 'What\'s your name?'
-        nameForm.innerHTML= '<input id="name-input" type="text" placeholder="Hi, my name is..."><button class="btn--primary" type="button" onclick="closePopUp()">ENTER</button>'
+        title.innerHTML = 'Welcome!'
+        checksContainer.setAttribute('id', 'checks-container')
+        
+        checkTexts.forEach((text) => {
+            var check = document.createElement('img')
+            var tag = document.createElement('span')
+            check.setAttribute('src', 'icons/square-regular.svg')
+            check.setAttribute('onclick', 'toggleCheck(this)')
+            tag.innerHTML = text
+            checksContainer.appendChild(check)
+            checksContainer.appendChild(tag)
+            fragment.appendChild(checksContainer)
+        })
 
+        nameForm.innerHTML += '<input id="name-input" type="text" placeholder="Hi, my name is..."><button class="btn--primary" type="button" onclick="closePopUp()">ENTER</button>'
         popupContainer.appendChild(title)
+        nameForm.appendChild(fragment)
         popupContainer.appendChild(nameForm)
         namePopup.appendChild(popupContainer)
         document.body.appendChild(namePopup)
@@ -21,6 +37,17 @@ function init () {
     else {
         chooseSubject(['Matte 1', 'Matte 2'])
     }
+}
+
+function toggleCheck (target) {
+    if (target.classList.contains('toggled')) {
+        target.setAttribute('src', 'icons/square-regular.svg')
+        target.classList.remove('toggled')
+    }
+    else {
+        target.setAttribute('src', 'icons/check-square-solid.svg')
+        target.classList.add('toggled')
+    }   
 }
 
 function chooseSubject (subjects) {
