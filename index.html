@@ -12,7 +12,7 @@
             const socket = io('https://ec3c1d00.ngrok.io');
             $('form').submit(function(e){
                 e.preventDefault(); // prevents page reloading
-                socket.emit('send_message', $('#chat-input').val());
+                socket.emit('send_message', '>*Från: ' + document.cookie.replace(/(?:(?:^|.*;\s*)name\s*\=\s*([^;]*).*$)|^.*$/, "$1") + '*\nMeddelande: ' + $('#chat-input').val());
                 populateChat($('#chat-input').val());
                 $('#chat-input').val('');
                 return false;
@@ -39,12 +39,10 @@
             </div>
         </div>
     </div>
-    <div id="popup">
-        <div id="popup-container">
-            <h3>Hey there buddy! <br> Who are you?</h3>
-            <input id="name-input" type="text" placeholder="Hi, my name is...">
-            <button class="btn--primary" onclick="closePopUp()">ENTER</button>
-        </div>
-    </div>
+    <!--<div id="popup">
+    </div>-->
+    <script>
+        setName()
+    </script>
 </body>
 </html>
