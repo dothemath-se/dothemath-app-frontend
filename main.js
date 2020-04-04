@@ -11,3 +11,12 @@ function closePopUp () {
         nameInput.value = 'Did you forget something?'
     }
 }
+
+function populateChat (message) {
+    if (message) {
+        var newChatBubble = document.createElement('div')
+        newChatBubble.setAttribute('class', 'chat-bubble--to')
+        newChatBubble.innerHTML = '<p class="chat-text">' + message + '</p>'
+        document.querySelector('#conversation-container').appendChild(newChatBubble)
+    }
+}
