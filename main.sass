@@ -47,11 +47,9 @@ button
     opacity: 1
     animation: fade-in .6s ease
 
-#popup-container
+#popup-container, #subjects-container
     z-index: 100
     position: fixed
-    width: 25vw
-    height: 20vh
     background: #fff
     border-radius: 1rem
     padding: 20px 40px
@@ -66,6 +64,7 @@ button
     h3
         font-size: 1.8rem
         text-align: center
+        margin-bottom: 10px
     input
         width: 100%
         padding: 10px 10px
@@ -74,6 +73,7 @@ button
         border-radius: 1rem
         font-size: 1.5rem
         background: none
+        margin-bottom: 10px
     button
         width: 50%
     #name-form
@@ -83,6 +83,19 @@ button
         flex-direction: column
         align-items: center
         justify-content: space-around
+
+#subjects-container
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    position: fixed
+    left: 50%
+    top: 50%
+    transform: translateY(-50%) translateX(-50%)
+    h2
+        width: 100%
+        text-align: center
+        margin-bottom: 10px
 
 #window-wrapper
     overflow: hidden

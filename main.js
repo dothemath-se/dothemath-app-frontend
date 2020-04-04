@@ -1,4 +1,4 @@
-function setName () {
+function init () {
     if (document.cookie.replace(/(?:(?:^|.*;\s*)name\s*\=\s*([^;]*).*$)|^.*$/, "$1") == '') {
         document.querySelector('#window-wrapper').style.filter = 'blur(5px)'
 
@@ -8,7 +8,41 @@ function setName () {
         namePopup.innerHTML= '<div id="popup-container"><h3>Hey there buddy! <br> Who are you?</h3><form id="name-form" action=""><input id="name-input" type="text" placeholder="Hi, my name is..."><button class="btn--primary" onclick="closePopUp()">ENTER</button></form></div>'
 
         document.body.appendChild(namePopup)
+
     }
+    else {
+        chooseSubject(['Matte 1', 'Matte 2'])
+    }
+}
+
+function chooseSubject (subjects) {
+    document.querySelector('#window-wrapper').style.filter = 'blur(5px)'
+    
+    var subjectsPopup = document.createElement('div')
+    var subjectsContainer = document.createElement('div')
+    var title = document.createElement('h2')
+
+    subjectsPopup.setAttribute('id', 'popup')
+    subjectsContainer.setAttribute('id', 'subjects-container')
+
+    title.innerHTML = 'Välj ämne'
+
+    subjectsContainer.appendChild(title)
+    subjects.forEach((subject) => {
+        var subjectButton = document.createElement('button')
+        subjectButton.innerHTML = subject
+        subjectButton.setAttribute('onclick', 'subjectSelection(this)')
+        subjectButton.setAttribute('class', 'btn--primary')
+        subjectsContainer.appendChild(subjectButton)
+    })
+    subjectsPopup.appendChild(subjectsContainer)
+    document.body.appendChild(subjectsPopup)
+}
+
+function subjectSelection(target) {
+    console.log('you chose: ' + target.innerHTML)
+    document.querySelector('#popup').remove()
+    document.querySelector('#window-wrapper').style.filter = 'none'
 }
 
 function closePopUp () {
@@ -24,6 +58,7 @@ function closePopUp () {
     else {
         nameInput.value = 'Did you forget something?'
     }
+    chooseSubject(['Matte 1', 'Matte 2'])
 }
 
 function populateChat (toFrom, message) {
