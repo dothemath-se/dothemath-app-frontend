@@ -6,7 +6,7 @@ function init () {
         var popupContainer = document.createElement('div')
         var title = document.createElement('h3')
         var nameForm = document.createElement('form')
-        var checkTexts = ['I\'m over the age of 16.', 'I agree to the privacy policy']
+        var checkTexts = ['I accept the use of cookies.', 'I agree to the terms of use']
         var checksContainer = document.createElement('div')
         var fragment = document.createDocumentFragment()
 
