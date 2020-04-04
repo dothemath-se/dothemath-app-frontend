@@ -136,15 +136,16 @@ function closePopUp () {
     var nameInput = document.querySelector('#name-input')
     if (nameInput.value && nameInput.value.length > 1) {
         document.cookie ='name=' + nameInput.value
+        userName = nameInput.value
         document.querySelector('#popup').remove()
         document.querySelector('#window-wrapper').style.filter = 'none'
         getSubjects()
     }
     else if (nameInput.value && nameInput.value.length <= 1) {
-        nameInput.value = 'Name too short'
+        nameInput.placeholder = 'Name too short'
     }
     else {
-        nameInput.value = 'Cannot be empty'
+        nameInput.placeholder = 'Cannot be empty'
     }
 }
 
