@@ -8,28 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
     <script src="main.js"></script>
     <script>
-        $(function () {
-            var userName = document.cookie.replace(/(?:(?:^|.*;\s*)name\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-            const socket = io('https://133454f1.ngrok.io');
-            $('form').submit(function(e){
-                e.preventDefault(); // prevents page reloading
-                socket.emit('establish_session', { studentName: userName});
-                socket.emit('send_message', { text: $('#chat-input').val() }, () => {
-                    document.querySelector('.sending').classList.remove('sending')
-                });
-                socket.on('message', ({text, name}) => {
-                    populateChat('from', `${name}`, `${text}`);
-                });
-                socket.on('channel_list', channels => {
-                    channels.forEach(channel => {
-                        console.log(`${channel.id}: ${channel.name}`)
-                    });
-                });
-                populateChat('to', userName, $('#chat-input').val());
-                $('#chat-input').val('');
-                return false;
-            });
-        });
+        initSockets()
     </script>
 </head>
 <body>
@@ -42,7 +21,7 @@
                 <div id="conversation-container">
                 </div>
                 <form id="chat-container" action="">
-                    <input id="chat-input" autocomplete="off" type="text" placeholder="How can we help you?">
+                    <input id="chat-input" autocomplete="off" type="text" placeholder="Begin typing your message...">
                     <button>send</button>
                 </form>
             </div>

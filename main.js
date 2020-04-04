@@ -1,3 +1,30 @@
+var subjectsAvailable = []
+var subjectIds = []
+
+function initSockets() {
+    var userName = document.cookie.replace(/(?:(?:^|.*;\s*)name\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    const socket = io('https://133454f1.ngrok.io');
+    socket.on('channel_list', channels => {
+        channels.forEach(channel => {
+            subjectsAvailable.push(`${channel.name}`)
+            subjectIds.push(`${channel.id}`)
+        });
+    });
+    socket.emit('establish_session', { studentName: userName});
+    $('form').submit(function(e){
+        e.preventDefault(); // prevents page reloading
+        socket.emit('send_message', { text: $('#chat-input').val() }, () => {
+            document.querySelector('.sending').classList.remove('sending')
+        });
+        socket.on('message', ({text, name}) => {
+            populateChat('from', `${name}`, `${text}`);
+        });
+        populateChat('to', userName, $('#chat-input').val());
+        $('#chat-input').val('');
+        return false;
+    });
+};
+
 function init () {
     if (document.cookie.replace(/(?:(?:^|.*;\s*)name\s*\=\s*([^;]*).*$)|^.*$/, "$1") == '') {
         document.querySelector('#window-wrapper').style.filter = 'blur(5px)'
@@ -28,15 +55,16 @@ function init () {
             fragment.appendChild(checksContainer)
         })
 
-        nameForm.innerHTML += '<input id="name-input" type="text" placeholder="Hi, my name is..."><button id="enter-name-btn" class="btn--primary" type="button" onclick="closePopUp()" disabled>ENTER</button>'
         popupContainer.appendChild(title)
+        nameForm.innerHTML += '<input id="name-input" type="text" placeholder="Hi, my name is...">'
         nameForm.appendChild(fragment)
+        nameForm.innerHTML += '<button id="enter-name-btn" class="btn--primary" type="button" onclick="closePopUp()" disabled>ENTER</button>'
         popupContainer.appendChild(nameForm)
         namePopup.appendChild(popupContainer)
         document.body.appendChild(namePopup)
     }
     else {
-        chooseSubject(['Matte 1', 'Matte 2'])
+        chooseSubject(subjectsAvailable)
     }
 }
 
@@ -64,6 +92,7 @@ function buttonActivate() {
 }
 
 function chooseSubject (subjects) {
+    console.log(subjects)
     document.querySelector('#window-wrapper').style.filter = 'blur(5px)'
     
     var subjectsPopup = document.createElement('div')
