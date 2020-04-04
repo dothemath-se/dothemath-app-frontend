@@ -3,21 +3,35 @@ const socket = io('https://133454f1.ngrok.io');
 var subjectsAvailable = []
 var subjectIds = []
 
+socket.on('message', ({text, name}) => {
+    populateChat('from', name, text);
+});
+
+socket.on('channel_list', channels => {
+    channels.forEach(channel => {
+        subjectsAvailable.push(channel.name)
+        subjectIds.push(channel.id)
+    })
+    setSubjects(subjectsAvailable)
+})
+
+function setSubjects(subjects) {
+    console.log(subjects)
+    subjectsAvailable = subjects
+}
+
+var userName = document.cookie.replace(/(?:(?:^|.*;\s*)name\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+
 document.addEventListener("DOMContentLoaded", function(event) {
-    initSockets()
     init()
 });
 
 function initSockets() {
-    var userName = document.cookie.replace(/(?:(?:^|.*;\s*)name\s*\=\s*([^;]*).*$)|^.*$/, "$1");
     socket.emit('establish_session', { studentName: userName});
     $('form').submit(function(e){
         e.preventDefault(); // prevents page reloading
         socket.emit('send_message', { text: $('#chat-input').val() }, () => {
             document.querySelector('.sending').classList.remove('sending')
-        });
-        socket.on('message', ({text, name}) => {
-            populateChat('from', name, text);
         });
         populateChat('to', userName, $('#chat-input').val());
         $('#chat-input').val('');
@@ -65,13 +79,7 @@ function init () {
     }
     else {
         document.querySelector('#window-wrapper').style.filter = 'blur(5px)'
-        socket.on('channel_list', channels => {
-            channels.forEach(channel => {
-                subjectsAvailable.push(channel.name)
-                subjectIds.push(channel.id)
-            });
-            chooseSubject(subjectsAvailable)
-        });
+        chooseSubject(subjectsAvailable)
     }
 }
 
@@ -124,6 +132,7 @@ function subjectSelection(target) {
     var selectedSubject = target
     document.querySelector('#popup').remove()
     document.querySelector('#window-wrapper').style.filter = 'none'
+    initSockets()
 }
 
 function closePopUp () {
@@ -132,7 +141,7 @@ function closePopUp () {
         document.cookie ='name=' + nameInput.value
         document.querySelector('#popup').remove()
         document.querySelector('#window-wrapper').style.filter = 'none'
-        chooseSubject(['Matte 1', 'Matte 2'])
+        chooseSubject(subjectsAvailable)
     }
     else if (nameInput.value && nameInput.value.length <= 1) {
         nameInput.value = 'Name too short'
