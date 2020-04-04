@@ -5,7 +5,7 @@ function setName () {
         var namePopup = document.createElement('div')
 
         namePopup.setAttribute('id', 'popup')
-        namePopup.innerHTML= '<div id="popup-container"><h3>Hey there buddy! <br> Who are you?</h3><input id="name-input" type="text" placeholder="Hi, my name is..."><button class="btn--primary" onclick="closePopUp()">ENTER</button></div>'
+        namePopup.innerHTML= '<div id="popup-container"><h3>Hey there buddy! <br> Who are you?</h3><form id="name-form" action=""><input id="name-input" type="text" placeholder="Hi, my name is..."><button class="btn--primary" onclick="closePopUp()">ENTER</button></form></div>'
 
         document.body.appendChild(namePopup)
     }
@@ -26,12 +26,18 @@ function closePopUp () {
     }
 }
 
-function populateChat (message) {
+function populateChat (toFrom, message) {
     var chatContainer = document.querySelector('#conversation-container')
     if (message) {
         var newChatBubble = document.createElement('div')
-        newChatBubble.setAttribute('class', 'chat-bubble--to')
-        newChatBubble.innerHTML = '<p class="chat-text">' + message + '</p>'
-        document.querySelector('#conversation-container').insertBefore(newChatBubble, chatContainer.firstChild)
+        var chatMessage = document.createElement('p')
+
+        newChatBubble.setAttribute('class', 'chat-bubble--' + toFrom)
+        chatMessage.setAttribute('class', 'chat-text')
+
+        chatMessage.innerHTML = message
+        newChatBubble.appendChild(chatMessage)
+        chatContainer.insertBefore(newChatBubble, chatContainer.firstChild)
+        chatContainer.scrollTop = elem.scrollHeight
     }
 }

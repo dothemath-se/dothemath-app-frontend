@@ -67,7 +67,7 @@ button
         font-size: 1.8rem
         text-align: center
     input
-        width: 90%
+        width: 100%
         padding: 10px 10px
         border: 2px solid #aaa
         border-radius: .5
@@ -76,11 +76,19 @@ button
         background: none
     button
         width: 50%
+    #name-form
+        height: 100%
+        width: 90%
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: space-around
 
 #window-wrapper
+    overflow: hidden
     width: 100vw
     height: 100vh
-    padding: 2rem 20vw
+    padding: 2vh 20vw
     display: flex
     flex-direction: column
     justify-content: space-between
@@ -96,8 +104,9 @@ button
     height: 75px
 
 #content-wrapper
-    width: 65%
+    min-width: 65%
     height: 100%
+    padding-bottom: 10vh
     display: flex
     justify-content: space-between
 
@@ -111,6 +120,7 @@ button
 #conversation-container
     display: flex
     flex-direction: column-reverse
+    overflow-y: auto
     height: 100%
     width: 100%
     border-radius: 1rem
