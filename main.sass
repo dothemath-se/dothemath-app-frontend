@@ -167,6 +167,7 @@ button
         padding: 1.2rem
         opacity: 1
         box-shadow: 0 0 15px 0 rgba(0, 0, 0, .3)
+        animation: bubble-left .4s ease
         &::after
             content: ""
             position: absolute
@@ -243,3 +244,9 @@ button
         transform: translateY(0%) translateX(-50%)
     100%
         transform: translateY(-50%) translateX(-50%)
+
+@keyframes bubble-left
+    0%
+        transform: translateX(-100%)
+    100%
+        transform: translateX(0)

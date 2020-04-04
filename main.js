@@ -7,19 +7,6 @@ socket.on('message', ({text, name}) => {
     populateChat('from', name, text);
 });
 
-socket.on('channel_list', channels => {
-    channels.forEach(channel => {
-        subjectsAvailable.push(channel.name)
-        subjectIds.push(channel.id)
-    })
-    setSubjects(subjectsAvailable)
-})
-
-function setSubjects(subjects) {
-    console.log(subjects)
-    subjectsAvailable = subjects
-}
-
 var userName = document.cookie.replace(/(?:(?:^|.*;\s*)name\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -79,8 +66,18 @@ function init () {
     }
     else {
         document.querySelector('#window-wrapper').style.filter = 'blur(5px)'
-        chooseSubject(subjectsAvailable)
+        getSubjects()
     }
+}
+
+function getSubjects () {
+    socket.emit('get_channels', channels => {
+        channels.forEach(channel => {
+            subjectsAvailable.push(channel.name)
+            subjectIds.push(channel.id)
+        })
+        populateSubjects(subjectsAvailable)
+    });
 }
 
 function toggleCheck (target) {
@@ -106,7 +103,7 @@ function buttonActivate() {
     }
 }
 
-function chooseSubject (subjects) {    
+function populateSubjects (subjects) {    
     var subjectsPopup = document.createElement('div')
     var subjectsContainer = document.createElement('div')
     var title = document.createElement('h2')
@@ -141,13 +138,13 @@ function closePopUp () {
         document.cookie ='name=' + nameInput.value
         document.querySelector('#popup').remove()
         document.querySelector('#window-wrapper').style.filter = 'none'
-        chooseSubject(subjectsAvailable)
+        getSubjects()
     }
     else if (nameInput.value && nameInput.value.length <= 1) {
         nameInput.value = 'Name too short'
     }
     else {
-        nameInput.value = 'Did you forget something?'
+        nameInput.value = 'Cannot be empty'
     }
 }
 
