@@ -3,8 +3,8 @@ const socket = io('https://api.dothemath.app');
 var subjectsAvailable = []
 var subjectIds = []
 
-socket.on('message', ({text, name}) => {
-    populateChat('from', name, text)
+socket.on('message', ({text, name, image}) => {
+    populateChat('from', name, text, image)
 });
 
 var userName = document.cookie.replace(/(?:(?:^|.*;\s*)name\s*\=\s*([^;]*).*$)|^.*$/, "$1");
@@ -194,7 +194,7 @@ function closePopUp () {
     }
 }
 
-function populateChat (toFrom, fromUserName, message) {
+function populateChat (toFrom, fromUserName, message, imageUrl) {
     var chatContainer = document.querySelector('#conversation-container')
     if (message) {
         var newChatBubble = document.createElement('div')
@@ -215,6 +215,23 @@ function populateChat (toFrom, fromUserName, message) {
 
         chatMessage.innerHTML = message
         newChatBubble.appendChild(chatMessage)
+        newChatBubble.appendChild(fromUser)
+        chatContainer.insertBefore(newChatBubble, chatContainer.firstChild)
+        chatContainer.scrollTop = chatContainer.scrollHeight
+    }
+    else if (imageUrl) {
+        var newChatBubble = document.createElement('div')
+        var chatImage = document.createElement('img')
+        var fromUser = document.createElement('p')
+
+        newChatBubble.setAttribute('class', 'chat-bubble--' + toFrom)
+        chatImage.setAttribute('class', 'chat-image')
+        chatImage.setAttribute('src', imageUrl)
+        fromUser.setAttribute('class', 'from-user')
+        fromUser.innerHTML = userName
+        newChatBubble.classList.add('sending')
+
+        newChatBubble.appendChild(chatImage)
         newChatBubble.appendChild(fromUser)
         chatContainer.insertBefore(newChatBubble, chatContainer.firstChild)
         chatContainer.scrollTop = chatContainer.scrollHeight
