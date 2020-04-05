@@ -156,23 +156,26 @@ function closePopUp () {
     }
 }
 
-function populateChat (toFrom, userName, message) {
+function populateChat (toFrom, fromUserName, message) {
     var chatContainer = document.querySelector('#conversation-container')
     if (message) {
         var newChatBubble = document.createElement('div')
         var chatMessage = document.createElement('p')
-        var fromUser = document.createElement('p')
 
         newChatBubble.setAttribute('class', 'chat-bubble--' + toFrom)
         chatMessage.setAttribute('class', 'chat-text')
-        chatMessage.setAttribute('class', 'from-user')
         if (toFrom == 'to') {
             newChatBubble.classList.add('sending')
+        }
+        else if (toFrom == 'from') {
+            var fromUser = document.createElement('p')
+            fromUser.setAttribute('class', 'from-user')
+            fromUser.innerHTML = fromUserName
+            newChatBubble.appendChild(fromUser)
         }
 
         chatMessage.innerHTML = message
         newChatBubble.appendChild(chatMessage)
-        newChatBubble.appendChild(fromUser)
         chatContainer.insertBefore(newChatBubble, chatContainer.firstChild)
         chatContainer.scrollTop = chatContainer.scrollHeight
     }
