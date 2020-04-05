@@ -4,7 +4,7 @@ var subjectsAvailable = []
 var subjectIds = []
 
 socket.on('message', ({text, name}) => {
-    populateChat('from', name, text);
+    populateChat('from', name, text)
 });
 
 var userName = document.cookie.replace(/(?:(?:^|.*;\s*)name\s*\=\s*([^;]*).*$)|^.*$/, "$1");
@@ -38,10 +38,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 })
             )
             populateChat('to', userName, input.value)
+            input.value = ''
+            input.style.height = 'initial'
+            event.preventDefault()
         }
-        input.value = ''
-        input.style.height = 'initial'
-        event.preventDefault()
     })
 
     init()

@@ -15,6 +15,7 @@ p, button, span, textarea
 h1, h2, h3
     font-family: 'Nunito Sans', sans-serif
     font-weight: 900
+    user-select: none
 
 h4, h5, h6
     font-family: 'Nunito Sans', sans-serif
@@ -148,6 +149,8 @@ button
     position: fixed
     left: 2rem
     bottom: 2rem
+    user-drag: none
+    user-select: none
 
 #content-wrapper
     width: 800px
@@ -241,6 +244,8 @@ button
         width: 100%
         font-size: 1.3rem
         background: none
+        max-height: 50vh
+        overflow-y: auto
     button
         width: 10%
         height: 100%
