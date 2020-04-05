@@ -179,7 +179,7 @@ button
     [class^="chat-bubble"]
         position: relative
         margin-top: 2rem
-        width: 60%
+        max-width: 60%
         border-radius: .5rem
         display: flex
         align-items: center
@@ -201,9 +201,9 @@ button
     .from-user
         position: absolute
         top: -1.5rem
-        left: .5rem
         font-size: 1.2rem
         color: #666
+        white-space: nowrap
     .chat-bubble--from
         background: #fff
         animation: bubble-left .4s ease
@@ -216,6 +216,8 @@ button
         animation: bubble-right .4s ease
         .chat-text
             color: #fff
+        .from-user
+            right: .5rem
         &::after
             right: -12px
             border-left: 12px solid $primary-color
