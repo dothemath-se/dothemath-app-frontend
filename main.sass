@@ -8,7 +8,17 @@ $primary-color: #4882ff
     box-sizing: border-box
     margin: 0
     padding: 0
+
+p, button, span
     font-family: Arial, Helvetica, sans-serif
+
+h1, h2, h3
+    font-family: 'Nunito Sans', sans-serif
+    font-weight: 900
+
+h4, h5, h6
+    font-family: 'Nunito Sans', sans-serif
+    font-weight: 700
 
 input, button
     outline: none
@@ -22,6 +32,7 @@ button
     border: none
     border-radius: .5rem
     transform: scale(1)
+    text-transform: capitalize
     transition: box-shadow, transform .05s ease
     &:hover
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3)
@@ -63,8 +74,10 @@ button
     left: 50%
     transform: translateY(-50%) translateX(-50%)
     animation: move-up 1s ease
+    h2
+        font-size: 3.2rem
     h3
-        font-size: 1.8rem
+        font-size: 3rem
         text-align: center
         margin-bottom: 20px
     input
@@ -91,17 +104,17 @@ button
     margin-bottom: 10px
     img
         margin: 5px 0
-        width: 10%
+        width: 7%
         height: 1.5rem
         cursor: pointer
     span
-        width: 90%
+        width: 93%
         margin: 5px 0
 
 #subjects-container
-    display: flex
     flex-direction: row
     flex-wrap: wrap
+    justify-content: space-between
     position: fixed
     left: 50%
     top: 50%
@@ -110,6 +123,9 @@ button
         width: 100%
         text-align: center
         margin-bottom: 10px
+    button
+        width: 18%
+        margin-bottom: 1rem
 
 #window-wrapper
     overflow: hidden
@@ -123,13 +139,11 @@ button
     background-image: url("img/bg.jpg")
     background-size: cover
 
-#page-head
-    display: flex
-    justify-content: center
-    margin-bottom: 1rem
-
 #logo
-    height: 3rem
+    height: 275px
+    position: fixed
+    left: 2rem
+    bottom: 2rem
 
 #content-wrapper
     min-width: 1000px
@@ -199,19 +213,16 @@ button
 #chat-container
     display: flex
     align-items: center
-    padding: .2rem .8rem
+    padding: .5rem 1rem
     width: 100%
-    padding: 20px 20px
-    min-height: 75px
     border-radius: 1rem
     background: rgba(255, 255, 255, .7)
     input
+        margin: .5rem 0
         border: none
         border-radius: 0
         width: 100%
-        height: 100%
-        font-size: 1.5rem
-        height: 80%
+        font-size: 1.3rem
         background: none
     button
         width: 10%

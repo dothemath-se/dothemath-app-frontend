@@ -13,8 +13,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
     init()
 });
 
-function initSockets() {
-    socket.emit('establish_session', { studentName: userName});
+function initSockets(channelId) {
+    socket.emit('establish_session', {
+        studentName: userName,
+        channelId: channelId
+      });
     $('form').submit(function(e){
         e.preventDefault(); // prevents page reloading
         socket.emit('send_message', { text: $('#chat-input').val() }, () => {
@@ -34,14 +37,14 @@ function init () {
         var popupContainer = document.createElement('div')
         var title = document.createElement('h3')
         var nameForm = document.createElement('form')
-        var checkTexts = ['I accept the use of cookies.', 'I agree to the terms of use']
+        var checkTexts = ['I accept the use of cookies', 'I agree to the terms of service']
         var checksContainer = document.createElement('div')
         var fragment = document.createDocumentFragment()
 
         namePopup.setAttribute('id', 'popup')
         popupContainer.setAttribute('id', 'popup-container')
         nameForm.setAttribute('id', 'name-form')
-        title.innerHTML = 'Welcome!'
+        title.innerHTML = 'Before we begin...'
         checksContainer.setAttribute('id', 'checks-container')
         
         checkTexts.forEach((text) => {
@@ -57,9 +60,9 @@ function init () {
         })
 
         popupContainer.appendChild(title)
-        nameForm.innerHTML += '<input id="name-input" type="text" placeholder="Hi, my name is...">'
+        nameForm.innerHTML += '<input id="name-input" type="text" placeholder="Choose your nickname">'
         nameForm.appendChild(fragment)
-        nameForm.innerHTML += '<button id="enter-name-btn" class="btn--primary" type="button" onclick="closePopUp()" disabled>ENTER</button>'
+        nameForm.innerHTML += '<button id="enter-name-btn" class="btn--primary" type="button" onclick="closePopUp()" disabled>begin</button>'
         popupContainer.appendChild(nameForm)
         namePopup.appendChild(popupContainer)
         document.body.appendChild(namePopup)
@@ -76,7 +79,7 @@ function getSubjects () {
             subjectsAvailable.push(channel.name)
             subjectIds.push(channel.id)
         })
-        populateSubjects(subjectsAvailable)
+        populateSubjects(subjectsAvailable, subjectIds)
     });
 }
 
@@ -103,7 +106,7 @@ function buttonActivate() {
     }
 }
 
-function populateSubjects (subjects) {    
+function populateSubjects (subjects, subjectIds) {    
     var subjectsPopup = document.createElement('div')
     var subjectsContainer = document.createElement('div')
     var title = document.createElement('h2')
@@ -114,22 +117,26 @@ function populateSubjects (subjects) {
     title.innerHTML = 'Choose subject'
 
     subjectsContainer.appendChild(title)
-    subjects.forEach((subject) => {
+    for (let i = 0; i < subjectsAvailable.length; i++) {
+        var subject = subjectsAvailable[i]
+        var subjectId = subjectIds[i]
         var subjectButton = document.createElement('button')
         subjectButton.innerHTML = subject
         subjectButton.setAttribute('onclick', 'subjectSelection(this)')
         subjectButton.setAttribute('class', 'btn--primary')
+        subjectButton.setAttribute('id', subjectId)
         subjectsContainer.appendChild(subjectButton)
-    })
+    }
+
     subjectsPopup.appendChild(subjectsContainer)
     document.body.appendChild(subjectsPopup)
 }
 
 function subjectSelection(target) {
-    var selectedSubject = target
+    var selectedSubject = target.id
     document.querySelector('#popup').remove()
     document.querySelector('#window-wrapper').style.filter = 'none'
-    initSockets()
+    initSockets(selectedSubject)
 }
 
 function closePopUp () {
