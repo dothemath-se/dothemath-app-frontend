@@ -1,5 +1,8 @@
 const socket = io('https://api.dothemath.app');
 
+let vh = window.innerHeight * 0.01
+document.querySelector('#window-wrapper').style.setProperty('--vh', `${vh}px`)
+
 var subjectsAvailable = []
 var subjectIds = []
 
