@@ -14,17 +14,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
     document.querySelector('#window-wrapper').style.setProperty('--vh', `${vh}px`)
     window.addEventListener('resize', () => {
         let vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
+        document.querySelector('#window-wrapper').style.setProperty('--vh', `${vh}px`);
     });
 
-    var $htmlOrBody = $('html, body'),
-        scrollTopPadding = 8
+    document.querySelector('input').addEventListener('focus', (event) => {
+        let vh = window.innerHeight * 0.01;
+        document.querySelector('#window-wrapper').style.setProperty('--vh', `${vh}px`);
+    })
 
-    $('input').focus(function() {
-        var inputTop = $(this).offset().top;
-        $htmlOrBody.scrollTop(inputTop - scrollTopPadding)
-        $htmlOrBody.animate({ scrollTop: inputTop - scrollTopPadding }, 250)
-    });
+    document.querySelector('input').addEventListener('blur', (event) => {
+        let vh = window.innerHeight * 0.01;
+        document.querySelector('#window-wrapper').style.setProperty('--vh', `${vh}px`);
+    })
 
     init()
 });
