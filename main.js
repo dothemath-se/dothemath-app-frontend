@@ -95,7 +95,7 @@ function init () {
         })
 
         popupContainer.appendChild(title)
-        nameForm.innerHTML += '<input id="name-input" type="text" placeholder="Choose your nickname">'
+        nameForm.innerHTML += '<input id="name-input" maxlength="25" type="text" placeholder="Choose your nickname">'
         nameForm.appendChild(fragment)
         nameForm.innerHTML += '<button id="enter-name-btn" class="btn--primary" type="button" onclick="closePopUp()" disabled>begin</button>'
         popupContainer.appendChild(nameForm)
