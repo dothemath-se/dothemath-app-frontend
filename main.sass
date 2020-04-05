@@ -196,25 +196,25 @@ button
             font-size: 1rem
     .from-user
         position: absolute
-        top: -1.4rem
+        top: -1.5rem
         left: .5rem
         font-size: 1.2rem
         color: #666
     .chat-bubble--from
-        background: $primary-color
+        background: #fff
         animation: bubble-left .4s ease
         &::after
             left: -12px
-            border-right: 12px solid $primary-color
-        .chat-text
-            color: #fff
+            border-right: 12px solid #fff
     .chat-bubble--to
         margin-left: auto
-        background: #fff
+        background: $primary-color
         animation: bubble-right .4s ease
+        .chat-text
+            color: #fff
         &::after
             right: -12px
-            border-left: 12px solid #fff
+            border-left: 12px solid $primary-color
 
 #chat-container
     display: flex
