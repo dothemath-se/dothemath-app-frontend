@@ -178,7 +178,11 @@ button
     background: rgba(255, 255, 255, .7)
     [class^="chat-bubble"]
         position: relative
-        margin-top: 2rem
+        margin: 1.1rem 0
+        width: fit-content
+        width: intrinsic
+        width: -moz-max-content
+        width: -webkit-max-content
         max-width: 60%
         border-radius: .5rem
         display: flex
@@ -303,7 +307,7 @@ button
         display: none
     #conversation-container
         [class^="chat-bubble"]
-            width: 90%
+            max-width: 90%
     #chat-container
         button
             width: 90px

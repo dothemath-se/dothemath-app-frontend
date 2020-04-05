@@ -187,7 +187,7 @@ function populateChat (toFrom, fromUserName, message) {
         chatMessage.setAttribute('class', 'chat-text')
         if (toFrom == 'to') {
             fromUser.setAttribute('class', 'from-user')
-            fromUser.innerHTML = userName + ' (You)'
+            fromUser.innerHTML = userName
             newChatBubble.classList.add('sending')
         }
         else if (toFrom == 'from') {
