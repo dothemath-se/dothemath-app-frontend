@@ -1,8 +1,5 @@
 const socket = io('https://api.dothemath.app');
 
-let vh = window.innerHeight * 0.01
-document.querySelector('#window-wrapper').style.setProperty('--vh', `${vh}px`)
-
 var subjectsAvailable = []
 var subjectIds = []
 
@@ -13,6 +10,8 @@ socket.on('message', ({text, name}) => {
 var userName = document.cookie.replace(/(?:(?:^|.*;\s*)name\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 
 document.addEventListener("DOMContentLoaded", function(event) {
+    let vh = window.innerHeight * 0.01
+    document.querySelector('#window-wrapper').style.setProperty('--vh', `${vh}px`)
     init()
 });
 
@@ -123,9 +122,11 @@ function populateSubjects (subjects, subjectIds) {
     for (let i = 0; i < subjectsAvailable.length; i++) {
         var subject = subjectsAvailable[i]
         var subjectId = subjectIds[i]
+        var onClick = 'subjectSelection(this, ' + '"' + subject + '"' + ')'
         var subjectButton = document.createElement('button')
+
         subjectButton.innerHTML = subject
-        subjectButton.setAttribute('onclick', 'subjectSelection(this)')
+        subjectButton.setAttribute('onclick', onClick)
         subjectButton.setAttribute('class', 'btn--primary')
         subjectButton.setAttribute('id', subjectId)
         subjectsContainer.appendChild(subjectButton)
@@ -135,8 +136,9 @@ function populateSubjects (subjects, subjectIds) {
     document.body.appendChild(subjectsPopup)
 }
 
-function subjectSelection(target) {
+function subjectSelection(target, subject) {
     var selectedSubject = target.id
+    document.querySelector('#subject-title').innerHTML = subject
     document.querySelector('#popup').remove()
     document.querySelector('#window-wrapper').style.filter = 'none'
     initSockets(selectedSubject)
