@@ -10,7 +10,9 @@ socket.on('message', ({text, name, image}) => {
 var userName = document.cookie.replace(/(?:(?:^|.*;\s*)name\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 
 document.addEventListener("DOMContentLoaded", function(event) {
+
     let vh = window.innerHeight * 0.01
+
     document.querySelector('#window-wrapper').style.setProperty('--vh', `${vh}px`)
     window.addEventListener('resize', () => {
         let vh = window.innerHeight * 0.01;
@@ -23,6 +25,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
     })
 
     document.querySelector('textarea').addEventListener('blur', (event) => {
+        let vh = window.innerHeight * 0.01;
+        document.querySelector('#window-wrapper').style.setProperty('--vh', `${vh}px`);
+    })
+
+    document.querySelector('textarea').addEventListener('mouseout', (event) => {
         let vh = window.innerHeight * 0.01;
         document.querySelector('#window-wrapper').style.setProperty('--vh', `${vh}px`);
     })
