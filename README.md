@@ -9,8 +9,6 @@
 
 ## Prerequisites
 
-- An editor of choice
-  - We use VS Code
 - Some means to convert SASS into CSS
   - We use the following VS Code plugins
     - [Sass](https://marketplace.visualstudio.com/items?itemName=Syler.sass-indented)
