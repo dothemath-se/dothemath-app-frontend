@@ -20,7 +20,7 @@
                 <div id="conversation-container">
                 </div>
                 <form id="chat-container" action="">
-                    <input data-emojiable="true" data-emoji-input="unicode" id="chat-input" autocomplete="off" type="text" placeholder="Begin typing your message...">
+                    <textarea oninput="this.style.height = '';this.style.height = this.scrollHeight + 'px'" rows="1" id="chat-input" autocomplete="off" placeholder="Begin typing your message..." form="chat-container"></textarea>
                     <button>send</button>
                 </form>
             </div>

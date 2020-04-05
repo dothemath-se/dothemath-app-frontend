@@ -9,7 +9,7 @@ $primary-color: #4882ff
     margin: 0
     padding: 0
 
-p, button, span
+p, button, span, textarea
     font-family: Arial, Helvetica, sans-serif
 
 h1, h2, h3
@@ -20,7 +20,7 @@ h4, h5, h6
     font-family: 'Nunito Sans', sans-serif
     font-weight: 700
 
-input, button
+input, button, textarea
     outline: none
 
 button
@@ -183,10 +183,11 @@ button
         width: intrinsic
         width: -moz-max-content
         width: -webkit-max-content
-        max-width: 60%
+        max-width: 90%
         border-radius: .5rem
         display: flex
         align-items: center
+        white-space: pre-wrap
         padding: 1.2rem
         opacity: 1
         box-shadow: 0 0 15px 0 rgba(0, 0, 0, .3)
@@ -233,7 +234,7 @@ button
     width: 100%
     border-radius: 1rem
     background: rgba(255, 255, 255, .7)
-    input
+    textarea
         margin: .5rem 0
         border: none
         border-radius: 0

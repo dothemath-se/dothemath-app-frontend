@@ -17,14 +17,31 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.querySelector('#window-wrapper').style.setProperty('--vh', `${vh}px`);
     });
 
-    document.querySelector('input').addEventListener('focus', (event) => {
+    document.querySelector('textarea').addEventListener('focus', (event) => {
         let vh = window.innerHeight * 0.01;
         document.querySelector('#window-wrapper').style.setProperty('--vh', `${vh}px`);
     })
 
-    document.querySelector('input').addEventListener('blur', (event) => {
+    document.querySelector('textarea').addEventListener('blur', (event) => {
         let vh = window.innerHeight * 0.01;
         document.querySelector('#window-wrapper').style.setProperty('--vh', `${vh}px`);
+    })
+
+    document.querySelector('#chat-input').addEventListener('keydown', (event) => {
+        if (event.keyCode === 13) {
+            var form = document.querySelector("#chat-container")
+            var input = document.querySelector('#chat-input')
+            function handleForm(event) { event.preventDefault() } 
+            form.addEventListener('submit', 
+                socket.emit('send_message', { text: document.querySelector('#chat-input').value }, () => {
+                    document.querySelector('.sending').classList.remove('sending')
+                })
+            )
+            populateChat('to', userName, input.value)
+        }
+        input.value = ''
+        input.style.height = 'initial'
+        event.preventDefault()
     })
 
     init()
@@ -37,11 +54,12 @@ function initSockets(channelId) {
       });
     $('form').submit(function(e){
         e.preventDefault(); // prevents page reloading
-        socket.emit('send_message', { text: $('#chat-input').val() }, () => {
+        socket.emit('send_message', { text: document.querySelector('#chat-input').value }, () => {
             document.querySelector('.sending').classList.remove('sending')
         });
-        populateChat('to', userName, $('#chat-input').val());
-        $('#chat-input').val('');
+        populateChat('to', userName, document.querySelector('#chat-input').value);
+        document.querySelector('#chat-input').value = ''
+        document.querySelector('#chat-input').style.height = 'initial'
         return false;
     });
 };
