@@ -228,14 +228,12 @@ function populateChat (toFrom, fromUserName, message, imageUrl) {
     }
     else if (imageUrl) {
         var newChatBubble = document.createElement('div')
-        var chatImage = document.createElement('a')
+        var chatImage = document.createElement('img')
         var fromUser = document.createElement('p')
 
         newChatBubble.setAttribute('class', 'chat-bubble--' + toFrom)
-        chatImage.setAttribute('class', 'chat-text')
-        chatImage.setAttribute('href', imageUrl)
-        chatImage.setAttribute('target', 'blank')
-        chatImage.innerHTML = imageUrl
+        chatImage.setAttribute('class', 'chat-image')
+        chatImage.setAttribute('src', imageUrl)
         fromUser.setAttribute('class', 'from-user')
         fromUser.innerHTML = userName
 

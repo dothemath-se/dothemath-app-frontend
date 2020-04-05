@@ -205,8 +205,10 @@ button
             border-bottom: 12px solid transparent
     .sending
         opacity: .3
-        .chat-text
-            font-size: 1rem
+    .chat-image
+        max-width: 90%
+        text-align: center
+        max-height: 50vh
     .from-user
         position: absolute
         top: -1.5rem
@@ -253,9 +255,13 @@ button
         overflow-y: auto
         resize: none
     button
-        padding: .5rem .7rem
+        background-color: $primary-color
+        background-image: url('icons/paper-plane-solid.png')
+        background-repeat: no-repeat
+        background-position: center
+        background-size: 60% 60%
+        padding: 1.5rem
         font-size: 1.2rem
-        background: $primary-color
         color: #fff
         border: none
         border-radius: .5rem
