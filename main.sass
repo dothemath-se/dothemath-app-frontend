@@ -140,13 +140,13 @@ button
     background-size: cover
 
 #logo
-    height: 275px
+    height: 15vw
     position: fixed
     left: 2rem
     bottom: 2rem
 
 #content-wrapper
-    min-width: 1000px
+    width: 800px
     flex-grow: 1
     height: 100%
     overflow-y: hidden
@@ -276,3 +276,10 @@ button
         opacity: .3
         transform: translateX(0)
         filter: blur(0)
+
+@media screen and ( max-width: 1250px )
+    #content-wrapper
+        width: 95vw
+    #logo
+        display: none
+    
