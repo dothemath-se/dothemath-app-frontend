@@ -17,8 +17,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.documentElement.style.setProperty('--vh', `${vh}px`);
     });
 
-    document.querySelector('#window-wrapper').scrollTop(textareaTop - scrollTopPadding)
-    document.querySelector('#window-wrapper').animate({ scrollTop: textareaTop - scrollTopPadding }, 250)
+    var $htmlOrBody = $('html, body'),
+        scrollTopPadding = 8
+
+    $('input').focus(function() {
+        var inputTop = $(this).offset().top;
+        $htmlOrBody.scrollTop(inputTop - scrollTopPadding)
+        $htmlOrBody.animate({ scrollTop: inputTop - scrollTopPadding }, 250)
+    });
 
     init()
 });
