@@ -1,0 +1,360 @@
+// Colors and Variables
+
+$primary-color: #4882ff
+
+// Main styling
+    
+*
+    box-sizing: border-box
+    margin: 0
+    padding: 0
+
+p, button, span, textarea
+    font-family: Arial, Helvetica, sans-serif
+
+h1, h2, h3
+    font-family: 'Nunito Sans', sans-serif
+    font-weight: 900
+    user-select: none
+
+h4, h5, h6
+    font-family: 'Nunito Sans', sans-serif
+    font-weight: 700
+
+input, button, textarea
+    outline: none
+
+button
+    cursor: pointer
+
+[class^="btn"]
+    padding: 10px 20px
+    font-size: 1.2rem
+    border: none
+    border-radius: .5rem
+    transform: scale(1)
+    text-transform: capitalize
+    transition: box-shadow, transform .05s ease
+    &:hover
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3)
+        transform: scale(1.05)
+        transition: box-shadow, transform .15s ease
+    &:active
+        transform: scale(0.95)
+        box-shadow: none
+        transition: box-shadow, transform .05s ease
+    &:disabled
+        background: #aaa
+
+.btn--primary
+    background: $primary-color
+    color: #fff
+
+#popup
+    z-index: 99
+    top: 0
+    left: 0
+    width: 100vw
+    height: 100vh
+    position: fixed
+    background: rgba(0, 0, 0, .7)
+    opacity: 1
+    animation: fade-in .6s ease
+
+#popup-container, #subjects-container
+    z-index: 100
+    position: fixed
+    background: #fff
+    border-radius: 1rem
+    padding: 20px 40px
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+    align-items: center
+    top: 50%
+    left: 50%
+    transform: translateY(-50%) translateX(-50%)
+    animation: move-up 1s ease
+    h2
+        font-size: 3.2rem
+    h3
+        font-size: 3rem
+        text-align: center
+        margin-bottom: 20px
+    input
+        width: 100%
+        padding: 10px 10px
+        border: 2px solid #aaa
+        border-radius: .5
+        border-radius: 1rem
+        font-size: 1.5rem
+        background: none
+        margin-bottom: 20px
+    #name-form
+        height: 100%
+        width: 90%
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: space-around
+
+#checks-container
+    display: flex
+    flex-wrap: wrap
+    align-items: center
+    margin-bottom: 10px
+    img
+        margin: 5px 0
+        width: 7%
+        height: 1.5rem
+        cursor: pointer
+    span
+        width: 93%
+        margin: 5px 0
+
+#subjects-container
+    flex-direction: row
+    flex-wrap: wrap
+    justify-content: flex-start
+    position: fixed
+    left: 50%
+    top: 50%
+    transform: translateY(-50%) translateX(-50%)
+    h2
+        width: 100%
+        text-align: center
+        margin-bottom: 10px
+    button
+        margin-right: 2%
+        width: 23%
+        margin-bottom: 1rem
+
+#window-wrapper
+    overflow: hidden
+    width: 100vw
+    height: 100vh
+    height: calc(var(--vh, 1vh) * 100)
+    padding: 1rem 20vw
+    position: fixed
+    display: flex
+    flex-direction: column
+    align-items: center
+    background-image: url("/img/bg.jpg")
+    background-size: cover
+    h2
+        margin-bottom: .5rem
+        font-size: 2.5rem
+
+#logo
+    height: 15vw
+    position: fixed
+    left: 2rem
+    bottom: 2rem
+    user-drag: none
+    user-select: none
+
+#content-wrapper
+    width: 800px
+    flex-grow: 1
+    height: 100%
+    overflow-y: hidden
+    display: flex
+    justify-content: space-between
+
+#chat-wrapper
+    width: 100%
+    flex-grow: 1
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+
+#conversation-container
+    position: relative
+    display: flex
+    flex-direction: column-reverse
+    overflow-y: auto
+    overflow-x: hidden
+    flex-grow: 1
+    width: 100%
+    border-radius: 1rem
+    margin-bottom: 1rem
+    padding: 20px 40px
+    background: rgba(255, 255, 255, .7)
+    [class^="chat-bubble"]
+        position: relative
+        margin: 1.1rem 0
+        width: fit-content
+        width: intrinsic
+        width: -moz-max-content
+        width: -webkit-max-content
+        max-width: 90%
+        border-radius: .5rem
+        display: flex
+        align-items: center
+        white-space: pre-wrap
+        padding: 1.2rem
+        opacity: 1
+        box-shadow: 0 0 15px 0 rgba(0, 0, 0, .3)
+        &::after
+            content: ""
+            position: absolute
+            bottom: 1rem
+            width: 0 
+            height: 0 
+            border-top: 12px solid transparent
+            border-bottom: 12px solid transparent
+    .sending
+        opacity: .3
+    .chat-image
+        max-width: 90%
+        text-align: center
+        max-height: 50vh
+    .from-user
+        position: absolute
+        top: -1.5rem
+        font-size: 1.2rem
+        color: #666
+        white-space: nowrap
+    .chat-bubble--from
+        background: #fff
+        animation: bubble-left .4s ease
+        &::after
+            left: -12px
+            border-right: 12px solid #fff
+    .chat-bubble--to
+        margin-left: auto
+        background: $primary-color
+        animation: bubble-right .4s ease
+        .chat-text
+            color: #fff
+        .from-user
+            right: .5rem
+        &::after
+            right: -12px
+            border-left: 12px solid $primary-color
+
+#chat-container
+    display: flex
+    align-items: center
+    padding: .5rem .6rem .5rem 1rem
+    width: 100%
+    height: fit-content
+    height: intrinsic
+    height: -moz-max-content
+    height: -webkit-max-content
+    border-radius: 1rem
+    background: rgba(255, 255, 255, .7)
+    textarea
+        margin: .5rem 0
+        border: none
+        border-radius: 0
+        width: 100%
+        font-size: 1.3rem
+        background: none
+        max-height: 18vh
+        overflow-y: auto
+        resize: none
+    button
+        background-color: $primary-color
+        background-image: url('/icons/paper-plane-solid.png')
+        background-repeat: no-repeat
+        background-position: center
+        background-size: 60% 60%
+        padding: 1.5rem
+        font-size: 1.2rem
+        color: #fff
+        border: none
+        border-radius: .5rem
+        transform: scale(1)
+        transition: box-shadow, transform .05s ease
+        &:hover
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3)
+            transform: scale(1.05)
+            transition: box-shadow, transform .15s ease
+        &:active
+            transform: scale(0.95)
+            box-shadow: none
+            transition: box-shadow, transform .05s ease
+
+//Animations
+
+@keyframes fade-in
+    0%
+        opacity: 0
+    100%
+        opacity: 1
+
+@keyframes move-up
+    0%
+        transform: translateY(0%) translateX(-50%)
+    100%
+        transform: translateY(-50%) translateX(-50%)
+
+@keyframes bubble-left
+    0%
+        opacity: 0
+        transform: translateX(-100%)
+        filter: blur(20px)
+    100%
+        opacity: 1
+        transform: translateX(0)
+        filter: blur(0)
+
+@keyframes bubble-right
+    0%
+        opacity: 0
+        transform: translateX(100%)
+        filter: blur(20px)
+    100%
+        opacity: .3
+        transform: translateX(0)
+        filter: blur(0)
+
+// Mobile and small screens support
+
+@media screen and ( max-width: 1250px )
+    html
+        font-size: 80%
+    #window-wrapper
+        h2
+            font-size: 1.8rem
+    #content-wrapper
+        width: 95vw
+    #logo
+        display: none
+    #conversation-container
+        [class^="chat-bubble"]
+            max-width: 90%
+    #popup-container
+        width: 90vw
+        h3
+            font-size: 2rem
+        #checks-container
+            img
+                width: 15%
+            span
+                width: 75%
+    #subjects-container
+        width: 80vw
+        button
+            width: 30%
+
+@media screen and ( max-width: 600px )
+    #subjects-container
+        button
+            width: 48%
+
+@media screen and ( max-width: 470px )
+    #popup-container
+        h3
+            font-size: 1.5rem
+        input
+            font-size: 1rem
+    #subjects-container
+        max-height: 90vh
+        overflow-y: auto
+        h2
+            font-size: 2rem
+        button
+            margin: .5rem 0
+            width: 100%
