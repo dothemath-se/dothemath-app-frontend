@@ -49,21 +49,30 @@ export default function Chat(props: ChatProps) {
     console.log("message added to local state", localMessage);
   }
 
-  function sendRealMessage(message) {
-    const text = message + counter;
-    sendMessage(text);
-    console.log("message sent to backend", text);
+  function sendRealMessage(text: string, image?: File | null) {
+    sendMessage(text, image);
 
-    const localMessage: OnMessageCallbackData = {
-      toFrom: "to",
-      text,
-      name: "pupil",
-    };
+    const localMessages: OnMessageCallbackData[] = [];
 
-    setMessages((y)=>[...y, localMessage]);
+    if (image) {
+      localMessages.push({
+        toFrom: "to",
+        text: "",
+        name: props.name,
+        image: URL.createObjectURL(image)
+      })
+    }
+
+    if (text) {
+      localMessages.push({
+        toFrom: "to",
+        text,
+        name: props.name,
+      })
+    }
+
+    setMessages((y)=>[...y, ...localMessages]);
     setCounter(counter + 1);
-
-    console.log("message added to local state", localMessage);
   }
 
   return (

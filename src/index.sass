@@ -254,9 +254,8 @@ button
         max-height: 18vh
         overflow-y: auto
         resize: none
-    button
+    #select-image-button, #send-message-button
         background-color: $primary-color
-        background-image: url('/icons/paper-plane-solid.png')
         background-repeat: no-repeat
         background-position: center
         background-size: 60% 60%
@@ -275,6 +274,10 @@ button
             transform: scale(0.95)
             box-shadow: none
             transition: box-shadow, transform .05s ease
+    #select-image-button
+        margin-right: .5rem
+    #send-message-button
+        background-image: url('/icons/paper-plane-solid.png')
 
 //Animations
 
