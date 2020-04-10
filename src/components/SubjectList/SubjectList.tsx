@@ -7,7 +7,8 @@ interface SubjectListProps {
 
 export function SubjectList(props: SubjectListProps) {
   return (
-    <div id="subjects-container">
+    <div id="popup">
+      <div id="subjects-container">
       <h2>Choose subject</h2>
       {props?.data?.map((item, index) => (
         <button
@@ -18,6 +19,7 @@ export function SubjectList(props: SubjectListProps) {
           {item.name}
         </button>
       ))}
+    </div>
     </div>
   );
 }
