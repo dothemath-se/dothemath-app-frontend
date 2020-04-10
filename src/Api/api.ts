@@ -72,6 +72,11 @@ export function reEstablishSession(channelId: string, threadId: string): Promise
   });
 }
 
+export function cancelSession() {
+  socket.disconnect();
+  socket.connect();
+}
+
 export function onMessage(cb: OnMessageCallback) {
   socket.on('message', ({ text, name, image }) => {
     if (image) {

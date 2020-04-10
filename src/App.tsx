@@ -10,6 +10,7 @@ import {
   establishSession,
   onMessage,
   sendMessage,
+  cancelSession,
 } from './Api/api';
 import Chat from './components/Chat';
 import LoadingIndicator from './components/LoadingIndicator';
@@ -28,17 +29,15 @@ export default function App() {
 
   // runs when app first loads, reestablishes session if possible
   useEffect(() => {
+    if (channelId && !threadId) {
+      setChannelId('');
+    }
     if (threadId && channelId) {
       reEstablishSession(channelId, threadId)
         .then((res) => {
           setName(res.name);
           setChannelId(res.subject.id);
           setMessages(res.messages);
-
-          onMessage((m) => {
-            console.log('message received from backend', m);
-            setMessages((y) => [...y, m]);
-          });
         })
         .catch((err) => {
           setChannelId('');
@@ -51,6 +50,11 @@ export default function App() {
     } else {
       setLoading(false);
     }
+
+    onMessage((m) => {
+      console.log('message received from backend', m);
+      setMessages((y) => [...y, m]);
+    });
   }, []);
 
   function onSubjectSelect(subject: Subject) {
@@ -61,11 +65,6 @@ export default function App() {
       .then(() => {
         console.info('session established');
         setMessages([]);
-
-        onMessage((m) => {
-          console.log('message received from backend', m);
-          setMessages((y) => [...y, m]);
-        });
       })
       .finally(() => {
         setLoading(false);
@@ -103,6 +102,13 @@ export default function App() {
     setMessages((messages) => [...messages, ...localMessages]);
   }
 
+  function onNewQuestion() {
+    setChannelId('');
+    setThreadId('');
+    setMessages([]);
+    cancelSession();
+  }
+
   const subject = subjects.find((s) => s.id === channelId);
 
   const showPopup = !name && !loading;
@@ -122,6 +128,7 @@ export default function App() {
           subject={subject}
           messages={messages}
           onSendMessage={onSendMessage}
+          onNewQuestionClick={onNewQuestion}
         />
       </div>
     </div>

@@ -13,6 +13,7 @@ interface ChatProps {
   };
   messages: OnMessageCallbackData[];
   onSendMessage(text: string, image?: File): any
+  onNewQuestionClick(): any
 }
 
 export default function Chat(props: ChatProps) {
@@ -21,6 +22,7 @@ export default function Chat(props: ChatProps) {
   return (
     <div id="window-wrapper">
       <h2 id="subject-title">{props.subject?.name}</h2>
+      <button onClick={props.onNewQuestionClick} id="new-question-button">Ask New Question</button>
       <div id="content-wrapper">
         <div id="chat-wrapper">
           <ConversationContainer messages={messages} />
