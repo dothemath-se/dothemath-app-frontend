@@ -12,12 +12,10 @@ const fakeMessages = [
     toFrom: "from",
     text: "Hej själv",
     name: "Bull",
-    image: null,
   },
   {
     toFrom: "to",
     text: "Hej du",
     name: "Bill",
-    image: null,
   },
 ];

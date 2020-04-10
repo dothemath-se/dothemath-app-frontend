@@ -49,7 +49,7 @@ export default function Chat(props: ChatProps) {
     console.log("message added to local state", localMessage);
   }
 
-  function sendRealMessage(text: string, image?: File | null) {
+  function sendRealMessage(text: string, image?: File) {
     sendMessage(text, image);
 
     const localMessages: OnMessageCallbackData[] = [];

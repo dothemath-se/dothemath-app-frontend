@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 
 interface InputContainerProps {
-  onSend: (text: string, image?: File | null) => void;
+  onSend: (text: string, image?: File) => void;
 }
 
 export default function InputContainer(props: InputContainerProps) {
@@ -30,9 +30,11 @@ export default function InputContainer(props: InputContainerProps) {
   }
 
   function onSendMessageClick () {
-    if (message || image) {
+    if (image) {
       props.onSend(message, image)
-    } 
+    } else if (message) {
+      props.onSend(message);
+    }
     setMessage("");
     setImage(null);
     if (fileInputRef.current) {

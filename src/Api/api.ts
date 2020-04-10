@@ -6,7 +6,7 @@ export function getSubjects(cb) {
   socket.emit("get_channels", cb);
 }
 
-export function sendMessage(text: string, image?: File | null) {
+export function sendMessage(text: string, image?: File) {
   if (image) {
     const fileReader = new FileReader();
     fileReader.onload = function () {
@@ -43,5 +43,5 @@ export type OnMessageCallbackData = {
   toFrom: "to" | "from";
   text: string;
   name: string;
-  image?: string | null;
+  image?: string;
 };

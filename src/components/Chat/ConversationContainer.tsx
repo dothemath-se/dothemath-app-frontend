@@ -1,7 +1,7 @@
 import React from "react";
 
 interface ConversationContainerProps {
-  messages: { toFrom: string; text: string; name: string, image?: string | null }[];
+  messages: { toFrom: string; text: string; name: string, image?: string }[];
 }
 
 export default function ConversationContainer(
@@ -12,7 +12,7 @@ export default function ConversationContainer(
       {props?.messages
         ?.map((item, index) => (
           <div className={"chat-bubble--" + item.toFrom} key={index}>
-            {item.image && <img src={item.image} />}
+            {item.image && <img src={item.image} alt="" />}
             <p className="chat-text">{item.text}</p>
             <p className="from-user">{item.name}</p>
           </div>
