@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface ConversationContainerProps {
   messages: {
@@ -16,7 +16,7 @@ export default function ConversationContainer(
     <div id="conversation-container">
       {props?.messages
         ?.map((item, index) => (
-          <div className={"chat-bubble--" + item.toFrom} key={index}>
+          <div className={'chat-bubble--' + item.toFrom} key={index}>
             {item.image && <img src={item.image} alt="" />}
             <p className="chat-text">{item.text}</p>
             <p className="from-user">{item.name}</p>

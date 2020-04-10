@@ -1,12 +1,12 @@
-import React from "react";
-import { SubjectList } from "./SubjectList";
+import React from 'react';
+import { SubjectList } from './SubjectList';
 
 export default {
-  title: "SubjectList",
+  title: 'SubjectList',
 };
 
 export const Math1 = () => (
-  <SubjectList data={[{ name: "Math 1" }]} onComplete={() => {}} />
+  <SubjectList data={[{ name: 'Math 1' }]} onComplete={() => {}} />
 );
 
 export const ManySubjects = () => (

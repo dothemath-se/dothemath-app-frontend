@@ -1,8 +1,13 @@
-import React from "react";
-import ConversationContainer from "./ConversationContainer";
-import InputContainer from "./InputContainer";
-import { establishSession, sendMessage, onMessage, OnMessageCallbackData } from "../../Api/api";
-import { useState, useEffect } from "react";
+import React from 'react';
+import ConversationContainer from './ConversationContainer';
+import InputContainer from './InputContainer';
+import {
+  establishSession,
+  sendMessage,
+  onMessage,
+  OnMessageCallbackData,
+} from '../../Api/api';
+import { useState, useEffect } from 'react';
 
 interface ChatProps {
   name: string;
@@ -17,20 +22,19 @@ export default function Chat(props: ChatProps) {
   const [counter, setCounter] = useState(1);
 
   useEffect(() => {
-
     if (!(props.name && props.subject)) {
-      console.info("do nothing in effect");
+      console.info('do nothing in effect');
       return;
     }
-    
+
     establishSession(props.subject.id, props.name);
-    console.info("session established");
+    console.info('session established');
 
     onMessage((m) => {
-      console.log("message received from backend", m);
+      console.log('message received from backend', m);
       setMessages((y) => [...y, m]);
     });
-  }, [props.name, props.subject])
+  }, [props.name, props.subject]);
 
   function sendRealMessage(text: string, image?: File) {
     sendMessage(text, image);
@@ -39,22 +43,22 @@ export default function Chat(props: ChatProps) {
 
     if (image) {
       localMessages.push({
-        toFrom: "to",
-        text: "",
+        toFrom: 'to',
+        text: '',
         name: props.name,
-        image: URL.createObjectURL(image)
-      })
+        image: URL.createObjectURL(image),
+      });
     }
 
     if (text) {
       localMessages.push({
-        toFrom: "to",
+        toFrom: 'to',
         text,
         name: props.name,
-      })
+      });
     }
 
-    setMessages((y)=>[...y, ...localMessages]);
+    setMessages((y) => [...y, ...localMessages]);
     setCounter(counter + 1);
   }
 

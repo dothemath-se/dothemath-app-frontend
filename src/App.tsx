@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from "react";
-import Popup from "./components/Popup";
-import SubjectList from "./components/SubjectList";
-import { getSubjects } from "./Api/api";
-import Chat from "./components/Chat";
-import { useNameCookie } from "./useNameCookie";
+import React, { useState, useEffect } from 'react';
+import Popup from './components/Popup';
+import SubjectList from './components/SubjectList';
+import { getSubjects } from './Api/api';
+import Chat from './components/Chat';
+import { useNameCookie } from './useNameCookie';
 
 export default function App() {
   const [name, setName] = useNameCookie();
@@ -23,7 +23,7 @@ export default function App() {
       {showSubjectList && (
         <SubjectList data={subjects} onComplete={setSubject} />
       )}
-      <div style={blurChat ? { filter: "blur(5px)" } : {}}>
+      <div style={blurChat ? { filter: 'blur(5px)' } : {}}>
         <Chat name={name} subject={subject} />
       </div>
     </div>

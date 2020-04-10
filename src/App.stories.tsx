@@ -1,8 +1,8 @@
-import React from "react";
-import App from "./App";
+import React from 'react';
+import App from './App';
 
 export default {
-  title: "App",
+  title: 'App',
 };
 
 export const Default = () => <App />;

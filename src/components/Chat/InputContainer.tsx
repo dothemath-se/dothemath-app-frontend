@@ -1,27 +1,27 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef } from 'react';
 
 interface InputContainerProps {
   onSend: (text: string, image?: File) => void;
 }
 
 export default function InputContainer(props: InputContainerProps) {
-  const [message, setMessage] = useState("");
-  const [image, setImage] = useState<File | null>(null)
+  const [message, setMessage] = useState('');
+  const [image, setImage] = useState<File | null>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  function onFileInputChange (files: FileList | null) {
+  function onFileInputChange(files: FileList | null) {
     if (files && files[0]) {
-      setImage(files[0])
+      setImage(files[0]);
     } else {
       setImage(null);
     }
   }
 
-  function onSelectImageClick () {
+  function onSelectImageClick() {
     if (image) {
       if (fileInputRef.current) {
-        fileInputRef.current.value = "";
+        fileInputRef.current.value = '';
       }
       setImage(null);
     } else {
@@ -29,16 +29,16 @@ export default function InputContainer(props: InputContainerProps) {
     }
   }
 
-  function onSendMessageClick () {
+  function onSendMessageClick() {
     if (image) {
-      props.onSend(message, image)
+      props.onSend(message, image);
     } else if (message) {
       props.onSend(message);
     }
-    setMessage("");
+    setMessage('');
     setImage(null);
     if (fileInputRef.current) {
-      fileInputRef.current.value = "";
+      fileInputRef.current.value = '';
     }
   }
 
@@ -51,7 +51,7 @@ export default function InputContainer(props: InputContainerProps) {
       <textarea
         // onInput="this.style.height = '';this.style.height = this.scrollHeight + 'px'"
         onChange={(e) => setMessage(e.target.value)}
-        onKeyDown={e => {
+        onKeyDown={(e) => {
           if (e.keyCode === 13 && !e.shiftKey) {
             e.preventDefault();
             onSendMessageClick();
@@ -62,7 +62,7 @@ export default function InputContainer(props: InputContainerProps) {
         autoComplete="off"
         placeholder="Begin typing your message..."
         form="chat-container"
-        style={{ height: "initial" }}
+        style={{ height: 'initial' }}
         value={message}
       />
       {/* <img id="selected-image" style={{ maxwidth: "30%" }} src="" alt="" /> */}
@@ -71,24 +71,22 @@ export default function InputContainer(props: InputContainerProps) {
         type="file"
         name="file"
         accept="image/*"
-        style={{ display: "none" }}
-        onChange={e => onFileInputChange(e.target.files)}
+        style={{ display: 'none' }}
+        onChange={(e) => onFileInputChange(e.target.files)}
         ref={fileInputRef}
       />
-      <button 
+      <button
         id="select-image-button"
         onClick={onSelectImageClick}
-        style={{...(!image 
-          ? { backgroundImage: 'url(/icons/image-solid.png)' }
-          : { padding: '.8rem'}
-        )}}
+        style={{
+          ...(!image
+            ? { backgroundImage: 'url(/icons/image-solid.png)' }
+            : { padding: '.8rem' }),
+        }}
       >
         {image && image.name}
-      </button> 
-      <button
-        id="send-message-button"
-        onClick={onSendMessageClick}
-      ></button>
+      </button>
+      <button id="send-message-button" onClick={onSendMessageClick}></button>
     </form>
   );
 }

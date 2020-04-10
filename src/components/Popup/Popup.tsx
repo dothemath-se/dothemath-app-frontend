@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 interface PopupProps {
   onComplete: (arg0: string) => void;
 }
 
 export function Popup(props: PopupProps) {
-  const [nickname, setNickname] = useState("");
+  const [nickname, setNickname] = useState('');
   const [acceptCookies, setAcceptCookies] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
   return (
@@ -25,8 +25,8 @@ export function Popup(props: PopupProps) {
               alt=""
               src={
                 !acceptCookies
-                  ? "icons/square-regular.svg"
-                  : "icons/check-square-solid.svg"
+                  ? 'icons/square-regular.svg'
+                  : 'icons/check-square-solid.svg'
               }
               onClick={() => setAcceptCookies((x) => !x)}
               className="toggle-check"
@@ -36,8 +36,8 @@ export function Popup(props: PopupProps) {
               alt=""
               src={
                 !acceptTerms
-                  ? "icons/square-regular.svg"
-                  : "icons/check-square-solid.svg"
+                  ? 'icons/square-regular.svg'
+                  : 'icons/check-square-solid.svg'
               }
               onClick={() => setAcceptTerms((x) => !x)}
               className="toggle-check"

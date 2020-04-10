@@ -1,8 +1,8 @@
-import React from "react";
-import { Popup } from "./Popup";
+import React from 'react';
+import { Popup } from './Popup';
 
 export default {
-  title: "Popup",
+  title: 'Popup',
 };
 
 export const Default = () => <Popup onComplete={() => {}} />;

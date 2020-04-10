@@ -1,3 +1,3 @@
-import { SubjectList } from "./SubjectList";
+import { SubjectList } from './SubjectList';
 
 export default SubjectList;
