@@ -2,29 +2,127 @@
 import React, { useState, useEffect } from 'react';
 import Popup from './components/Popup';
 import SubjectList from './components/SubjectList';
-import { getSubjects } from './Api/api';
+import {
+  getSubjects,
+  reEstablishSession,
+  OnMessageCallbackData,
+  Subject,
+  establishSession,
+  onMessage,
+  sendMessage,
+} from './Api/api';
 import Chat from './components/Chat';
-import { useNameCookie } from './useNameCookie';
+import LoadingIndicator from './components/LoadingIndicator';
+import { useCookie } from './useCookie';
 
 export default function App() {
-  const [name, setName] = useNameCookie();
+  const [name, setName] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [messages, setMessages] = useState([] as OnMessageCallbackData[]);
 
-  const [subjects, setSubjects] = useState([]);
+  const [threadId, setThreadId] = useCookie('threadId');
+  const [channelId, setChannelId] = useCookie('channelId');
+
+  const [subjects, setSubjects] = useState([] as Subject[]);
   useEffect(() => getSubjects(setSubjects), []);
-  const [subject, setSubject] = useState('' as any);
 
-  const showPopup = !name;
-  const showSubjectList = !subject && !showPopup;
-  const blurChat = showPopup || showSubjectList;
+  // runs when app first loads, reestablishes session if possible
+  useEffect(() => {
+    if (threadId && channelId) {
+      reEstablishSession(channelId, threadId)
+        .then((res) => {
+          setName(res.name);
+          setChannelId(res.subject.id);
+          setMessages(res.messages);
+
+          onMessage((m) => {
+            console.log('message received from backend', m);
+            setMessages((y) => [...y, m]);
+          });
+        })
+        .catch((err) => {
+          setChannelId('');
+          setThreadId('');
+          console.log(err);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } else {
+      setLoading(false);
+    }
+  }, []);
+
+  function onSubjectSelect(subject: Subject) {
+    setChannelId(subject.id);
+    setLoading(true);
+
+    establishSession(channelId, name)
+      .then(() => {
+        console.info('session established');
+        setMessages([]);
+
+        onMessage((m) => {
+          console.log('message received from backend', m);
+          setMessages((y) => [...y, m]);
+        });
+      })
+      .finally(() => {
+        setLoading(false);
+        setThreadId('');
+      });
+  }
+
+  function onSendMessage(text: string, image?: File) {
+    let isFirstMessage = messages.length === 0;
+    sendMessage(text, image).then((threadId) => {
+      if (isFirstMessage) {
+        setThreadId(threadId);
+      }
+    });
+
+    const localMessages: OnMessageCallbackData[] = [];
+
+    if (image) {
+      localMessages.push({
+        toFrom: 'to',
+        text: '',
+        name: name,
+        image: URL.createObjectURL(image),
+      });
+    }
+
+    if (text) {
+      localMessages.push({
+        toFrom: 'to',
+        text,
+        name: name,
+      });
+    }
+
+    setMessages((messages) => [...messages, ...localMessages]);
+  }
+
+  const subject = subjects.find((s) => s.id === channelId);
+
+  const showPopup = !name && !loading;
+  const showSubjectList = !subject && !showPopup && !loading;
+  const blurChat = showPopup || showSubjectList || loading;
 
   return (
     <div>
+      {loading && <LoadingIndicator loading />}
       {showPopup && <Popup onComplete={setName} />}
       {showSubjectList && (
-        <SubjectList data={subjects} onComplete={setSubject} />
+        <SubjectList data={subjects} onComplete={onSubjectSelect} />
       )}
       <div style={blurChat ? { filter: 'blur(5px)' } : {}}>
-        <Chat name={name} subject={subject} />
+        <Chat
+          name={name}
+          subject={subject}
+          messages={messages}
+          onSendMessage={onSendMessage}
+        />
       </div>
     </div>
   );

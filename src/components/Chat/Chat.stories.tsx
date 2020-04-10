@@ -5,4 +5,17 @@ export default {
   title: 'Chat/Chat',
 };
 
-export const Default = () => <Chat name="" subject={{ id: '', name: '' }} />;
+export const Default = () => <Chat name="" subject={{ id: '', name: '' }} messages={fakeMessages} onSendMessage={() => { }} />;
+
+const fakeMessages = [
+  {
+    toFrom: 'from' as 'from',
+    text: 'Hej själv',
+    name: 'Bull',
+  },
+  {
+    toFrom: 'to' as 'to',
+    text: 'Hej du',
+    name: 'Bill',
+  },
+];

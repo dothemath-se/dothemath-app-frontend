@@ -1,8 +1,8 @@
 import React from 'react';
 
 interface SubjectListProps {
-  data: { name: string }[];
-  onComplete: (arg0: { name: string }) => void;
+  data: { id: string; name: string }[];
+  onComplete: (arg0: { name: string, id: string }) => void;
 }
 
 export function SubjectList(props: SubjectListProps) {
@@ -13,7 +13,7 @@ export function SubjectList(props: SubjectListProps) {
         {props?.data?.map((item, index) => (
           <button
             className="btn--primary"
-            key={index}
+            key={item.id}
             onClick={() => props.onComplete(item)}
           >
             {item.name}
