@@ -18,7 +18,7 @@ export function Popup(props: PopupProps) {
             maxLength={25}
             type="text"
             placeholder="Choose your nickname"
-            onChange={(e) => setNickname(e.target.value)}
+            onChange={(e) => setNickname(e.target.value.trim())}
           />
           <div id="checks-container">
             <img
