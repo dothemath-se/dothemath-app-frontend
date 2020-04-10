@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 interface PopupProps {
   onComplete: (arg0: string) => void;
@@ -8,6 +9,12 @@ export function Popup(props: PopupProps) {
   const [nickname, setNickname] = useState('');
   const [acceptCookies, setAcceptCookies] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
+  const [passCaptcha, setPassCaptcha] = useState(false);
+
+  function capchaChange(value) {
+    setPassCaptcha(value);
+  }
+
   return (
     <div id="popup">
       <div id="popup-container">
@@ -44,12 +51,19 @@ export function Popup(props: PopupProps) {
             />
             <span>I agree to the terms of service</span>
           </div>
+          <ReCAPTCHA
+            sitekey="6LdJiugUAAAAABme_rVvdcwmRAyQ0f8Fq7nMubcO"
+            onChange={capchaChange}
+            style={{ marginBottom: '1rem' }}
+          />
           <button
             id="enter-name-btn"
             className="btn--primary"
             type="button"
             onClick={() => props.onComplete(nickname)}
-            disabled={!(nickname && acceptCookies && acceptTerms)}
+            disabled={
+              !(nickname && acceptCookies && acceptTerms && passCaptcha)
+            }
           >
             Begin
           </button>
