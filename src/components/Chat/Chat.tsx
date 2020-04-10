@@ -32,23 +32,6 @@ export default function Chat(props: ChatProps) {
     });
   }, [props.name, props.subject])
 
-  function sendFakeMessage() {
-    const text = "Fake pupil message: " + counter;
-    sendMessage(text);
-    console.log("message sent to backend", text);
-
-    const localMessage: OnMessageCallbackData = {
-      toFrom: "to",
-      text,
-      name: "pupil",
-    };
-
-    setMessages((y)=>[...y, localMessage]);
-    setCounter(counter + 1);
-
-    console.log("message added to local state", localMessage);
-  }
-
   function sendRealMessage(text: string, image?: File) {
     sendMessage(text, image);
 
@@ -82,9 +65,6 @@ export default function Chat(props: ChatProps) {
         <div id="chat-wrapper">
           <ConversationContainer messages={messages} />
           <InputContainer onSend={sendRealMessage} />
-          <button onClick={sendFakeMessage} style={{ height: 30 }}>
-            Send fake message
-          </button>
         </div>
       </div>
       <img
