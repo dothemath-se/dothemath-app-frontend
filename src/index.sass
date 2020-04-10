@@ -9,6 +9,9 @@ $primary-color: #4882ff
     margin: 0
     padding: 0
 
+html
+    -webkit-text-size-adjust: none
+
 body
     background-size: cover
     background-attachment: fixed
@@ -193,6 +196,7 @@ button
         max-width: 90%
         border-radius: .5rem
         display: flex
+        flex-shrink: 0
         align-items: center
         white-space: pre-wrap
         padding: 1.2rem
@@ -238,6 +242,7 @@ button
 
 #chat-container
     display: flex
+    flex-shrink: 0
     align-items: center
     padding: .5rem .6rem .5rem 1rem
     width: 100%
