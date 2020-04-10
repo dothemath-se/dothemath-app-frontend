@@ -1,7 +1,12 @@
 import React from "react";
 
 interface ConversationContainerProps {
-  messages: { toFrom: string; text: string; name: string, image?: string }[];
+  messages: {
+    toFrom: string;
+    text: string;
+    name: string;
+    image?: string;
+  }[];
 }
 
 export default function ConversationContainer(

@@ -5,10 +5,10 @@ import { establishSession, sendMessage, onMessage, OnMessageCallbackData } from 
 import { useState, useEffect } from "react";
 
 interface ChatProps {
-  name: any;
+  name: string;
   subject: {
-    id: any;
-    name: any;
+    id: string;
+    name: string;
   };
 }
 
