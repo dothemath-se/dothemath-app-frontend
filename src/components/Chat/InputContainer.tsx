@@ -51,6 +51,12 @@ export default function InputContainer(props: InputContainerProps) {
       <textarea
         // onInput="this.style.height = '';this.style.height = this.scrollHeight + 'px'"
         onChange={(e) => setMessage(e.target.value)}
+        onKeyDown={e => {
+          if (e.keyCode === 13 && !e.shiftKey) {
+            e.preventDefault();
+            onSendMessageClick();
+          }
+        }}
         rows={1}
         id="chat-input"
         autoComplete="off"
