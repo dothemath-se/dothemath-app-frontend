@@ -61,7 +61,7 @@ export default function App() {
     setChannelId(subject.id);
     setLoading(true);
 
-    establishSession(channelId, name)
+    establishSession(subject.id, name)
       .then(() => {
         console.info('session established');
         setMessages([]);
