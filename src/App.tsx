@@ -55,6 +55,7 @@ export default function App() {
       console.log('message received from backend', m);
       setMessages((y) => [...y, m]);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function onSubjectSelect(subject: Subject) {
