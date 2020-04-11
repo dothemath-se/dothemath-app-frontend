@@ -13,6 +13,7 @@ jobs:
     - uses: actions/checkout@master
 
     - run: yarn
+
     - run: yarn build
 
     - name: Deploy to Azure Web App
