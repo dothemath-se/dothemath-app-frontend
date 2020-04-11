@@ -6,7 +6,10 @@ export default {
 };
 
 export const Math1 = () => (
-  <SubjectList data={[{ name: 'Math 1', id: 'ChannelId123' }]} onComplete={() => { }} />
+  <SubjectList
+    data={[{ name: 'Math 1', id: 'ChannelId123' }]}
+    onComplete={() => {}}
+  />
 );
 
 export const ManySubjects = () => (
@@ -16,6 +19,6 @@ export const ManySubjects = () => (
       id: i.toString(),
       key: i,
     }))}
-    onComplete={() => { }}
+    onComplete={() => {}}
   />
 );

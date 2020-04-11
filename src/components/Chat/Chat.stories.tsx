@@ -5,7 +5,15 @@ export default {
   title: 'Chat/Chat',
 };
 
-export const Default = () => <Chat name="" subject={{ id: '', name: '' }} messages={fakeMessages} onSendMessage={() => { }} onNewQuestionClick={() => { }} />;
+export const Default = () => (
+  <Chat
+    name=""
+    subject={{ id: '', name: '' }}
+    messages={fakeMessages}
+    onSendMessage={() => {}}
+    onNewQuestionClick={() => {}}
+  />
+);
 
 const fakeMessages = [
   {

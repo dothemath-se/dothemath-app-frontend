@@ -2,7 +2,7 @@ import React from 'react';
 
 interface SubjectListProps {
   data: { id: string; name: string }[];
-  onComplete: (arg0: { name: string, id: string }) => void;
+  onComplete: (arg0: { name: string; id: string }) => void;
 }
 
 export function SubjectList(props: SubjectListProps) {

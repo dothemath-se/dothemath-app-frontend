@@ -12,63 +12,82 @@ export function sendMessage(text: string, image?: File): Promise<string> {
       const fileReader = new FileReader();
       fileReader.onload = function () {
         const arrayBuffer = this.result as ArrayBuffer;
-        socket.emit('send_message', {
-          text,
-          image: arrayBuffer
-        }, ({ threadId }) => resolve(threadId));
+        socket.emit(
+          'send_message',
+          {
+            text,
+            image: arrayBuffer,
+          },
+          ({ threadId }) => resolve(threadId)
+        );
       };
       fileReader.readAsArrayBuffer(image);
     } else {
-      socket.emit('send_message', { text }, ({ threadId }) => resolve(threadId));
+      socket.emit('send_message', { text }, ({ threadId }) =>
+        resolve(threadId)
+      );
     }
-  })
+  });
 }
 
 export function establishSession(channelId, studentName) {
   return new Promise((resolve, reject) => {
-    socket.emit('establish_session', {
-      studentName,
-      channelId,
-    }, () => {
-      resolve();
-    });
-  })
+    socket.emit(
+      'establish_session',
+      {
+        studentName,
+        channelId,
+      },
+      () => {
+        resolve();
+      }
+    );
+  });
 }
 
-export function reEstablishSession(channelId: string, threadId: string): Promise<ReEstablishSessionResult> {
+export function reEstablishSession(
+  channelId: string,
+  threadId: string
+): Promise<ReEstablishSessionResult> {
   return new Promise((resolve, reject) => {
-    socket.emit('reestablish_session', {
-      threadId,
-      channelId
-    }, data => {
-      if (data.error) {
-        reject(data.error);
-      } else {
-        resolve({
-          name: data.name,
-          subject: data.channel,
-          messages: data.messages.map(m => {
-            const msgs: OnMessageCallbackData[] = [];
-            if (m.image) {
-              msgs.push({
-                text: '',
-                name: m.name,
-                image: m.image,
-                toFrom: m.isUser ? 'to' : 'from'
+    socket.emit(
+      'reestablish_session',
+      {
+        threadId,
+        channelId,
+      },
+      (data) => {
+        if (data.error) {
+          reject(data.error);
+        } else {
+          resolve({
+            name: data.name,
+            subject: data.channel,
+            messages: data.messages
+              .map((m) => {
+                const msgs: OnMessageCallbackData[] = [];
+                if (m.image) {
+                  msgs.push({
+                    text: '',
+                    name: m.name,
+                    image: m.image,
+                    toFrom: m.isUser ? 'to' : 'from',
+                  });
+                }
+                if (m.text) {
+                  msgs.push({
+                    text: m.text,
+                    name: m.name,
+                    toFrom: m.isUser ? 'to' : 'from',
+                  });
+                }
+                return msgs;
               })
-            }
-            if (m.text) {
-              msgs.push({
-                text: m.text,
-                name: m.name,
-                toFrom: m.isUser ? 'to' : 'from'
-              });
-            }
-            return msgs;
-          }).flat()
-        })
+              .flat(),
+          });
+        }
       }
-    })
+    );
   });
 }
 
@@ -107,6 +126,6 @@ interface ReEstablishSessionResult {
   subject: {
     id: string;
     name: string;
-  }
+  };
   messages: OnMessageCallbackData[];
 }
