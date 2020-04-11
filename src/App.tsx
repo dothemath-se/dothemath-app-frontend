@@ -14,6 +14,7 @@ import {
 import Chat from './components/Chat';
 import LoadingIndicator from './components/LoadingIndicator';
 import { useCookie } from './useCookie';
+import ErrorBoundary from './ErrorBoundary';
 
 export default function App() {
   const [name, setName] = useCookie('name');
@@ -116,21 +117,23 @@ export default function App() {
   const blurChat = showPopup || showSubjectList || loading;
 
   return (
-    <div>
-      {loading && <LoadingIndicator loading />}
-      {showPopup && <Popup onComplete={setName} />}
-      {showSubjectList && (
-        <SubjectList data={subjects} onComplete={onSubjectSelect} />
-      )}
-      <div style={blurChat ? { filter: 'blur(5px)' } : {}}>
-        <Chat
-          name={name}
-          subject={subject}
-          messages={messages}
-          onSendMessage={onSendMessage}
-          onNewQuestionClick={onNewQuestion}
-        />
+    <ErrorBoundary>
+      <div>
+        {loading && <LoadingIndicator loading />}
+        {showPopup && <Popup onComplete={setName} />}
+        {showSubjectList && (
+          <SubjectList data={subjects} onComplete={onSubjectSelect} />
+        )}
+        <div style={blurChat ? { filter: 'blur(5px)' } : {}}>
+          <Chat
+            name={name}
+            subject={subject}
+            messages={messages}
+            onSendMessage={onSendMessage}
+            onNewQuestionClick={onNewQuestion}
+          />
+        </div>
       </div>
-    </div>
+    </ErrorBoundary>
   );
 }
