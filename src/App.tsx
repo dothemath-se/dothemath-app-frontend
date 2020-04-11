@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import Popup from './components/Popup';
 import SubjectList from './components/SubjectList';
@@ -17,12 +16,12 @@ import LoadingIndicator from './components/LoadingIndicator';
 import { useCookie } from './useCookie';
 
 export default function App() {
-  const [name, setName] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [messages, setMessages] = useState([] as OnMessageCallbackData[]);
-
+  const [name, setName] = useCookie('name');
   const [threadId, setThreadId] = useCookie('threadId');
   const [channelId, setChannelId] = useCookie('channelId');
+
+  const [loading, setLoading] = useState(true);
+  const [messages, setMessages] = useState([] as OnMessageCallbackData[]);
 
   const [subjects, setSubjects] = useState([] as Subject[]);
   useEffect(() => getSubjects(setSubjects), []);
