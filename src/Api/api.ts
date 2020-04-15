@@ -2,7 +2,7 @@ import io from 'socket.io-client';
 
 const socket = io('https://api.dothemath.app');
 
-export function getSubjects(cb) {
+export function getSubjects(cb: any) {
   socket.emit('get_channels', cb);
 }
 
@@ -18,19 +18,21 @@ export function sendMessage(text: string, image?: File): Promise<string> {
             text,
             image: arrayBuffer,
           },
-          ({ threadId }) => resolve(threadId)
+          ({ threadId }: { threadId: string }) => resolve(threadId)
         );
       };
       fileReader.readAsArrayBuffer(image);
     } else {
-      socket.emit('send_message', { text }, ({ threadId }) =>
-        resolve(threadId)
+      socket.emit(
+        'send_message',
+        { text },
+        ({ threadId }: { threadId: string }) => resolve(threadId)
       );
     }
   });
 }
 
-export function establishSession(channelId, studentName) {
+export function establishSession(channelId: string, studentName: string) {
   return new Promise((resolve, reject) => {
     socket.emit(
       'establish_session',
@@ -56,7 +58,12 @@ export function reEstablishSession(
         threadId,
         channelId,
       },
-      (data) => {
+      (data: {
+        error: string;
+        name: string;
+        channel: any;
+        messages: any[];
+      }) => {
         if (data.error) {
           reject(data.error);
         } else {
@@ -97,14 +104,17 @@ export function cancelSession() {
 }
 
 export function onMessage(cb: OnMessageCallback) {
-  socket.on('message', ({ text, name, image }) => {
-    if (image) {
-      cb({ toFrom: 'from', name, text: '', image });
+  socket.on(
+    'message',
+    ({ text, name, image }: { text: string; name: string; image: string }) => {
+      if (image) {
+        cb({ toFrom: 'from', name, text: '', image });
+      }
+      if (text) {
+        cb({ toFrom: 'from', name, text });
+      }
     }
-    if (text) {
-      cb({ toFrom: 'from', name, text });
-    }
-  });
+  );
 }
 
 type OnMessageCallback = (arg0: OnMessageCallbackData) => void;

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// @ts-ignore: should add proper typings
 import ReCAPTCHA from 'react-google-recaptcha';
 
 interface PopupProps {
@@ -11,7 +12,7 @@ export function Popup(props: PopupProps) {
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [passCaptcha, setPassCaptcha] = useState(false);
 
-  function capchaChange(value) {
+  function capchaChange(value: boolean) {
     setPassCaptcha(value);
   }
 
