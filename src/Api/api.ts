@@ -2,8 +2,12 @@ import io from 'socket.io-client';
 
 const socket = io('https://api.dothemath.app');
 
+type SocketEvents = 'get_channels' | 'hej';
+
+function socket_emit(event: SocketEvents, cb: any) {}
+
 export function getSubjects(cb: any) {
-  socket.emit('get_channels', cb);
+  socket_emit('get_channels', cb);
 }
 
 export function sendMessage(text: string, image?: File): Promise<string> {
