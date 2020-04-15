@@ -38,7 +38,9 @@
     ],
     "extends": [
       "react-app",
-      "prettier"
+      "prettier",
+      "eslint:recommended",
+      "plugin:react/recommended"
     ],
     "rules": {
       "prettier/prettier": [

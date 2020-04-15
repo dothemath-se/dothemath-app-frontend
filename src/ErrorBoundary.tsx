@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, ErrorInfo } from 'react';
 import * as Sentry from '@sentry/browser';
 
 class ErrorBoundary extends Component {
   state: any;
 
-  constructor(props) {
+  constructor(props: Readonly<{}>) {
     super(props);
     this.state = { eventId: null };
   }
@@ -13,7 +13,7 @@ class ErrorBoundary extends Component {
     return { hasError: true };
   }
 
-  componentDidCatch(error, errorInfo) {
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     Sentry.withScope((scope) => {
       scope.setExtras(errorInfo);
       const eventId = Sentry.captureException(error);
@@ -35,6 +35,7 @@ class ErrorBoundary extends Component {
       );
     }
 
+    // eslint-disable-next-line react/prop-types
     return this.props.children;
   }
 }
