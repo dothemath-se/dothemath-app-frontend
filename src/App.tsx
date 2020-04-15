@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, DependencyList } from 'react';
 import Popup from './components/Popup';
 import SubjectList from './components/SubjectList';
 import {
@@ -27,59 +27,65 @@ export default function App() {
   const [subjects, setSubjects] = useState([] as Subject[]);
   useEffect(() => getSubjects(setSubjects), []);
 
+  function useEffectAsync(asyncEffect: () => void, deps?: DependencyList) {
+    useEffect(() => {
+      asyncEffect();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, deps);
+  }
+
   // runs when app first loads, reestablishes session if possible
   useEffect(() => {
-    if (channelId && !threadId) {
-      setChannelId('');
-    }
-    if (threadId && channelId) {
-      reEstablishSession(channelId, threadId)
-        .then((res) => {
+    (async () => {
+      if (channelId && !threadId) {
+        setChannelId('');
+      }
+      if (threadId && channelId) {
+        try {
+          const res = await reEstablishSession(channelId, threadId);
+
           setName(res.name);
           setChannelId(res.subject.id);
           setMessages(res.messages);
-        })
-        .catch((err) => {
+        } catch (e) {
           setChannelId('');
           setThreadId('');
-          console.log(err);
-        })
-        .finally(() => {
+          console.log(e);
+        } finally {
           setLoading(false);
-        });
-    } else {
-      setLoading(false);
-    }
+        }
+      } else {
+        setLoading(false);
+      }
 
-    onMessage((m) => {
-      console.log('message received from backend', m);
-      setMessages((y) => [...y, m]);
-    });
+      onMessage((m) => {
+        console.log('message received from backend', m);
+        setMessages((y) => [...y, m]);
+      });
+    })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function onSubjectSelect(subject: Subject) {
+  async function onSubjectSelect(subject: Subject) {
     setChannelId(subject.id);
     setLoading(true);
 
-    establishSession(subject.id, name)
-      .then(() => {
-        console.info('session established');
-        setMessages([]);
-      })
-      .finally(() => {
-        setLoading(false);
-        setThreadId('');
-      });
+    try {
+      await establishSession(subject.id, name);
+      console.info('session established');
+      setMessages([]);
+    } finally {
+      setLoading(false);
+      setThreadId('');
+    }
   }
 
-  function onSendMessage(text: string, image?: File) {
+  async function onSendMessage(text: string, image?: File) {
     let isFirstMessage = messages.length === 0;
-    sendMessage(text, image).then((threadId) => {
-      if (isFirstMessage) {
-        setThreadId(threadId);
-      }
-    });
+    const threadId = await sendMessage(text, image);
+    if (isFirstMessage) {
+      setThreadId(threadId);
+    }
 
     const localMessages: OnMessageCallbackData[] = [];
 
