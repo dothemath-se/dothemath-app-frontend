@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 
-const socket = io('https://api.dothemath.app');
+const socket = io('http://localhost:3000');
 
 type SocketEvents = 'get_channels' | 'hej';
 

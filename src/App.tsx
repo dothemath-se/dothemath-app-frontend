@@ -35,35 +35,32 @@ export default function App() {
   }
 
   // runs when app first loads, reestablishes session if possible
-  useEffect(() => {
-    (async () => {
-      if (channelId && !threadId) {
-        setChannelId('');
-      }
-      if (threadId && channelId) {
-        try {
-          const res = await reEstablishSession(channelId, threadId);
+  useEffectAsync(async () => {
+    if (channelId && !threadId) {
+      setChannelId('');
+    }
+    if (threadId && channelId) {
+      try {
+        const res = await reEstablishSession(channelId, threadId);
 
-          setName(res.name);
-          setChannelId(res.subject.id);
-          setMessages(res.messages);
-        } catch (e) {
-          setChannelId('');
-          setThreadId('');
-          console.log(e);
-        } finally {
-          setLoading(false);
-        }
-      } else {
+        setName(res.name);
+        setChannelId(res.subject.id);
+        setMessages(res.messages);
+      } catch (e) {
+        setChannelId('');
+        setThreadId('');
+        console.log(e);
+      } finally {
         setLoading(false);
       }
+    } else {
+      setLoading(false);
+    }
 
-      onMessage((m) => {
-        console.log('message received from backend', m);
-        setMessages((y) => [...y, m]);
-      });
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    onMessage((m) => {
+      console.log('message received from backend', m);
+      setMessages((y) => [...y, m]);
+    });
   }, []);
 
   async function onSubjectSelect(subject: Subject) {
