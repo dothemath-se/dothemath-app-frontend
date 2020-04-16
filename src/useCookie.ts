@@ -6,6 +6,7 @@ export function useCookie(cookieName: string) {
   useDebugValue(`${cookieName}: ${cookies[cookieName]}`);
   return [
     cookies[cookieName],
-    (value: string) => setCookie(cookieName, value, { path: '/' }),
+    (value: string) =>
+      setCookie(cookieName, value, { path: '/', maxAge: 30 * 24 * 60 * 60 }),
   ];
 }
