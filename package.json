@@ -2,45 +2,15 @@
   "name": "dothemath-app-frontend",
   "version": "0.0.0",
   "private": true,
-  "dependencies": {
-    "@sentry/browser": "^5.15.4",
-    "react": "^16.13.1",
-    "react-cookie": "^4.0.3",
-    "react-dom": "^16.13.1",
-    "react-google-recaptcha": "^2.0.1",
-    "socket.io-client": "^2.3.0"
-  },
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "build-storybook": "build-storybook -s public",
     "eject": "react-scripts eject",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "prettier": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
+    "start": "react-scripts start",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "prettier"
-    ],
-    "plugins": [
-      "prettier"
-    ],
-    "rules": {
-      "prettier/prettier": [
-        "warn"
-      ]
-    },
-    "settings": {
-      "react": {
-        "version": "detect"
-      }
-    }
-  },
-  "prettier": {
-    "singleQuote": true
+    "test": "react-scripts test"
   },
   "browserslist": {
     "production": [
@@ -54,15 +24,42 @@
       "last 1 safari version"
     ]
   },
+  "prettier": {
+    "singleQuote": true
+  },
+  "eslintConfig": {
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    },
+    "plugins": [
+      "prettier"
+    ],
+    "extends": [
+      "react-app",
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "warn"
+      ]
+    }
+  },
+  "dependencies": {
+    "@sentry/browser": "^5.15.4",
+    "react": "^16.13.1",
+    "react-cookie": "^4.0.3",
+    "react-dom": "^16.13.1",
+    "react-google-recaptcha": "^2.0.1",
+    "socket.io-client": "^2.3.0"
+  },
   "devDependencies": {
     "@storybook/addon-actions": "^5.3.18",
     "@storybook/addon-links": "^5.3.18",
     "@storybook/addons": "^5.3.18",
     "@storybook/preset-create-react-app": "^2.1.1",
     "@storybook/react": "^5.3.18",
-    "eslint-config-prettier": "^6.10.1",
-    "eslint-plugin-prettier": "^3.1.2",
-    "prettier": "^2.0.4",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -71,7 +68,10 @@
     "@types/react": "^16.9.33",
     "@types/react-dom": "^16.9.6",
     "@types/socket.io-client": "^1.4.32",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.2",
     "node-sass": "^4.13.1",
+    "prettier": "^2.0.4",
     "react-scripts": "3.4.1",
     "typescript": "^3.8.3"
   }
