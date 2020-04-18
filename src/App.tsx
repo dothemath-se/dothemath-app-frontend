@@ -1,16 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Popup from './components/Popup';
 import SubjectList from './components/SubjectList';
-import {
-  getSubjects,
-  reEstablishSession,
-  OnMessageCallbackData,
-  Subject,
-  establishSession,
-  onMessage,
-  sendMessage,
-  cancelSession,
-} from './Api/api';
+import * as api from './api';
 import Chat from './components/Chat';
 import LoadingIndicator from './components/LoadingIndicator';
 import { useCookie } from './useCookie';
@@ -22,10 +13,10 @@ export default function App() {
   const [channelId, setChannelId] = useCookie('channelId');
 
   const [loading, setLoading] = useState(true);
-  const [messages, setMessages] = useState([] as OnMessageCallbackData[]);
+  const [messages, setMessages] = useState([] as api.OnMessageCallbackData[]);
 
-  const [subjects, setSubjects] = useState([] as Subject[]);
-  useEffect(() => getSubjects(setSubjects), []);
+  const [subjects, setSubjects] = useState([] as api.Subject[]);
+  useEffect(() => api.getSubjects(setSubjects), []);
 
   // runs when app first loads, reestablishes session if possible
   useEffect(() => {
@@ -33,7 +24,8 @@ export default function App() {
       setChannelId('');
     }
     if (threadId && channelId) {
-      reEstablishSession(channelId, threadId)
+      api
+        .reEstablishSession(channelId, threadId)
         .then((res) => {
           setName(res.name);
           setChannelId(res.subject.id);
@@ -51,18 +43,19 @@ export default function App() {
       setLoading(false);
     }
 
-    onMessage((m) => {
+    api.onMessage((m) => {
       console.log('message received from backend', m);
       setMessages((y) => [...y, m]);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function onSubjectSelect(subject: Subject) {
+  function onSubjectSelect(subject: api.Subject) {
     setChannelId(subject.id);
     setLoading(true);
 
-    establishSession(subject.id, name)
+    api
+      .establishSession(subject.id, name)
       .then(() => {
         console.info('session established');
         setMessages([]);
@@ -75,13 +68,13 @@ export default function App() {
 
   function onSendMessage(text: string, image?: File) {
     let isFirstMessage = messages.length === 0;
-    sendMessage(text, image).then((threadId) => {
+    api.sendMessage(text, image).then((threadId) => {
       if (isFirstMessage) {
         setThreadId(threadId);
       }
     });
 
-    const localMessages: OnMessageCallbackData[] = [];
+    const localMessages: api.OnMessageCallbackData[] = [];
 
     if (image) {
       localMessages.push({
@@ -107,7 +100,7 @@ export default function App() {
     setChannelId('');
     setThreadId('');
     setMessages([]);
-    cancelSession();
+    api.cancelSession();
   }
 
   const subject = subjects.find((s) => s.id === channelId);

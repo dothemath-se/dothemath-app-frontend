@@ -1,7 +1,7 @@
 import React from 'react';
 import ConversationContainer from './ConversationContainer';
 import InputContainer from './InputContainer';
-import { OnMessageCallbackData } from '../../Api/api';
+import { OnMessageCallbackData } from '../../api';
 
 interface ChatProps {
   name: string;
