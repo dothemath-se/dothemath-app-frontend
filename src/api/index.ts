@@ -2,6 +2,15 @@ import io from 'socket.io-client';
 
 const socket = io('https://api.dothemath.app');
 
+export default {
+  getSubjects,
+  sendMessage,
+  establishSession,
+  reestablishSession,
+  cancelSession,
+  onMessage,
+};
+
 export const getSubjects = (cb) => {
   socket.emit('get_channels', cb);
 };
