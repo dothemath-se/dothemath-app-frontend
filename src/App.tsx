@@ -25,7 +25,7 @@ export default function App() {
     }
     if (threadId && channelId) {
       api
-        .reEstablishSession(channelId, threadId)
+        .reestablishSession(channelId, threadId)
         .then((res) => {
           setName(res.name);
           setChannelId(res.subject.id);

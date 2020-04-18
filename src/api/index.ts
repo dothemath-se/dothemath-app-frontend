@@ -45,10 +45,10 @@ export function establishSession(channelId: string, studentName: string) {
   });
 }
 
-export function reEstablishSession(
+export function reestablishSession(
   channelId: string,
   threadId: string
-): Promise<ReEstablishSessionResult> {
+): Promise<ReestablishSessionResult> {
   return new Promise((resolve, reject) => {
     socket.emit(
       'reestablish_session',
