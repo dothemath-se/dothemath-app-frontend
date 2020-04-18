@@ -30,7 +30,7 @@ export function sendMessage(text: string, image?: File): Promise<string> {
   });
 }
 
-export function establishSession(channelId, studentName) {
+export function establishSession(channelId: string, studentName: string) {
   return new Promise((resolve, reject) => {
     socket.emit(
       'establish_session',
@@ -121,7 +121,7 @@ export interface Subject {
   name: string;
 }
 
-interface ReEstablishSessionResult {
+interface ReestablishSessionResult {
   name: string;
   subject: {
     id: string;
