@@ -71,6 +71,10 @@ export const Popup = (props: PopupProps) => {
               </Button>
             </span>
           </div>
+          <span>
+            Har inte fått captchan att fungera på nya domänen ännu. Bara att
+            strunta i den.
+          </span>
           <ReCAPTCHA
             sitekey="6LdJiugUAAAAABme_rVvdcwmRAyQ0f8Fq7nMubcO"
             onChange={(value) => setPassCaptcha(!!value)}
