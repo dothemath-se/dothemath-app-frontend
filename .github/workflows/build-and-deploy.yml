@@ -1,4 +1,4 @@
-name: Deploy to Azure
+name: build-and-deploy
 
 on:
   push:
@@ -7,17 +7,19 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     steps:
     - uses: actions/checkout@master
 
-    - name: Set up Node.js version
+    - name: Use Node.js 12.13.0
       uses: actions/setup-node@v1
       with:
         node-version: '12.13.0'
 
     - run: yarn install
+
+    - run: yarn lint
 
     - run: yarn build
 
