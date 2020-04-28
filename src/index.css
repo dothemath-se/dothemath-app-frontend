@@ -371,6 +371,10 @@ button {
   border-right: 12px solid #fff;
 }
 
+#conversation-container .chat-bubble--from img {
+  max-width: 100%;
+}
+
 #conversation-container .chat-bubble--to {
   margin-left: auto;
   background: #4882ff;
@@ -389,6 +393,10 @@ button {
 #conversation-container .chat-bubble--to::after {
   right: -12px;
   border-left: 12px solid #4882ff;
+}
+
+#conversation-container .chat-bubble--to img {
+  max-width: 100%;
 }
 
 #chat-container {
