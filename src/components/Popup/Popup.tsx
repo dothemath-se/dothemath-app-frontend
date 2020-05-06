@@ -11,10 +11,6 @@ export const Popup = (props: PopupProps) => {
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [passCaptcha, setPassCaptcha] = useState(false);
 
-  const capchaChange = (value) => {
-    setPassCaptcha(value);
-  };
-
   return (
     <div id="popup">
       <div id="popup-container">
@@ -53,7 +49,7 @@ export const Popup = (props: PopupProps) => {
           </div>
           <ReCAPTCHA
             sitekey="6LdJiugUAAAAABme_rVvdcwmRAyQ0f8Fq7nMubcO"
-            onChange={capchaChange}
+            onChange={setPassCaptcha}
             style={{ marginBottom: '1rem' }}
           />
           <button
