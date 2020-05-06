@@ -1,5 +1,5 @@
 import React from 'react';
-import ChatConversationContainer from './ChatConversationContainer';
+import { ChatConversationContainer } from './ChatConversationContainer';
 
 export default {
   title: 'Chat/ChatConversationContainer',

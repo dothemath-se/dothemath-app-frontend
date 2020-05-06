@@ -4,7 +4,7 @@ interface ChatInputContainerProps {
   onSend: (text: string, image?: File) => void;
 }
 
-export default function ChatInputContainer(props: ChatInputContainerProps) {
+export function ChatInputContainer(props: ChatInputContainerProps) {
   const [message, setMessage] = useState('');
   const [image, setImage] = useState<File | null>(null);
 

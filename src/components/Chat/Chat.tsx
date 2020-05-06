@@ -1,6 +1,6 @@
 import React from 'react';
-import ChatConversationContainer from './ChatConversationContainer';
-import ChatInputContainer from './ChatInputContainer';
+import { ChatConversationContainer } from './ChatConversationContainer';
+import { ChatInputContainer } from './ChatInputContainer';
 import { OnMessageCallbackData } from '../../api';
 
 interface ChatProps {
@@ -14,7 +14,7 @@ interface ChatProps {
   onNewQuestionClick(): any;
 }
 
-export default function Chat(props: ChatProps) {
+export function Chat(props: ChatProps) {
   const { messages } = props;
 
   return (

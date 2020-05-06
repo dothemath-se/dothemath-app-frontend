@@ -1,3 +1,1 @@
-import { SubjectList } from './SubjectList';
-
-export default SubjectList;
+export { SubjectList } from './SubjectList';

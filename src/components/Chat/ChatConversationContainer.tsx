@@ -9,7 +9,7 @@ interface ChatConversationContainerProps {
   }[];
 }
 
-export default function ChatConversationContainer(
+export function ChatConversationContainer(
   props: ChatConversationContainerProps
 ) {
   return (
