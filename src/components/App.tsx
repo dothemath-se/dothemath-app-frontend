@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Popup from './components/Popup';
-import SubjectList from './components/SubjectList';
-import * as api from './api';
-import Chat from './components/Chat';
-import LoadingIndicator from './components/LoadingIndicator';
-import { useCookie } from './useCookie';
-import ErrorBoundary from './ErrorBoundary';
+import Popup from './Popup';
+import SubjectList from './SubjectList';
+import * as api from '../api';
+import Chat from './Chat';
+import LoadingIndicator from './LoadingIndicator';
+import { useCookie } from '../useCookie';
+import ErrorBoundary from '../ErrorBoundary';
 
 export default function App() {
   const [name, setName] = useCookie('name');
