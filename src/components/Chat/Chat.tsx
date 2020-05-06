@@ -10,8 +10,8 @@ interface ChatProps {
     name: string;
   };
   messages: OnMessageCallbackData[];
-  onSendMessage(text: string, image?: File): any;
-  onNewQuestionClick(): any;
+  onSendMessage: (text: string, image?: File) => any;
+  onNewQuestionClick: () => any;
 }
 
 export function Chat(props: ChatProps) {
