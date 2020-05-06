@@ -12,5 +12,8 @@
     "build": true,
     "node_modules": true,
     "yarn-error.log": true
+  },
+  "search.exclude": {
+    "yarn.lock": true
   }
 }
