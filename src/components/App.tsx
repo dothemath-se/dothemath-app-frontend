@@ -5,7 +5,7 @@ import * as api from '../api';
 import Chat from './Chat';
 import LoadingIndicator from './LoadingIndicator';
 import { useCookie } from '../useCookie';
-import ErrorBoundary from '../ErrorBoundary';
+import ErrorBoundary from './ErrorBoundary';
 
 export default function App() {
   const [name, setName] = useCookie('name');
