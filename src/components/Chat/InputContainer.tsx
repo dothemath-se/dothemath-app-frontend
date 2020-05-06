@@ -49,7 +49,6 @@ export default function InputContainer(props: InputContainerProps) {
       onSubmit={(event) => event.preventDefault()}
     >
       <textarea
-        // onInput="this.style.height = '';this.style.height = this.scrollHeight + 'px'"
         onChange={(e) => setMessage(e.target.value)}
         onKeyDown={(e) => {
           if (e.keyCode === 13 && !e.shiftKey) {
@@ -65,7 +64,6 @@ export default function InputContainer(props: InputContainerProps) {
         style={{ height: 'initial' }}
         value={message}
       />
-      {/* <img id="selected-image" style={{ maxwidth: "30%" }} src="" alt="" /> */}
       <input
         id="file-input"
         type="file"
