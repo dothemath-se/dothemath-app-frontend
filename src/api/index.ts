@@ -7,7 +7,7 @@ export const getSubjects = (cb) => {
 };
 
 export const sendMessage = (text: string, image?: File): Promise<string> => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     if (image) {
       const fileReader = new FileReader();
       fileReader.onload = () => {
@@ -31,7 +31,7 @@ export const sendMessage = (text: string, image?: File): Promise<string> => {
 };
 
 export const establishSession = (channelId: string, studentName: string) => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     socket.emit(
       'establish_session',
       {
