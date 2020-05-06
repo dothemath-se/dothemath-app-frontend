@@ -14,7 +14,7 @@ interface ChatProps {
   onNewQuestionClick: () => any;
 }
 
-export function Chat(props: ChatProps) {
+export const Chat = (props: ChatProps) => {
   const { messages } = props;
 
   return (
@@ -39,4 +39,4 @@ export function Chat(props: ChatProps) {
       />
     </div>
   );
-}
+};

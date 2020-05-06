@@ -5,7 +5,7 @@ interface SubjectListProps {
   onComplete: (arg0: { name: string; id: string }) => void;
 }
 
-export function SubjectList(props: SubjectListProps) {
+export const SubjectList = (props: SubjectListProps) => {
   return (
     <div id="popup">
       <div id="subjects-container">
@@ -22,4 +22,4 @@ export function SubjectList(props: SubjectListProps) {
       </div>
     </div>
   );
-}
+};

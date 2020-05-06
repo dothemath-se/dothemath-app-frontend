@@ -4,7 +4,7 @@ interface LoadingIndicatorProps {
   loading?: boolean;
 }
 
-export function LoadingIndicator(props: LoadingIndicatorProps) {
+export const LoadingIndicator = (props: LoadingIndicatorProps) => {
   if (!props.loading) return null;
   return (
     <div id="popup">
@@ -13,4 +13,4 @@ export function LoadingIndicator(props: LoadingIndicatorProps) {
       </div>
     </div>
   );
-}
+};

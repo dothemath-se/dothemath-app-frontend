@@ -2,16 +2,16 @@ import io from 'socket.io-client';
 
 const socket = io('https://api.dothemath.app');
 
-export function getSubjects(cb) {
+export const getSubjects = (cb) => {
   socket.emit('get_channels', cb);
-}
+};
 
-export function sendMessage(text: string, image?: File): Promise<string> {
+export const sendMessage = (text: string, image?: File): Promise<string> => {
   return new Promise((resolve, reject) => {
     if (image) {
       const fileReader = new FileReader();
-      fileReader.onload = function () {
-        const arrayBuffer = this.result as ArrayBuffer;
+      fileReader.onload = () => {
+        const arrayBuffer = fileReader.result as ArrayBuffer;
         socket.emit(
           'send_message',
           {
@@ -28,9 +28,9 @@ export function sendMessage(text: string, image?: File): Promise<string> {
       );
     }
   });
-}
+};
 
-export function establishSession(channelId: string, studentName: string) {
+export const establishSession = (channelId: string, studentName: string) => {
   return new Promise((resolve, reject) => {
     socket.emit(
       'establish_session',
@@ -43,12 +43,12 @@ export function establishSession(channelId: string, studentName: string) {
       }
     );
   });
-}
+};
 
-export function reestablishSession(
+export const reestablishSession = (
   channelId: string,
   threadId: string
-): Promise<ReestablishSessionResult> {
+): Promise<ReestablishSessionResult> => {
   return new Promise((resolve, reject) => {
     socket.emit(
       'reestablish_session',
@@ -89,14 +89,14 @@ export function reestablishSession(
       }
     );
   });
-}
+};
 
-export function cancelSession() {
+export const cancelSession = () => {
   socket.disconnect();
   socket.connect();
-}
+};
 
-export function onMessage(cb: OnMessageCallback) {
+export const onMessage = (cb: OnMessageCallback) => {
   socket.on('message', ({ text, name, image }) => {
     if (image) {
       cb({ toFrom: 'from', name, text: '', image });
@@ -105,7 +105,7 @@ export function onMessage(cb: OnMessageCallback) {
       cb({ toFrom: 'from', name, text });
     }
   });
-}
+};
 
 type OnMessageCallback = (arg0: OnMessageCallbackData) => void;
 

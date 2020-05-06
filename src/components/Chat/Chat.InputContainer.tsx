@@ -4,21 +4,21 @@ interface InputContainerProps {
   onSend: (text: string, image?: File) => void;
 }
 
-export function InputContainer(props: InputContainerProps) {
+export const InputContainer = (props: InputContainerProps) => {
   const [message, setMessage] = useState('');
   const [image, setImage] = useState<File | null>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  function onFileInputChange(files: FileList | null) {
+  const onFileInputChange = (files: FileList | null) => {
     if (files && files[0]) {
       setImage(files[0]);
     } else {
       setImage(null);
     }
-  }
+  };
 
-  function onSelectImageClick() {
+  const onSelectImageClick = () => {
     if (image) {
       if (fileInputRef.current) {
         fileInputRef.current.value = '';
@@ -27,9 +27,9 @@ export function InputContainer(props: InputContainerProps) {
     } else {
       fileInputRef.current?.click();
     }
-  }
+  };
 
-  function onSendMessageClick() {
+  const onSendMessageClick = () => {
     if (image) {
       props.onSend(message, image);
     } else if (message) {
@@ -40,7 +40,7 @@ export function InputContainer(props: InputContainerProps) {
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
     }
-  }
+  };
 
   return (
     <form
@@ -87,4 +87,4 @@ export function InputContainer(props: InputContainerProps) {
       <button id="send-message-button" onClick={onSendMessageClick}></button>
     </form>
   );
-}
+};

@@ -9,7 +9,7 @@ interface ConversationContainerProps {
   }[];
 }
 
-export function ConversationContainer(props: ConversationContainerProps) {
+export const ConversationContainer = (props: ConversationContainerProps) => {
   return (
     <div id="conversation-container">
       {props?.messages
@@ -24,4 +24,4 @@ export function ConversationContainer(props: ConversationContainerProps) {
         .reverse()}
     </div>
   );
-}
+};

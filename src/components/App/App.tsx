@@ -7,7 +7,7 @@ import { LoadingIndicator } from '../LoadingIndicator';
 import { useCookie } from '../../useCookie';
 import { ErrorBoundary } from '../ErrorBoundary';
 
-export function App() {
+export const App = () => {
   const [name, setName] = useCookie('name');
   const [threadId, setThreadId] = useCookie('threadId');
   const [channelId, setChannelId] = useCookie('channelId');
@@ -50,7 +50,7 @@ export function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function onSubjectSelect(subject: api.Subject) {
+  const onSubjectSelect = (subject: api.Subject) => {
     setChannelId(subject.id);
     setLoading(true);
 
@@ -64,9 +64,9 @@ export function App() {
         setLoading(false);
         setThreadId('');
       });
-  }
+  };
 
-  function onSendMessage(text: string, image?: File) {
+  const onSendMessage = (text: string, image?: File) => {
     let isFirstMessage = messages.length === 0;
     api.sendMessage(text, image).then((threadId) => {
       if (isFirstMessage) {
@@ -94,14 +94,14 @@ export function App() {
     }
 
     setMessages((messages) => [...messages, ...localMessages]);
-  }
+  };
 
-  function onNewQuestion() {
+  const onNewQuestion = () => {
     setChannelId('');
     setThreadId('');
     setMessages([]);
     api.cancelSession();
-  }
+  };
 
   const subject = subjects.find((s) => s.id === channelId);
 
@@ -129,4 +129,4 @@ export function App() {
       </div>
     </ErrorBoundary>
   );
-}
+};

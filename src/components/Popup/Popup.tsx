@@ -5,15 +5,15 @@ interface PopupProps {
   onComplete: (arg0: string) => void;
 }
 
-export function Popup(props: PopupProps) {
+export const Popup = (props: PopupProps) => {
   const [nickname, setNickname] = useState('');
   const [acceptCookies, setAcceptCookies] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [passCaptcha, setPassCaptcha] = useState(false);
 
-  function capchaChange(value) {
+  const capchaChange = (value) => {
     setPassCaptcha(value);
-  }
+  };
 
   return (
     <div id="popup">
@@ -71,4 +71,4 @@ export function Popup(props: PopupProps) {
       </div>
     </div>
   );
-}
+};
