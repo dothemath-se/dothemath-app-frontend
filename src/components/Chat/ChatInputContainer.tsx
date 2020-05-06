@@ -1,10 +1,10 @@
 import React, { useState, useRef } from 'react';
 
-interface InputContainerProps {
+interface ChatInputContainerProps {
   onSend: (text: string, image?: File) => void;
 }
 
-export default function InputContainer(props: InputContainerProps) {
+export default function ChatInputContainer(props: ChatInputContainerProps) {
   const [message, setMessage] = useState('');
   const [image, setImage] = useState<File | null>(null);
 

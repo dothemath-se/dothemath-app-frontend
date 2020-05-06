@@ -1,6 +1,6 @@
 import React from 'react';
-import ConversationContainer from './ConversationContainer';
-import InputContainer from './InputContainer';
+import ChatConversationContainer from './ChatConversationContainer';
+import ChatInputContainer from './ChatInputContainer';
 import { OnMessageCallbackData } from '../../api';
 
 interface ChatProps {
@@ -27,8 +27,8 @@ export default function Chat(props: ChatProps) {
       </div>
       <div id="content-wrapper">
         <div id="chat-wrapper">
-          <ConversationContainer messages={messages} />
-          <InputContainer onSend={props.onSendMessage} />
+          <ChatConversationContainer messages={messages} />
+          <ChatInputContainer onSend={props.onSendMessage} />
         </div>
       </div>
       <img

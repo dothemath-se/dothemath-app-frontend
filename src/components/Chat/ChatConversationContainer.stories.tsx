@@ -1,11 +1,13 @@
 import React from 'react';
-import ConversationContainer from './ConversationContainer';
+import ChatConversationContainer from './ChatConversationContainer';
 
 export default {
-  title: 'Chat/ConversationContainer',
+  title: 'Chat/ChatConversationContainer',
 };
 
-export const Default = () => <ConversationContainer messages={fakeMessages} />;
+export const Default = () => (
+  <ChatConversationContainer messages={fakeMessages} />
+);
 
 const fakeMessages = [
   {

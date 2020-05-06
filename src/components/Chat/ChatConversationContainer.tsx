@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface ConversationContainerProps {
+interface ChatConversationContainerProps {
   messages: {
     toFrom: string;
     text: string;
@@ -9,8 +9,8 @@ interface ConversationContainerProps {
   }[];
 }
 
-export default function ConversationContainer(
-  props: ConversationContainerProps
+export default function ChatConversationContainer(
+  props: ChatConversationContainerProps
 ) {
   return (
     <div id="conversation-container">
