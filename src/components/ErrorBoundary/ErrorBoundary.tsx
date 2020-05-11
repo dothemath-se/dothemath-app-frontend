@@ -30,7 +30,7 @@ export class ErrorBoundary extends Component {
             Sentry.showReportDialog({ eventId: this.state.eventId })
           }
         >
-          Report feedback
+          Berätta vad som gick fel
         </button>
       );
     }
