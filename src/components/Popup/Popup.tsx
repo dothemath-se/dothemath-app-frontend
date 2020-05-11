@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
+import { AgreementModal } from '../AgreementModal';
 
 interface PopupProps {
   onComplete: (arg0: string) => void;
@@ -10,6 +11,9 @@ export const Popup = (props: PopupProps) => {
   const [acceptCookies, setAcceptCookies] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [passCaptcha, setPassCaptcha] = useState(false);
+  const [agreementModal, setAgreementModal] = useState<
+    '' | 'cookies' | 'user' | 'privacy'
+  >('');
 
   return (
     <div id="popup">
@@ -34,7 +38,13 @@ export const Popup = (props: PopupProps) => {
               onClick={() => setAcceptCookies((x) => !x)}
               className="toggle-check"
             />
-            <span>I accept the use of cookies</span>
+            <span>
+              Jag förstår och accepterar att{' '}
+              <a href="#" onClick={() => setAgreementModal('cookies')}>
+                Cookies
+              </a>{' '}
+              används på den här webbplatsen
+            </span>
             <img
               alt=""
               src={
@@ -45,7 +55,16 @@ export const Popup = (props: PopupProps) => {
               onClick={() => setAcceptTerms((x) => !x)}
               className="toggle-check"
             />
-            <span>I agree to the terms of service</span>
+            <span>
+              Jag har läst och accepterar{' '}
+              <a href="#" onClick={() => setAgreementModal('user')}>
+                Användarvillkoren
+              </a>{' '}
+              och{' '}
+              <a href="#" onClick={() => setAgreementModal('privacy')}>
+                Integritetspolicyn
+              </a>
+            </span>
           </div>
           <ReCAPTCHA
             sitekey="6LdJiugUAAAAABme_rVvdcwmRAyQ0f8Fq7nMubcO"
@@ -65,6 +84,13 @@ export const Popup = (props: PopupProps) => {
           </button>
         </form>
       </div>
+
+      {agreementModal && (
+        <AgreementModal
+          type={agreementModal}
+          onCloseClick={() => setAgreementModal('')}
+        />
+      )}
     </div>
   );
 };
