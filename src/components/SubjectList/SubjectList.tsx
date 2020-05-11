@@ -9,7 +9,7 @@ export const SubjectList = (props: SubjectListProps) => {
   return (
     <div id="popup">
       <div id="subjects-container">
-        <h2>Choose subject</h2>
+        <h2>Välj ämne</h2>
         {props?.data?.map((item, index) => (
           <button
             className="btn--primary"

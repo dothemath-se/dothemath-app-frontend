@@ -23,13 +23,13 @@ export const Popup = (props: PopupProps) => {
   return (
     <div id="popup">
       <div id="popup-container">
-        <h3>Before we begin...</h3>
+        <h3>Innan vi börjar...</h3>
         <form id="name-form" onSubmit={(e) => e.preventDefault()}>
           <input
             id="name-input"
             maxLength={25}
             type="text"
-            placeholder="Choose your nickname"
+            placeholder="Välj ett smeknamn"
             onChange={(e) => setNickname(e.target.value.trim())}
           />
           <div id="checks-container">

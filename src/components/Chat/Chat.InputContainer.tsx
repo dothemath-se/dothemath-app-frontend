@@ -59,7 +59,7 @@ export const InputContainer = (props: InputContainerProps) => {
         rows={1}
         id="chat-input"
         autoComplete="off"
-        placeholder="Begin typing your message..."
+        placeholder="Skriv ditt meddelande här..."
         form="chat-container"
         style={{ height: 'initial' }}
         value={message}

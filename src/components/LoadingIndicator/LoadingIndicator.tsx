@@ -9,7 +9,7 @@ export const LoadingIndicator = (props: LoadingIndicatorProps) => {
   return (
     <div id="popup">
       <div id="popup-container">
-        <h3>Loading...</h3>
+        <h3>Laddar...</h3>
       </div>
     </div>
   );

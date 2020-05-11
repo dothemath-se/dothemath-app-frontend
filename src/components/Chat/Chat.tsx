@@ -22,7 +22,7 @@ export const Chat = (props: ChatProps) => {
       <div id="title-container">
         <h2 id="subject-title">{props.subject?.name}</h2>
         <button onClick={props.onNewQuestionClick} id="new-question-button">
-          Ask New Question
+          Ställ en ny fråga
         </button>
       </div>
       <div id="content-wrapper">
