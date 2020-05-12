@@ -83,7 +83,7 @@ export const Popup = (props: PopupProps) => {
               !(nickname && acceptCookies && acceptTerms && passCaptcha)
             }
           >
-            Begin
+            Börja
           </Button>
         </form>
       </div>
