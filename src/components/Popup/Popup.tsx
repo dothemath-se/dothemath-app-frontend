@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { AgreementModal } from '../AgreementModal';
+import {
+  CookiePolicyModal,
+  PrivacyPolicyModal,
+  UserAgreementModal,
+} from '../AgreementModal';
 import { Button } from '../Button';
 
 interface PopupProps {
@@ -12,9 +16,9 @@ export const Popup = (props: PopupProps) => {
   const [acceptCookies, setAcceptCookies] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [passCaptcha, setPassCaptcha] = useState(false);
-  const [agreementModal, setAgreementModal] = useState<
-    '' | 'cookies' | 'user' | 'privacy'
-  >('');
+  const [cookiePolicyModalOpen, setCookiePolicyModalOpen] = useState(false);
+  const [privacyPolicyModalOpen, setPrivacyPolicyModalOpen] = useState(false);
+  const [userAgreementModalOpen, setUserAgreementModalOpen] = useState(false);
 
   return (
     <div id="popup">
@@ -41,7 +45,7 @@ export const Popup = (props: PopupProps) => {
             />
             <span>
               Jag förstår och accepterar att{' '}
-              <Button link onClick={() => setAgreementModal('cookies')}>
+              <Button link onClick={() => setCookiePolicyModalOpen(true)}>
                 Cookies
               </Button>{' '}
               används på den här webbplatsen
@@ -58,11 +62,11 @@ export const Popup = (props: PopupProps) => {
             />
             <span>
               Jag har läst och accepterar{' '}
-              <Button link onClick={() => setAgreementModal('user')}>
+              <Button link onClick={() => setUserAgreementModalOpen(true)}>
                 Användarvillkoren
               </Button>{' '}
               och{' '}
-              <Button link onClick={() => setAgreementModal('privacy')}>
+              <Button link onClick={() => setPrivacyPolicyModalOpen(true)}>
                 Integritetspolicyn
               </Button>
             </span>
@@ -84,12 +88,20 @@ export const Popup = (props: PopupProps) => {
         </form>
       </div>
 
-      {agreementModal && (
-        <AgreementModal
-          type={agreementModal}
-          onCloseClick={() => setAgreementModal('')}
-        />
-      )}
+      <CookiePolicyModal
+        onCloseClick={() => setCookiePolicyModalOpen(false)}
+        isOpen={cookiePolicyModalOpen}
+      />
+
+      <UserAgreementModal
+        onCloseClick={() => setUserAgreementModalOpen(false)}
+        isOpen={userAgreementModalOpen}
+      />
+
+      <PrivacyPolicyModal
+        onCloseClick={() => setPrivacyPolicyModalOpen(false)}
+        isOpen={privacyPolicyModalOpen}
+      />
     </div>
   );
 };

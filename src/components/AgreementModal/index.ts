@@ -1,1 +1,5 @@
-export { AgreementModal } from './AgreementModal';
+export {
+  CookiePolicyModal,
+  PrivacyPolicyModal,
+  UserAgreementModal,
+} from './AgreementModal';
