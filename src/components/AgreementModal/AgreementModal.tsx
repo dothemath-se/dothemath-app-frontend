@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactModal from 'react-modal';
+import { Button } from '../Button';
 
 ReactModal.setAppElement('#root');
 
@@ -12,6 +13,7 @@ export const AgreementModal = ({ type, onCloseClick }: AgreementModalProps) => {
   return (
     <ReactModal
       isOpen
+      onRequestClose={onCloseClick}
       style={{
         overlay: {
           zIndex: 100,
@@ -21,7 +23,9 @@ export const AgreementModal = ({ type, onCloseClick }: AgreementModalProps) => {
       {type === 'cookies' && <Cookiepolicy />}
       {type === 'privacy' && <PrivacyPolicy />}
       {type === 'user' && <UserAgreement />}
-      <button onClick={onCloseClick}>Stäng</button>
+      <Button primary onClick={onCloseClick}>
+        Stäng
+      </Button>
     </ReactModal>
   );
 };

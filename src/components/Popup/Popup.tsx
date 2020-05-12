@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { AgreementModal } from '../AgreementModal';
+import { Button } from '../Button';
 
 interface PopupProps {
   onComplete: (arg0: string) => void;
@@ -19,7 +20,7 @@ export const Popup = (props: PopupProps) => {
     <div id="popup">
       <div id="popup-container">
         <h3>Before we begin...</h3>
-        <form id="name-form">
+        <form id="name-form" onSubmit={(e) => e.preventDefault()}>
           <input
             id="name-input"
             maxLength={25}
@@ -40,9 +41,9 @@ export const Popup = (props: PopupProps) => {
             />
             <span>
               Jag förstår och accepterar att{' '}
-              <a href="#" onClick={() => setAgreementModal('cookies')}>
+              <Button link onClick={() => setAgreementModal('cookies')}>
                 Cookies
-              </a>{' '}
+              </Button>{' '}
               används på den här webbplatsen
             </span>
             <img
@@ -57,13 +58,13 @@ export const Popup = (props: PopupProps) => {
             />
             <span>
               Jag har läst och accepterar{' '}
-              <a href="#" onClick={() => setAgreementModal('user')}>
+              <Button link onClick={() => setAgreementModal('user')}>
                 Användarvillkoren
-              </a>{' '}
+              </Button>{' '}
               och{' '}
-              <a href="#" onClick={() => setAgreementModal('privacy')}>
+              <Button link onClick={() => setAgreementModal('privacy')}>
                 Integritetspolicyn
-              </a>
+              </Button>
             </span>
           </div>
           <ReCAPTCHA
@@ -71,17 +72,15 @@ export const Popup = (props: PopupProps) => {
             onChange={setPassCaptcha}
             style={{ marginBottom: '1rem' }}
           />
-          <button
-            id="enter-name-btn"
-            className="btn--primary"
-            type="button"
+          <Button
+            primary
             onClick={() => props.onComplete(nickname)}
             disabled={
               !(nickname && acceptCookies && acceptTerms && passCaptcha)
             }
           >
             Begin
-          </button>
+          </Button>
         </form>
       </div>
 
