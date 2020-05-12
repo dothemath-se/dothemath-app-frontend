@@ -400,78 +400,80 @@ const PrivacyPolicy = () => (
         </p>
 
         <table>
-          <tr>
-            <th>Syfte med behandlingen</th>
-            <th>Laglig grund för behandlingen</th>
-            <th>Kategorier av personuppgifter</th>
-            <th>Lagringstid</th>
-          </tr>
+          <tbody>
+            <tr>
+              <th>Syfte med behandlingen</th>
+              <th>Laglig grund för behandlingen</th>
+              <th>Kategorier av personuppgifter</th>
+              <th>Lagringstid</th>
+            </tr>
 
-          <tr>
-            <td>För att tillhandahålla och anpassa tjänsten</td>
-            <td>Intresseavvägning</td>
-            <td>
-              Användaruppgifter
-              <br />
-              Användningsdata
-            </td>
-            <td>90 dagar</td>
-          </tr>
+            <tr>
+              <td>För att tillhandahålla och anpassa tjänsten</td>
+              <td>Intresseavvägning</td>
+              <td>
+                Användaruppgifter
+                <br />
+                Användningsdata
+              </td>
+              <td>90 dagar</td>
+            </tr>
 
-          <tr>
-            <td>
-              För att förstå, diagnostisera, felsöka och lösa problem med
-              tjänsten
-            </td>
-            <td>Intresseavvägning</td>
-            <td>
-              Användaruppgifter
-              <br />
-              Användningsdata
-            </td>
-            <td>90 dagar</td>
-          </tr>
+            <tr>
+              <td>
+                För att förstå, diagnostisera, felsöka och lösa problem med
+                tjänsten
+              </td>
+              <td>Intresseavvägning</td>
+              <td>
+                Användaruppgifter
+                <br />
+                Användningsdata
+              </td>
+              <td>90 dagar</td>
+            </tr>
 
-          <tr>
-            <td>
-              För att utvärdera och utveckla nya funktioner, tekniker och
-              förbättringar av tjänsten
-            </td>
-            <td>Intresseavvägning</td>
-            <td>
-              Användaruppgifter
-              <br />
-              Användningsdata
-            </td>
-            <td>90 dagar</td>
-          </tr>
+            <tr>
+              <td>
+                För att utvärdera och utveckla nya funktioner, tekniker och
+                förbättringar av tjänsten
+              </td>
+              <td>Intresseavvägning</td>
+              <td>
+                Användaruppgifter
+                <br />
+                Användningsdata
+              </td>
+              <td>90 dagar</td>
+            </tr>
 
-          <tr>
-            <td>
-              För att efterleva rättsliga åtaganden och förfrågningar i
-              förhållande till rättsväsendet
-            </td>
-            <td>
-              Rättslig förpliktelse <br /> Intresseavvägning
-            </td>
-            <td>
-              Användaruppgifter
-              <br />
-              Användningsdata
-            </td>
-            <td>90 dagar</td>
-          </tr>
+            <tr>
+              <td>
+                För att efterleva rättsliga åtaganden och förfrågningar i
+                förhållande till rättsväsendet
+              </td>
+              <td>
+                Rättslig förpliktelse <br /> Intresseavvägning
+              </td>
+              <td>
+                Användaruppgifter
+                <br />
+                Användningsdata
+              </td>
+              <td>90 dagar</td>
+            </tr>
 
-          <tr>
-            <td>För att upptäcka bedrägeri, och fusk i tjänsten</td>
-            <td>Intresseavvägning</td>
-            <td>
-              Användaruppgifter
-              <br />
-              Användningsdata
-            </td>
-            <td>90 dagar</td>
-          </tr>
+            <tr>
+              <td>För att upptäcka bedrägeri, och fusk i tjänsten</td>
+              <td>Intresseavvägning</td>
+              <td>
+                Användaruppgifter
+                <br />
+                Användningsdata
+              </td>
+              <td>90 dagar</td>
+            </tr>
+          </tbody>
         </table>
       </li>
 
@@ -485,23 +487,25 @@ const PrivacyPolicy = () => (
         </p>
 
         <table>
-          <tr>
-            <th>Underleverantör (namn på tjänst)</th>
-            <th>Land/region där tjänsten fullgörs</th>
-            <th>Typ av tjänst</th>
-          </tr>
+          <tbody>
+            <tr>
+              <th>Underleverantör (namn på tjänst)</th>
+              <th>Land/region där tjänsten fullgörs</th>
+              <th>Typ av tjänst</th>
+            </tr>
 
-          <tr>
-            <td>Slack</td>
-            <td>USA</td>
-            <td>Direkta meddelanden</td>
-          </tr>
+            <tr>
+              <td>Slack</td>
+              <td>USA</td>
+              <td>Direkta meddelanden</td>
+            </tr>
 
-          <tr>
-            <td>Microsoft Azure</td>
-            <td>Norra europa</td>
-            <td>Web hosting</td>
-          </tr>
+            <tr>
+              <td>Microsoft Azure</td>
+              <td>Norra europa</td>
+              <td>Web hosting</td>
+            </tr>
+          </tbody>
         </table>
 
         <p>
