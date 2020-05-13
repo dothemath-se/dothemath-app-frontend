@@ -73,7 +73,8 @@ export const Popup = (props: PopupProps) => {
           </div>
           <ReCAPTCHA
             sitekey="6LdJiugUAAAAABme_rVvdcwmRAyQ0f8Fq7nMubcO"
-            onChange={setPassCaptcha}
+            onChange={(value) => setPassCaptcha(!!value)}
+            // @ts-ignore
             style={{ marginBottom: '1rem' }}
           />
           <Button
