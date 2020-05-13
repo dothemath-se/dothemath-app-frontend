@@ -13,7 +13,6 @@ export const Button = ({
   primary,
   link,
   disabled,
-  onClick,
   className,
   ...rest
 }: ButtonProps) => {
@@ -25,14 +24,10 @@ export const Button = ({
     className
   );
 
+  if (link && disabled) throw Error('link buttons cannot be disabled');
+
   return (
-    <button
-      className={classes}
-      onClick={(e) => {
-        if (!disabled && onClick) onClick(e);
-      }}
-      {...rest}
-    >
+    <button className={classes} disabled={disabled} {...rest}>
       {children}
     </button>
   );
