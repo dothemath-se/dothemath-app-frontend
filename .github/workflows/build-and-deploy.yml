@@ -23,6 +23,8 @@ jobs:
 
     - run: yarn build
 
+    - run: yarn build-storybook
+
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
