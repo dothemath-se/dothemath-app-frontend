@@ -113,7 +113,7 @@ export const App = () => {
     <ErrorBoundary>
       <div>
         {loading && <LoadingIndicator loading />}
-        {showPopup && <Popup onComplete={setName} />}
+        {showPopup && <Popup onComplete={setName} useCaptcha={true} />}
         {showSubjectList && (
           <SubjectList data={subjects} onComplete={onSubjectSelect} />
         )}
