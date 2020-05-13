@@ -2,8 +2,6 @@ import React, { FunctionComponent } from 'react';
 import ReactModal from 'react-modal';
 import { Button } from '../Button';
 
-ReactModal.setAppElement('#root');
-
 interface AgreementModalProps {
   onCloseClick: () => any;
   isOpen?: boolean;
@@ -23,6 +21,7 @@ const AgreementModal: FunctionComponent<AgreementModalProps> = ({
           zIndex: 100,
         },
       }}
+      ariaHideApp={false}
     >
       {children}
       <Button primary onClick={onCloseClick}>
