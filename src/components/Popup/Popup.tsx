@@ -8,6 +8,7 @@ import {
 import { Button } from '../Button';
 
 interface PopupProps {
+  useCaptcha: boolean;
   onComplete: (arg0: string) => void;
 }
 
@@ -15,7 +16,7 @@ export const Popup = (props: PopupProps) => {
   const [nickname, setNickname] = useState('');
   const [acceptCookies, setAcceptCookies] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
-  const [passCaptcha, setPassCaptcha] = useState(false);
+  const [passCaptcha, setPassCaptcha] = useState(!props.useCaptcha);
   const [cookiePolicyModalOpen, setCookiePolicyModalOpen] = useState(false);
   const [privacyPolicyModalOpen, setPrivacyPolicyModalOpen] = useState(false);
   const [userAgreementModalOpen, setUserAgreementModalOpen] = useState(false);
@@ -71,12 +72,14 @@ export const Popup = (props: PopupProps) => {
               </Button>
             </span>
           </div>
-          <ReCAPTCHA
-            sitekey="6LdJiugUAAAAABme_rVvdcwmRAyQ0f8Fq7nMubcO"
-            onChange={(value) => setPassCaptcha(!!value)}
-            // @ts-ignore
-            style={{ marginBottom: '1rem' }}
-          />
+          {props.useCaptcha && (
+            <ReCAPTCHA
+              sitekey="6LdJiugUAAAAABme_rVvdcwmRAyQ0f8Fq7nMubcO"
+              onChange={(value) => setPassCaptcha(!!value)}
+              // @ts-ignore
+              style={{ marginBottom: '1rem' }}
+            />
+          )}
           <Button
             primary
             onClick={() => props.onComplete(nickname)}

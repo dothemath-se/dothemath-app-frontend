@@ -5,4 +5,4 @@ export default {
   title: 'Popup',
 };
 
-export const Default = () => <Popup onComplete={() => {}} />;
+export const Default = () => <Popup onComplete={() => {}} useCaptcha={false} />;
