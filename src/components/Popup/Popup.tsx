@@ -35,7 +35,7 @@ export const Popup = (props: PopupProps) => {
           />
           <div id="checks-container">
             <img
-              alt=""
+              alt="accept cookies checkbox"
               src={
                 !acceptCookies
                   ? 'icons/square-regular.svg'
@@ -52,7 +52,7 @@ export const Popup = (props: PopupProps) => {
               används på den här webbplatsen
             </span>
             <img
-              alt=""
+              alt="accept terms of service checkbox"
               src={
                 !acceptTerms
                   ? 'icons/square-regular.svg'
