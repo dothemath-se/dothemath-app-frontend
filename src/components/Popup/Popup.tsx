@@ -16,7 +16,7 @@ export const Popup = (props: PopupProps) => {
   const [nickname, setNickname] = useState('');
   const [acceptCookies, setAcceptCookies] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
-  const [passCaptcha, setPassCaptcha] = useState(!!props.disableCaptcha);
+  const [passCaptcha, setPassCaptcha] = useState(false);
   const [cookiePolicyModalOpen, setCookiePolicyModalOpen] = useState(false);
   const [privacyPolicyModalOpen, setPrivacyPolicyModalOpen] = useState(false);
   const [userAgreementModalOpen, setUserAgreementModalOpen] = useState(false);
@@ -84,7 +84,12 @@ export const Popup = (props: PopupProps) => {
             primary
             onClick={() => props.onComplete(nickname)}
             disabled={
-              !(nickname && acceptCookies && acceptTerms && passCaptcha)
+              !(
+                nickname &&
+                acceptCookies &&
+                acceptTerms &&
+                (passCaptcha || !!props.disableCaptcha)
+              )
             }
           >
             Börja
