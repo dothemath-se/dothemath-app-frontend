@@ -21,6 +21,12 @@ export const Popup = (props: PopupProps) => {
   const [privacyPolicyModalOpen, setPrivacyPolicyModalOpen] = useState(false);
   const [userAgreementModalOpen, setUserAgreementModalOpen] = useState(false);
 
+  const formIsValid =
+    !!nickname &&
+    acceptCookies &&
+    acceptTerms &&
+    (passCaptcha || !!props.disableCaptcha);
+
   return (
     <div id="popup">
       <div id="popup-container">
@@ -83,14 +89,7 @@ export const Popup = (props: PopupProps) => {
           <Button
             primary
             onClick={() => props.onComplete(nickname)}
-            disabled={
-              !(
-                nickname &&
-                acceptCookies &&
-                acceptTerms &&
-                (passCaptcha || !!props.disableCaptcha)
-              )
-            }
+            disabled={!formIsValid}
           >
             Börja
           </Button>
