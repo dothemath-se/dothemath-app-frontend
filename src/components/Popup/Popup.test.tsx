@@ -8,13 +8,13 @@ const click = userEvent.click;
 
 describe('Popup', () => {
   test('button is initially disabled', () => {
-    const r = myRender(<Popup onComplete={() => {}} useCaptcha={false} />);
+    const r = myRender(<Popup onComplete={() => {}} disableCaptcha />);
 
     expect(r.BörjaButton).toBeDisabled();
   });
 
   test('filling out form enables button', () => {
-    const r = myRender(<Popup onComplete={() => {}} useCaptcha={false} />);
+    const r = myRender(<Popup onComplete={() => {}} disableCaptcha />);
 
     type(r.Smeknamn, 'nisse');
     click(r.CookiesCheckbox);
@@ -24,7 +24,7 @@ describe('Popup', () => {
   });
 
   test('captcha disables button', () => {
-    const r = myRender(<Popup onComplete={() => {}} useCaptcha={true} />);
+    const r = myRender(<Popup onComplete={() => {}} />);
 
     type(r.Smeknamn, 'nisse');
     click(r.CookiesCheckbox);
