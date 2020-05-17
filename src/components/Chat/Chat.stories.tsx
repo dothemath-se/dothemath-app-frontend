@@ -7,7 +7,6 @@ export default {
 
 export const Default = () => (
   <Chat
-    name=""
     subject={{ id: '', name: '' }}
     messages={fakeMessages}
     onSendMessage={() => {}}
