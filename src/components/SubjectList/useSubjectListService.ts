@@ -1,19 +1,26 @@
 import { useAsyncEffect } from 'use-async-effect';
 
-import * as api from '../../api';
+import { Subject } from '../../api/api';
+import * as api from '../../api/api4';
 import { useNamedState } from '../../useNamedState';
 
-export function useSubjectListService(): [api.Subject[], boolean] {
-  const [subjects, setSubjects] = useNamedState(
-    [] as api.Subject[],
-    'subjects'
-  );
+export function useSubjectListService(): [Subject[], boolean] {
+  const [subjects, setSubjects] = useNamedState([] as Subject[], 'subjects');
 
   const [loading, setLoading] = useNamedState(false, 'loading');
 
   useAsyncEffect(async () => {
     setLoading(true);
-    const result = await api.getSubjects();
+
+    console.log('go');
+    const p = api.getSubjects();
+    console.log('p', p);
+    const result = await p;
+    console.log('went');
+    console.log('p', p);
+    console.log('result', result);
+    console.log('gone');
+
     setSubjects(result);
     setLoading(false);
   }, []);

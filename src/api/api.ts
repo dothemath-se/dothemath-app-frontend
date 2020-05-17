@@ -5,7 +5,7 @@ import { readAsArrayBuffer } from './readAsArrayBuffer';
 const API_URL = process.env.REACT_APP_API_URL;
 console.debug('API_URL', API_URL);
 
-const socket = io(API_URL!);
+export const socket = io(API_URL!);
 
 export const getSubjects = (): Promise<Subject[]> =>
   new Promise((resolve) => socket.emit('get_channels', resolve));

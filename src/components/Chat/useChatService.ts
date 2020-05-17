@@ -1,6 +1,7 @@
+// import { useEffect, useState } from 'react';
 import useAsyncEffect from 'use-async-effect';
 
-import * as api from '../../api';
+import * as api from '../../api/api';
 import { useNamedState } from '../../useNamedState';
 
 export function useChatService(
@@ -19,6 +20,22 @@ export function useChatService(
   );
 
   const [loading, setLoading] = useNamedState(false, 'loading');
+
+  // const [subjects, setSubjects] = useState([] as api.Subject[]);
+  // useEffect(() => api.getSubjects(setSubjects), []);
+  // useEffect(() => {
+  //   async function go() {
+  //     console.log('go');
+  //     const x = await api2.getSubjects();
+  //     console.log('went');
+  //     console.log(x);
+  //     console.log('gone');
+  //     // x.then(console.log);
+  //     setSubjects(x as any);
+  //   }
+  //   // go();
+  //   api3.getSubjects().then((x: any) => setSubjects(x));
+  // }, []);
 
   useAsyncEffect(
     async () => {

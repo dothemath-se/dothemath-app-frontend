@@ -6,6 +6,7 @@ import { Chat } from '../Chat';
 import { Registration } from '../Registration';
 import { SubjectList } from '../SubjectList';
 import styles from './App.module.sass';
+// import { useAsyncResource } from 'use-async-resource';
 
 export const App = () => {
   const [name, setName] = useCookie<string>('name');

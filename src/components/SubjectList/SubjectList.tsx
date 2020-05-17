@@ -21,15 +21,13 @@ export const SubjectList = (props: SubjectListProps) => {
           >
             <h2>Välj ämne</h2>
             {subjects.map((item) => (
-              <>
-                <Button
-                  primary
-                  key={item.id}
-                  onClick={() => props.onComplete(item)}
-                >
-                  {item.name}
-                </Button>
-              </>
+              <Button
+                primary
+                key={item.id}
+                onClick={() => props.onComplete(item)}
+              >
+                {item.name}
+              </Button>
             ))}
           </div>
         </div>
