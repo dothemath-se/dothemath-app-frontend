@@ -1,10 +1,10 @@
-import React, { Component, PropsWithChildren } from 'react';
+import React, { Component, ErrorInfo, PropsWithChildren } from 'react';
 import * as Sentry from '@sentry/browser';
 
 export class ErrorBoundary extends Component<PropsWithChildren<{}>> {
   state: any;
 
-  constructor(props) {
+  constructor(props: PropsWithChildren<{}>) {
     super(props);
     this.state = { eventId: null };
   }
@@ -13,7 +13,7 @@ export class ErrorBoundary extends Component<PropsWithChildren<{}>> {
     return { hasError: true };
   }
 
-  componentDidCatch(error, errorInfo) {
+  componentDidCatch?(error: Error, errorInfo: ErrorInfo) {
     Sentry.withScope((scope) => {
       scope.setExtras(errorInfo);
       const eventId = Sentry.captureException(error);
