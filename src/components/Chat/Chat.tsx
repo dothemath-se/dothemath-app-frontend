@@ -4,7 +4,6 @@ import { InputContainer } from './Chat.InputContainer';
 import { OnMessageCallbackData } from '../../api';
 
 interface ChatProps {
-  name: string;
   subject?: {
     id: string;
     name: string;

@@ -125,7 +125,6 @@ export const App = () => {
         )}
         <div style={blurChat ? { filter: 'blur(5px)' } : {}}>
           <Chat
-            name={name}
             subject={subject}
             messages={messages}
             onSendMessage={onSendMessage}
