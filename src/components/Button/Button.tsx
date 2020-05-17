@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import styles from './Button.module.sass';
 import cn from 'classnames';
 
-interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   primary?: boolean;
   link?: boolean;
   disabled?: boolean;
