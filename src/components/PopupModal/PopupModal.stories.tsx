@@ -1,30 +1,28 @@
 import React from 'react';
-import {
-  CookiePolicyModal,
-  UserAgreementModal,
-  PrivacyPolicyModal,
-} from './AgreementModal';
+import { UserAgreementPopupModal } from './UserAgreementPopupModal';
+import { PrivacyPolicyPopupModal } from './PrivacyPolicyPopupModal';
+import { CookiePolicyPopupModal } from './CookiePolicyPopupModal';
 
 export default {
   title: 'AgreementModal',
 };
 
 export const Cookies = () => (
-  <CookiePolicyModal
+  <CookiePolicyPopupModal
     onCloseClick={() => console.log('Close button clicked!')}
     isOpen
   />
 );
 
 export const UserAgreement = () => (
-  <UserAgreementModal
+  <UserAgreementPopupModal
     onCloseClick={() => console.log('Close button clicked!')}
     isOpen
   />
 );
 
 export const PrivacyPolicy = () => (
-  <PrivacyPolicyModal
+  <PrivacyPolicyPopupModal
     onCloseClick={() => console.log('Close button clicked!')}
     isOpen
   />

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import {
-  CookiePolicyModal,
-  PrivacyPolicyModal,
-  UserAgreementModal,
-} from '../AgreementModal';
+  CookiePolicyPopupModal,
+  PrivacyPolicyPopupModal,
+  UserAgreementPopupModal,
+} from '../PopupModal';
 import { Button } from '../Button';
 
 interface PopupProps {
@@ -96,17 +96,17 @@ export const Popup = (props: PopupProps) => {
         </form>
       </div>
 
-      <CookiePolicyModal
+      <CookiePolicyPopupModal
         onCloseClick={() => setCookiePolicyModalOpen(false)}
         isOpen={cookiePolicyModalOpen}
       />
 
-      <UserAgreementModal
+      <UserAgreementPopupModal
         onCloseClick={() => setUserAgreementModalOpen(false)}
         isOpen={userAgreementModalOpen}
       />
 
-      <PrivacyPolicyModal
+      <PrivacyPolicyPopupModal
         onCloseClick={() => setPrivacyPolicyModalOpen(false)}
         isOpen={privacyPolicyModalOpen}
       />
