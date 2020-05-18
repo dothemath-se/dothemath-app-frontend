@@ -97,6 +97,12 @@ export const App = () => {
   };
 
   const onNewQuestion = () => {
+    // eslint-disable-next-line no-restricted-globals
+    const confirmed = confirm(
+      'Om du ställer en ny fråga kommer den här att försvinna. Är du säker?'
+    );
+    if (!confirmed) return;
+
     setChannelId('');
     setThreadId('');
     setMessages([]);
