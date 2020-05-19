@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, PropsWithChildren } from 'react';
 import * as Sentry from '@sentry/browser';
 
-export class ErrorBoundary extends Component {
+export class ErrorBoundary extends Component<PropsWithChildren<{}>> {
   state: any;
 
   constructor(props) {
