@@ -34,7 +34,7 @@ export const Popup = (props: PopupProps) => {
             onChange={(e) => setNickname(e.target.value.trim())}
           />
           <div id="checks-container">
-            <img
+            <img // eslint-disable-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
               alt="accept cookies checkbox"
               src={
                 !acceptCookies
@@ -51,7 +51,7 @@ export const Popup = (props: PopupProps) => {
               </Button>{' '}
               används på den här webbplatsen
             </span>
-            <img
+            <img // eslint-disable-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
               alt="accept terms of service checkbox"
               src={
                 !acceptTerms
