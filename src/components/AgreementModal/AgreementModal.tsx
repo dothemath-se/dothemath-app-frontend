@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { PropsWithChildren } from 'react';
 import ReactModal from 'react-modal';
 import { Button } from '../Button';
 
@@ -7,11 +7,11 @@ interface AgreementModalProps {
   isOpen?: boolean;
 }
 
-const AgreementModal: FunctionComponent<AgreementModalProps> = ({
+const AgreementModal = ({
   onCloseClick,
   children,
   isOpen,
-}) => {
+}: PropsWithChildren<AgreementModalProps>) => {
   return (
     <ReactModal
       isOpen={!!isOpen}
