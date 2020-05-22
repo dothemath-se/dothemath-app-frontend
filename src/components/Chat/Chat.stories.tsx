@@ -11,6 +11,9 @@ export const Default = () => (
     messages={fakeMessages}
     onSendMessage={() => {}}
     onNewQuestionClick={() => {}}
+    index={3}
+    allChats={1}
+    onCheckmarkClick={() => 1}
   />
 );
 
