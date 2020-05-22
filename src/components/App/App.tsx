@@ -10,29 +10,25 @@ import { ErrorBoundary } from '../ErrorBoundary';
 export const App = () => {
   const [name, setName] = useCookie('name');
   const [threadId, setThreadId] = useCookie('threadId');
-  const [channelId, setChannelId] = useCookie('channelId');
+  const [subject, setSubject] = useCookie('subject');
 
   const [loading, setLoading] = useState(true);
   const [messages, setMessages] = useState([] as api.OnMessageCallbackData[]);
 
-  const [subjects, setSubjects] = useState([] as api.Subject[]);
-  useEffect(() => api.getSubjects(setSubjects), []);
-
   // runs when app first loads, reestablishes session if possible
   useEffect(() => {
-    if (channelId && !threadId) {
-      setChannelId('');
+    if (subject && !threadId) {
+      setSubject('');
     }
-    if (threadId && channelId) {
+    if (subject && threadId) {
       api
-        .reestablishSession(channelId, threadId)
+        .reestablishSession(subject.id, threadId)
         .then((res) => {
-          setName(res.name);
-          setChannelId(res.subject.id);
+          console.info('session reestablished!');
           setMessages(res.messages);
         })
         .catch((err) => {
-          setChannelId('');
+          setSubject('');
           setThreadId('');
           console.log(err);
         })
@@ -51,13 +47,13 @@ export const App = () => {
   }, []);
 
   const onSubjectSelect = (subject: api.Subject) => {
-    setChannelId(subject.id);
+    setSubject(subject);
     setLoading(true);
 
     api
       .establishSession(subject.id, name)
       .then(() => {
-        console.info('session established');
+        console.info('session established!');
         setMessages([]);
       })
       .finally(() => {
@@ -103,13 +99,11 @@ export const App = () => {
     );
     if (!confirmed) return;
 
-    setChannelId('');
+    setSubject('');
     setThreadId('');
     setMessages([]);
     api.cancelSession();
   };
-
-  const subject = subjects.find((s) => s.id === channelId);
 
   const showPopup = !name && !loading;
   const showSubjectList = !subject && !showPopup && !loading;
@@ -120,9 +114,7 @@ export const App = () => {
       <div>
         {loading && <LoadingIndicator loading />}
         {showPopup && <Popup onComplete={setName} />}
-        {showSubjectList && (
-          <SubjectList data={subjects} onComplete={onSubjectSelect} />
-        )}
+        {showSubjectList && <SubjectList onComplete={onSubjectSelect} />}
         <div style={blurChat ? { filter: 'blur(5px)' } : {}}>
           <Chat
             subject={subject}
