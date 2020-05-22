@@ -3,9 +3,9 @@ import { Popup } from '../Popup';
 import { SubjectList } from '../SubjectList';
 import * as api from '../../api';
 import { Chat } from '../Chat';
-import { LoadingIndicator } from '../LoadingIndicator';
 import { useCookie } from '../../useCookie';
-import { ErrorBoundary } from '../ErrorBoundary';
+import { Switch, Route, useHistory, Redirect } from 'react-router-dom';
+import { LoadingIndicator } from '../LoadingIndicator';
 
 export const App = () => {
   const [name, setName] = useCookie('name');
@@ -44,7 +44,6 @@ export const App = () => {
     }
 
     api.onMessage((m) => {
-      console.log('message received from backend', m);
       setMessages((y) => [...y, m]);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -111,27 +110,61 @@ export const App = () => {
 
   const subject = subjects.find((s) => s.id === channelId);
 
-  const showPopup = !name && !loading;
-  const showSubjectList = !subject && !showPopup && !loading;
-  const blurChat = showPopup || showSubjectList || loading;
+  const history = useHistory();
+
+  const SubjectListGuard = () => {
+    if (!name) return <Redirect to="/start" />;
+    return null;
+  };
+
+  const ChatGuard = () => {
+    if (!name) return <Redirect to="/start" />;
+    if (!subject && !loading) return <Redirect to="/subject" />;
+    return null;
+  };
+
+  const RootGuard = () => {
+    if (!name) return <Redirect to="/start" />;
+    if (!subject) return <Redirect to="/subject" />;
+    return <Redirect to="/chat" />;
+  };
 
   return (
-    <ErrorBoundary>
-      <div>
-        {loading && <LoadingIndicator loading />}
-        {showPopup && <Popup onComplete={setName} />}
-        {showSubjectList && (
-          <SubjectList data={subjects} onComplete={onSubjectSelect} />
-        )}
-        <div style={blurChat ? { filter: 'blur(5px)' } : {}}>
+    <>
+      <LoadingIndicator loading={loading} />
+      <Switch>
+        <Route path="/start">
+          <Popup
+            disableCaptcha
+            onComplete={(name) => {
+              setName(name);
+              history.replace('/subject');
+            }}
+          />
+        </Route>
+        <Route path="/subject">
+          <SubjectListGuard />
+          <SubjectList
+            data={subjects}
+            onComplete={(subject) => {
+              onSubjectSelect(subject);
+              history.replace('/chat');
+            }}
+          />
+        </Route>
+        <Route path="/chat">
+          <ChatGuard />
           <Chat
             subject={subject}
             messages={messages}
             onSendMessage={onSendMessage}
-            onNewQuestionClick={onNewQuestion}
+            }}
           />
-        </div>
-      </div>
-    </ErrorBoundary>
+        </Route>
+        <Route path="/">
+          <RootGuard />
+        </Route>
+      </Switch>
+    </>
   );
 };
