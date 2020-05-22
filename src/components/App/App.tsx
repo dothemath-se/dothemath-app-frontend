@@ -18,6 +18,10 @@ export const App = () => {
   const [subjects, setSubjects] = useState([] as api.Subject[]);
   useEffect(() => api.getSubjects(setSubjects), []);
 
+  function wait<T>(ms: number, value: T) {
+    return new Promise<T>((resolve) => setTimeout(resolve, ms, value));
+  }
+
   // runs when app first loads, reestablishes session if possible
   useEffect(() => {
     if (channelId && !threadId) {
@@ -26,6 +30,7 @@ export const App = () => {
     if (threadId && channelId) {
       api
         .reestablishSession(channelId, threadId)
+        .then((value) => wait(1000, value))
         .then((res) => {
           setName(res.name);
           setChannelId(res.subject.id);
@@ -55,6 +60,7 @@ export const App = () => {
 
     api
       .establishSession(subject.id, name)
+      .then((value) => wait(1000, value))
       .then(() => {
         console.info('session established');
         setMessages([]);
