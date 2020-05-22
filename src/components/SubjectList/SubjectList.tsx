@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import * as api from '../../api';
 
 interface SubjectListProps {
-  data: { id: string; name: string }[];
   onComplete: (arg0: { name: string; id: string }) => void;
 }
 
 export const SubjectList = (props: SubjectListProps) => {
+  const [subjects, setSubjects] = useState([] as api.Subject[]);
+  useEffect(() => api.getSubjects(setSubjects), []);
+
   return (
     <div id="popup">
       <div id="subjects-container">
         <h2>Välj ämne</h2>
-        {props?.data?.map((item, index) => (
+        {subjects.map((item) => (
           <button
             className="btn--primary"
             key={item.id}
