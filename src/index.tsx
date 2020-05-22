@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { App } from './components/App';
 import './index.sass';
 import * as Sentry from '@sentry/browser';
+import { ErrorBoundary } from './components/ErrorBoundary';
+import { BrowserRouter } from 'react-router-dom';
 
 Sentry.init({
   dsn:
@@ -11,7 +13,11 @@ Sentry.init({
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ErrorBoundary>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ErrorBoundary>
   </React.StrictMode>,
   document.getElementById('root')
 );
