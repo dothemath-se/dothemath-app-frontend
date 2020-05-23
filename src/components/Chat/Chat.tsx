@@ -23,23 +23,24 @@ export const Chat = (props: ChatProps) => {
     props.setThreadId
   );
 
+  function handleNewQuestionClick() {
+    if (messages.length > 0) {
+      // eslint-disable-next-line no-restricted-globals
+      const confirmed = confirm(
+        'Om du ställer en ny fråga kommer den här att försvinna. Är du säker?'
+      );
+      if (!confirmed) return;
+    }
+
+    props.onNewQuestionClick();
+  }
+
   return (
     <>
       <div id="window-wrapper">
         <div id="title-container">
           <h2 id="subject-title">{props.subject?.name}</h2>
-          <button
-            id="new-question-button"
-            onClick={() => {
-              // eslint-disable-next-line no-restricted-globals
-              const confirmed = confirm(
-                'Om du ställer en ny fråga kommer den här att försvinna. Är du säker?'
-              );
-              if (!confirmed) return;
-
-              props.onNewQuestionClick();
-            }}
-          >
+          <button id="new-question-button" onClick={handleNewQuestionClick}>
             Ställ en ny fråga
           </button>
         </div>
