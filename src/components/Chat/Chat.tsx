@@ -25,47 +25,54 @@ export const Chat = (props: ChatProps) => {
     'messages'
   );
 
-  useAsyncEffect(async () => {
-    try {
-      setLoading(true);
+  useAsyncEffect(
+    async () => {
+      try {
+        setLoading(true);
 
-      if (!props.threadId) {
-        await establishSession();
-      } else {
-        try {
-          await reestablishSession();
-        } catch (error) {
-          console.warn(error);
-          props.setThreadId('');
+        if (!props.threadId) {
           await establishSession();
+        } else {
+          try {
+            await reestablishSession();
+          } catch (error) {
+            console.warn(error);
+            props.setThreadId('');
+            await establishSession();
+          }
         }
+
+        api.onMessage((m) => {
+          setMessages((y) => [...y, m]);
+        });
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
       }
 
-      api.onMessage((m) => {
-        setMessages((y) => [...y, m]);
-      });
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
+      async function establishSession() {
+        await api.establishSession(props.subject.id, props.name);
+        await wait(1000);
+        console.info('chat session established');
+      }
 
-    async function establishSession() {
-      await api.establishSession(props.subject.id, props.name);
-      await wait(1000);
-      console.info('new session established!');
-    }
-
-    async function reestablishSession() {
-      const result = await api.reestablishSession(
-        props.subject.id,
-        props.threadId
-      );
-      await wait(1000);
-      console.info('session reestablished!');
-      setMessages(result.messages);
-    }
-  }, []);
+      async function reestablishSession() {
+        const result = await api.reestablishSession(
+          props.subject.id,
+          props.threadId
+        );
+        await wait(1000);
+        console.info('chat session reestablished');
+        setMessages(result.messages);
+      }
+    },
+    () => {
+      api.cancelSession();
+      console.info('chat session cancelled');
+    },
+    []
+  );
 
   async function onSendMessage(text: string, image?: File) {
     try {
@@ -108,6 +115,7 @@ export const Chat = (props: ChatProps) => {
         <div id="title-container">
           <h2 id="subject-title">{props.subject?.name}</h2>
           <button
+            id="new-question-button"
             onClick={() => {
               // eslint-disable-next-line no-restricted-globals
               const confirmed = confirm(
@@ -117,7 +125,6 @@ export const Chat = (props: ChatProps) => {
 
               props.onNewQuestionClick();
             }}
-            id="new-question-button"
           >
             Ställ en ny fråga
           </button>

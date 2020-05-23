@@ -1,7 +1,6 @@
 import React from 'react';
 import { Popup } from '../Popup';
 import { SubjectList } from '../SubjectList';
-import * as api from '../../api';
 import { Chat } from '../Chat';
 import { useCookie } from '../../useCookie';
 import { Switch, Route, useHistory, Redirect } from 'react-router-dom';
@@ -49,7 +48,6 @@ export const App = () => {
             threadId={threadId}
             setThreadId={setThreadId}
             onNewQuestionClick={() => {
-              api.cancelSession();
               history.replace('/subject');
             }}
           />
