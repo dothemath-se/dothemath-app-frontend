@@ -12,8 +12,8 @@ interface ConversationContainerProps {
 export const ConversationContainer = (props: ConversationContainerProps) => {
   return (
     <div id="conversation-container">
-      {props?.messages
-        ?.map((item, index) => (
+      {props.messages
+        .map((item, index) => (
           <div className={'chat-bubble--' + item.toFrom} key={index}>
             {item.image && <img src={item.image} alt="" />}
             <p className="chat-text">{item.text}</p>

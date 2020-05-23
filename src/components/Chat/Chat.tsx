@@ -29,46 +29,59 @@ export const Chat = (props: ChatProps) => {
     try {
       setLoading(true);
 
-      if (props.threadId) {
-        const result = await api.reestablishSession(
-          props.subject.id,
-          props.threadId
-        );
-        await wait(1000);
-        console.info('session reestablished!');
-        setMessages(result.messages);
-        // todo: add fallback if nonexistent session on server
+      if (!props.threadId) {
+        await establishSession();
       } else {
-        await api.establishSession(props.subject.id, props.name);
-        await wait(1000);
-        console.info('session established!');
+        try {
+          await reestablishSession();
+        } catch (error) {
+          console.warn(error);
+          props.setThreadId('');
+          await establishSession();
+        }
       }
 
       api.onMessage((m) => {
         setMessages((y) => [...y, m]);
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     } finally {
       setLoading(false);
     }
+
+    async function establishSession() {
+      await api.establishSession(props.subject.id, props.name);
+      await wait(1000);
+      console.info('new session established!');
+    }
+
+    async function reestablishSession() {
+      const result = await api.reestablishSession(
+        props.subject.id,
+        props.threadId
+      );
+      await wait(1000);
+      console.info('session reestablished!');
+      setMessages(result.messages);
+    }
   }, []);
 
-  const onSendMessage = async (text: string, image?: File) => {
+  async function onSendMessage(text: string, image?: File) {
     try {
-      console.log('onSendMessage');
-      const newThreadId = await api.sendMessage(text, image);
-      console.log('threadId', newThreadId);
+      const threadId = await api.sendMessage(text, image);
+      console.debug('message sent to threadId', threadId);
+      props.setThreadId(threadId);
 
-      const isFirstMessage = messages.length === 0;
-      console.log('isFirstMessage', isFirstMessage);
+      const localMessages = createLocalMessages();
+      setMessages((messages) => [...messages, ...localMessages]);
+      console.debug('localMessages added', localMessages);
+    } catch (error) {
+      console.log(error);
+    }
 
-      if (isFirstMessage) {
-        props.setThreadId(newThreadId);
-      }
-
-      const localMessages: api.OnMessageCallbackData[] = [];
-
+    function createLocalMessages() {
+      const localMessages = [] as api.OnMessageCallbackData[];
       if (image) {
         localMessages.push({
           toFrom: 'to',
@@ -77,7 +90,6 @@ export const Chat = (props: ChatProps) => {
           image: URL.createObjectURL(image),
         });
       }
-
       if (text) {
         localMessages.push({
           toFrom: 'to',
@@ -85,12 +97,9 @@ export const Chat = (props: ChatProps) => {
           name: props.name,
         });
       }
-
-      setMessages((messages) => [...messages, ...localMessages]);
-    } catch (error) {
-      console.log(error);
+      return localMessages;
     }
-  };
+  }
 
   return (
     <>
