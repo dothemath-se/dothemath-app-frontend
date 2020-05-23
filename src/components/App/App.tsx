@@ -16,7 +16,7 @@ export const App = () => {
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState([] as api.OnMessageCallbackData[]);
 
-  function wait<T>(ms: number, value: T) {
+  function wait<T>(ms: number, value?: T) {
     return new Promise<T>((resolve) => setTimeout(resolve, ms, value));
   }
 
@@ -30,6 +30,7 @@ export const App = () => {
       try {
         setLoading(true);
         const result = await api.reestablishSession(subject.id, threadId);
+        await wait(1000);
         console.info('session reestablished!');
         setMessages(result.messages);
       } catch (error) {
@@ -52,6 +53,7 @@ export const App = () => {
     try {
       setLoading(true);
       await api.establishSession(subject.id, name);
+      await wait(1000);
       console.info('session established!');
       setSubject(subject);
       setThreadId('');
