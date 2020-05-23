@@ -20,7 +20,18 @@ export const Chat = (props: ChatProps) => {
     <div id="window-wrapper">
       <div id="title-container">
         <h2 id="subject-title">{props.subject?.name}</h2>
-        <button onClick={props.onNewQuestionClick} id="new-question-button">
+        <button
+          onClick={() => {
+            // eslint-disable-next-line no-restricted-globals
+            const confirmed = confirm(
+              'Om du ställer en ny fråga kommer den här att försvinna. Är du säker?'
+            );
+            if (!confirmed) return;
+
+            props.onNewQuestionClick();
+          }}
+          id="new-question-button"
+        >
           Ställ en ny fråga
         </button>
       </div>
