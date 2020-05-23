@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Popup } from '../Popup';
 import { SubjectList } from '../SubjectList';
 import * as api from '../../api';
 import { Chat } from '../Chat';
 import { useCookie } from '../../useCookie';
 import { Switch, Route, useHistory, Redirect } from 'react-router-dom';
-import { LoadingIndicator } from '../LoadingIndicator';
 
 export const App = () => {
   const [name, setName] = useCookie('name');
@@ -27,7 +26,7 @@ export const App = () => {
 
   const ChatGuard = () => {
     if (!name) return <Redirect to="/start" />;
-    if (!subject && !loading) return <Redirect to="/subject" />;
+    if (!subject) return <Redirect to="/subject" />;
     return null;
   };
 
@@ -39,7 +38,6 @@ export const App = () => {
 
   return (
     <>
-      <LoadingIndicator loading={loading} />
       <Switch>
         <Route path="/start">
           <Popup
