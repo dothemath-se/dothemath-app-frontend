@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Popup } from '../Popup';
 import { SubjectList } from '../SubjectList';
 import * as api from '../../api';
@@ -6,13 +6,14 @@ import { Chat } from '../Chat';
 import { useCookie } from '../../useCookie';
 import { Switch, Route, useHistory, Redirect } from 'react-router-dom';
 import { LoadingIndicator } from '../LoadingIndicator';
+import { useAsyncEffect } from 'use-async-effect';
 
 export const App = () => {
   const [name, setName] = useCookie('name');
   const [threadId, setThreadId] = useCookie('threadId');
   const [subject, setSubject] = useCookie('subject');
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState([] as api.OnMessageCallbackData[]);
 
   function wait<T>(ms: number, value: T) {
@@ -20,28 +21,25 @@ export const App = () => {
   }
 
   // runs when app first loads, reestablishes session if possible
-  useEffect(() => {
-    if (subject && !threadId) {
+  useAsyncEffect(async () => {
+    if (subject?.id && !threadId) {
       setSubject('');
-    }
-    if (subject && threadId) {
-      api
-        .reestablishSession(subject.id, threadId)
-        .then((value) => wait(1000, value))
-        .then((res) => {
-          console.info('session reestablished!');
-          setMessages(res.messages);
-        })
-        .catch((err) => {
-          setSubject('');
-          setThreadId('');
-          console.log(err);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    } else {
-      setLoading(false);
+      setThreadId('');
+      setMessages([]);
+    } else if (subject?.id && threadId) {
+      try {
+        setLoading(true);
+        const result = await api.reestablishSession(subject.id, threadId);
+        console.info('session reestablished!');
+        setMessages(result.messages);
+      } catch (error) {
+        setSubject('');
+        setThreadId('');
+        setMessages([]);
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
     }
 
     api.onMessage((m) => {
@@ -50,51 +48,53 @@ export const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const onSubjectSelect = (subject: api.Subject) => {
-    setSubject(subject);
-    setLoading(true);
-
-    api
-      .establishSession(subject.id, name)
-      .then((value) => wait(1000, value))
-      .then(() => {
-        console.info('session established!');
-        setMessages([]);
-      })
-      .finally(() => {
-        setLoading(false);
-        setThreadId('');
-      });
+  const onSubjectSelect = async (subject: api.Subject) => {
+    try {
+      setLoading(true);
+      await api.establishSession(subject.id, name);
+      console.info('session established!');
+      setSubject(subject);
+      setThreadId('');
+      setMessages([]);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const onSendMessage = (text: string, image?: File) => {
-    let isFirstMessage = messages.length === 0;
-    api.sendMessage(text, image).then((threadId) => {
+  const onSendMessage = async (text: string, image?: File) => {
+    try {
+      const threadId = await api.sendMessage(text, image);
+
+      const isFirstMessage = messages.length === 0;
       if (isFirstMessage) {
         setThreadId(threadId);
       }
-    });
 
-    const localMessages: api.OnMessageCallbackData[] = [];
+      const localMessages: api.OnMessageCallbackData[] = [];
 
-    if (image) {
-      localMessages.push({
-        toFrom: 'to',
-        text: '',
-        name: name,
-        image: URL.createObjectURL(image),
-      });
+      if (image) {
+        localMessages.push({
+          toFrom: 'to',
+          text: '',
+          name: name,
+          image: URL.createObjectURL(image),
+        });
+      }
+
+      if (text) {
+        localMessages.push({
+          toFrom: 'to',
+          text,
+          name: name,
+        });
+      }
+
+      setMessages((messages) => [...messages, ...localMessages]);
+    } catch (error) {
+      console.log(error);
     }
-
-    if (text) {
-      localMessages.push({
-        toFrom: 'to',
-        text,
-        name: name,
-      });
-    }
-
-    setMessages((messages) => [...messages, ...localMessages]);
   };
 
   const onNewQuestion = () => {
