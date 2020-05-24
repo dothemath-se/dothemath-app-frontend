@@ -35,7 +35,8 @@
     },
     "plugins": [
       "prettier",
-      "jsx-a11y"
+      "jsx-a11y",
+      "simple-import-sort"
     ],
     "extends": [
       "react-app",
@@ -45,9 +46,8 @@
       "plugin:jsx-a11y/strict"
     ],
     "rules": {
-      "prettier/prettier": [
-        "warn"
-      ]
+      "prettier/prettier": [ "warn" ],
+      "simple-import-sort/sort": [ "warn" ]
     }
   },
   "dependencies": {
@@ -87,6 +87,7 @@
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-simple-import-sort": "^5.0.3",
     "node-sass": "^4.13.1",
     "prettier": "^2.0.4",
     "react-scripts": "3.4.1",
