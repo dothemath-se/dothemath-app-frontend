@@ -1,6 +1,7 @@
-import React, { HTMLAttributes } from 'react';
-import styles from './Button.module.sass';
 import cn from 'classnames';
+import React, { HTMLAttributes } from 'react';
+
+import styles from './Button.module.sass';
 
 interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   primary?: boolean;

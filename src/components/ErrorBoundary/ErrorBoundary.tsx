@@ -1,5 +1,5 @@
-import React, { Component, ErrorInfo, PropsWithChildren } from 'react';
 import * as Sentry from '@sentry/browser';
+import React, { Component, ErrorInfo, PropsWithChildren } from 'react';
 
 export class ErrorBoundary extends Component<PropsWithChildren<{}>> {
   state: any;

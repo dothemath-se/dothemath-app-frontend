@@ -1,9 +1,10 @@
 import React from 'react';
+import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
+
+import { useCookie } from '../../useCookie';
+import { Chat } from '../Chat';
 import { Popup } from '../Popup';
 import { SubjectList } from '../SubjectList';
-import { Chat } from '../Chat';
-import { useCookie } from '../../useCookie';
-import { Switch, Route, useHistory, Redirect } from 'react-router-dom';
 
 export const App = () => {
   const [name, setName] = useCookie<string>('name');

@@ -1,10 +1,12 @@
+import './index.sass';
+
+import * as Sentry from '@sentry/browser';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { App } from './components/App';
-import './index.sass';
-import * as Sentry from '@sentry/browser';
-import { ErrorBoundary } from './components/ErrorBoundary';
 import { MemoryRouter } from 'react-router-dom';
+
+import { App } from './components/App';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 Sentry.init({
   dsn:

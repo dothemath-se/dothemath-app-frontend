@@ -1,6 +1,7 @@
 import React from 'react';
-import { App } from './App';
 import { MemoryRouter } from 'react-router-dom';
+
+import { App } from './App';
 
 export default {
   title: 'App',

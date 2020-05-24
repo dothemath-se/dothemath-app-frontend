@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 interface InputContainerProps {
   onSend: (text: string, image?: File) => void;

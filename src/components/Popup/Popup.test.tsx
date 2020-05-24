@@ -1,6 +1,7 @@
-import React, { ReactElement } from 'react';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import React, { ReactElement } from 'react';
+
 import { Popup } from './Popup';
 
 const type = userEvent.type;

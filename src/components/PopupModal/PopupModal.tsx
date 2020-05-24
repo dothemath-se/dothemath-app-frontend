@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import ReactModal from 'react-modal';
+
 import { Button } from '../Button';
 
 export interface PopupModalProps {
