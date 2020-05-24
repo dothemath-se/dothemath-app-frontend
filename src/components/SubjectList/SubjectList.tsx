@@ -12,20 +12,22 @@ export const SubjectList = (props: SubjectListProps) => {
 
   return (
     <>
-      <div id="popup">
-        <div id="subjects-container">
-          <h2>Välj ämne</h2>
-          {subjects.map((item) => (
-            <button
-              className="btn--primary"
-              key={item.id}
-              onClick={() => props.onComplete(item)}
-            >
-              {item.name}
-            </button>
-          ))}
+      {!loading && (
+        <div id="popup">
+          <div id="subjects-container">
+            <h2>Välj ämne</h2>
+            {subjects.map((item) => (
+              <button
+                className="btn--primary"
+                key={item.id}
+                onClick={() => props.onComplete(item)}
+              >
+                {item.name}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
       <LoadingIndicator loading={loading} />
     </>
   );
