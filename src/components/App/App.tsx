@@ -6,9 +6,11 @@ import { useCookie } from '../../useCookie';
 import { Switch, Route, useHistory, Redirect } from 'react-router-dom';
 
 export const App = () => {
-  const [name, setName] = useCookie('name');
-  const [subject, setSubject] = useCookie('subject');
-  const [threadId, setThreadId] = useCookie('threadId');
+  const [name, setName] = useCookie<string>('name');
+  const [subject, setSubject] = useCookie<{ name: string; id: string }>(
+    'subject'
+  );
+  const [threadId, setThreadId] = useCookie<string>('threadId');
 
   const history = useHistory();
 
