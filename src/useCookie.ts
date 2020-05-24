@@ -1,5 +1,5 @@
-import { useCookies } from 'react-cookie';
 import { useDebugValue } from 'react';
+import { useCookies } from 'react-cookie';
 
 export const useCookie = <T>(cookieName: string): [T, (value: T) => void] => {
   const [cookies, setCookie] = useCookies([cookieName]);

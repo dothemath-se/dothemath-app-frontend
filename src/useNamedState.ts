@@ -1,4 +1,4 @@
-import { useDebugValue, useState, SetStateAction, Dispatch } from 'react';
+import { Dispatch, SetStateAction, useDebugValue, useState } from 'react';
 
 export function useNamedState<S>(
   initialState: S | (() => S),

@@ -1,7 +1,8 @@
 import React from 'react';
+
+import { LoadingIndicator } from '../LoadingIndicator';
 import { ConversationContainer } from './Chat.ConversationContainer';
 import { InputContainer } from './Chat.InputContainer';
-import { LoadingIndicator } from '../LoadingIndicator';
 import { useChatService } from './useChatService';
 
 interface ChatProps {

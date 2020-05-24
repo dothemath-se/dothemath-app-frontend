@@ -1,7 +1,8 @@
 import React from 'react';
-import { UserAgreementPopupModal } from './UserAgreementPopupModal';
-import { PrivacyPolicyPopupModal } from './PrivacyPolicyPopupModal';
+
 import { CookiePolicyPopupModal } from './CookiePolicyPopupModal';
+import { PrivacyPolicyPopupModal } from './PrivacyPolicyPopupModal';
+import { UserAgreementPopupModal } from './UserAgreementPopupModal';
 
 export default {
   title: 'AgreementModal',
