@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useAsyncEffect } from 'use-async-effect';
 import * as api from '../../api';
 import { useNamedState } from '../../useNamedState';
 
@@ -10,13 +10,12 @@ export function useSubjectListService(): [api.Subject[], boolean] {
 
   const [loading, setLoading] = useNamedState(false, 'loading');
 
-  useEffect(() => {
+  useAsyncEffect(async () => {
     setLoading(true);
-    api.getSubjects(async (s) => {
-      setSubjects(s);
-      setLoading(false);
-    });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    const result = await api.getSubjects();
+    setSubjects(result);
+    setLoading(false);
+  }, []);
 
   return [subjects, loading];
 }

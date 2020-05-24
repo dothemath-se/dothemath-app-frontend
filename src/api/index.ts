@@ -1,17 +1,15 @@
 import io from 'socket.io-client';
+import { readAsArrayBuffer } from './readAsArrayBuffer';
 
 const socket = io('https://api.dothemath.app');
 
-export const getSubjects = (cb) => {
-  socket.emit('get_channels', cb);
-};
+export const getSubjects = (): Promise<Subject[]> =>
+  new Promise((resolve) => socket.emit('get_channels', resolve));
 
-export const sendMessage = (text: string, image?: File): Promise<string> => {
-  return new Promise((resolve) => {
+export const sendMessage = (text: string, image?: File): Promise<string> =>
+  new Promise((resolve) => {
     if (image) {
-      const fileReader = new FileReader();
-      fileReader.onload = () => {
-        const arrayBuffer = fileReader.result as ArrayBuffer;
+      readAsArrayBuffer(image).then((arrayBuffer) =>
         socket.emit(
           'send_message',
           {
@@ -19,19 +17,17 @@ export const sendMessage = (text: string, image?: File): Promise<string> => {
             image: arrayBuffer,
           },
           ({ threadId }) => resolve(threadId)
-        );
-      };
-      fileReader.readAsArrayBuffer(image);
+        )
+      );
     } else {
       socket.emit('send_message', { text }, ({ threadId }) =>
         resolve(threadId)
       );
     }
   });
-};
 
-export const establishSession = (channelId: string, studentName: string) => {
-  return new Promise((resolve) => {
+export const establishSession = (channelId: string, studentName: string) =>
+  new Promise((resolve) => {
     socket.emit(
       'establish_session',
       {
@@ -43,20 +39,19 @@ export const establishSession = (channelId: string, studentName: string) => {
       }
     );
   });
-};
 
 export const reestablishSession = (
   channelId: string,
   threadId: string
-): Promise<ReestablishSessionResult> => {
-  return new Promise((resolve, reject) => {
+): Promise<ReestablishSessionResult> =>
+  new Promise((resolve, reject) => {
     socket.emit(
       'reestablish_session',
       {
         threadId,
         channelId,
       },
-      (data) => {
+      (data: { error: any; name: any; channel: any; messages: any[] }) => {
         if (data.error) {
           reject(data.error);
         } else {
@@ -89,23 +84,21 @@ export const reestablishSession = (
       }
     );
   });
-};
 
 export const cancelSession = () => {
   socket.disconnect();
   socket.connect();
 };
 
-export const onMessage = (cb: OnMessageCallback) => {
+export const onMessage = (callback: OnMessageCallback) =>
   socket.on('message', ({ text, name, image }) => {
     if (image) {
-      cb({ toFrom: 'from', name, text: '', image });
+      callback({ toFrom: 'from', name, text: '', image });
     }
     if (text) {
-      cb({ toFrom: 'from', name, text });
+      callback({ toFrom: 'from', name, text });
     }
   });
-};
 
 type OnMessageCallback = (arg0: OnMessageCallbackData) => void;
 
