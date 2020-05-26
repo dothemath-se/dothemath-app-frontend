@@ -12,12 +12,6 @@ export const App = () => {
   const [subject, setSubject] = useCookie('subject');
   const [threadId, setThreadId] = useCookie('threadId');
 
-  const [loading, setLoading] = useState(false);
-
-  function wait<T>(ms: number, value?: T) {
-    return new Promise<T>((resolve) => setTimeout(resolve, ms, value));
-  }
-
   const onNewQuestion = () => {
     setSubject('');
     setThreadId('');
@@ -49,7 +43,6 @@ export const App = () => {
       <Switch>
         <Route path="/start">
           <Popup
-            disableCaptcha
             onComplete={(newName) => {
               setName(newName);
               history.replace('/subject');
