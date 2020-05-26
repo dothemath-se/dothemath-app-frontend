@@ -7,22 +7,10 @@ export default {
 
 export const Default = () => (
   <Chat
-    subject={{ id: '', name: '' }}
-    messages={fakeMessages}
-    onSendMessage={() => {}}
+    name="kalle anka"
+    subject={{ id: '', name: '#somechannel' }}
+    threadId={''}
+    setThreadId={() => {}}
     onNewQuestionClick={() => {}}
   />
 );
-
-const fakeMessages = [
-  {
-    toFrom: 'from' as 'from',
-    text: 'Hej själv',
-    name: 'Bull',
-  },
-  {
-    toFrom: 'to' as 'to',
-    text: 'Hej du',
-    name: 'Bill',
-  },
-];
