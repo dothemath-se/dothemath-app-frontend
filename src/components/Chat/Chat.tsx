@@ -5,6 +5,7 @@ import * as api from '../../api';
 import useAsyncEffect from 'use-async-effect';
 import { LoadingIndicator } from '../LoadingIndicator';
 import { useNamedState } from '../../useNamedState';
+import { wait } from '../../wait';
 
 interface ChatProps {
   name: string;
@@ -128,7 +129,3 @@ export const Chat = (props: ChatProps) => {
     </>
   );
 };
-
-function wait<T>(ms: number, value?: T) {
-  return new Promise<T>((resolve) => setTimeout(resolve, ms, value));
-}
