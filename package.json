@@ -8,7 +8,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "prettier": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
-    "start": "react-scripts start",
+    "start": "cross-env PORT=3001 react-scripts start",
     "storybook": "start-storybook -p 9009 -s public",
     "test": "react-scripts test"
   },
