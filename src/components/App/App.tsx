@@ -11,34 +11,20 @@ export const App = () => {
   const [subject, setSubject] = useCookie('subject');
   const [threadId, setThreadId] = useCookie('threadId');
 
-  const onNewQuestion = () => {
-    setSubject('');
-    setThreadId('');
-    api.cancelSession();
-  };
-
   const history = useHistory();
-
-  const SubjectListGuard = () => {
-    if (!name) return <Redirect to="/start" />;
-    return null;
-  };
-
-  const ChatGuard = () => {
-    if (!name) return <Redirect to="/start" />;
-    if (!subject) return <Redirect to="/subject" />;
-    return null;
-  };
-
-  const RootGuard = () => {
-    if (!name) return <Redirect to="/start" />;
-    if (!subject) return <Redirect to="/subject" />;
-    return <Redirect to="/chat" />;
-  };
 
   return (
     <>
       <Switch>
+        <Route exact path="/">
+          {!name ? (
+            <Redirect to="/start" />
+          ) : !subject ? (
+            <Redirect to="/subject" />
+          ) : (
+            <Redirect to="/chat" />
+          )}
+        </Route>
         <Route path="/start">
           <Popup
             onComplete={(newName) => {
@@ -48,7 +34,6 @@ export const App = () => {
           />
         </Route>
         <Route path="/subject">
-          <SubjectListGuard />
           <SubjectList
             onComplete={(newSubject) => {
               setSubject(newSubject);
@@ -58,17 +43,16 @@ export const App = () => {
           />
         </Route>
         <Route path="/chat">
-          <ChatGuard />
           <Chat
             name={name}
             subject={subject}
             threadId={threadId}
             setThreadId={setThreadId}
-            onNewQuestionClick={onNewQuestion}
+            onNewQuestionClick={() => {
+              api.cancelSession();
+              history.replace('/subject');
+            }}
           />
-        </Route>
-        <Route path="/">
-          <RootGuard />
         </Route>
       </Switch>
     </>
