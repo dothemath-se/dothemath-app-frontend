@@ -1,28 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import * as api from '../../api';
+import React from 'react';
+import { LoadingIndicator } from '../LoadingIndicator';
+import { useSubjectListService } from './useSubjectListService';
 
 interface SubjectListProps {
   onComplete: (arg0: { name: string; id: string }) => void;
 }
 
 export const SubjectList = (props: SubjectListProps) => {
-  const [subjects, setSubjects] = useState([] as api.Subject[]);
-  useEffect(() => api.getSubjects(setSubjects), []);
+  const [subjects, loading] = useSubjectListService();
 
   return (
-    <div id="popup">
-      <div id="subjects-container">
-        <h2>Välj ämne</h2>
-        {subjects.map((item) => (
-          <button
-            className="btn--primary"
-            key={item.id}
-            onClick={() => props.onComplete(item)}
-          >
-            {item.name}
-          </button>
-        ))}
+    <>
+      <div id="popup">
+        <div id="subjects-container">
+          <h2>Välj ämne</h2>
+          {subjects.map((item) => (
+            <button
+              className="btn--primary"
+              key={item.id}
+              onClick={() => props.onComplete(item)}
+            >
+              {item.name}
+            </button>
+          ))}
+        </div>
       </div>
-    </div>
+      <LoadingIndicator loading={loading} />
+    </>
   );
 };
