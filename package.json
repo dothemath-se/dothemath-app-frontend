@@ -46,8 +46,12 @@
       "plugin:jsx-a11y/strict"
     ],
     "rules": {
-      "prettier/prettier": [ "warn" ],
-      "simple-import-sort/sort": [ "warn" ]
+      "prettier/prettier": [
+        "warn"
+      ],
+      "simple-import-sort/sort": [
+        "warn"
+      ]
     }
   },
   "dependencies": {
