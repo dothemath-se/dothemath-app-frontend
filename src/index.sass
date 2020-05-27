@@ -8,9 +8,14 @@ $primary-color: #4882ff
     box-sizing: border-box
     margin: 0
     padding: 0
+*:before,
+*:after 
+    box-sizing: border-box
 
 html
     -webkit-text-size-adjust: none
+    height: 100%
+    position: relative
 
 body
     background-size: cover
@@ -59,6 +64,171 @@ button
     background: $primary-color
     color: #fff
 
+#profile-wrapper
+    display: flex
+    flex-direction: column
+    padding-top: 146px
+    padding-bottom: 64px
+    align-items: center
+    color: #fff
+
+#profile-header
+    position: fixed
+    top: 0
+    display: flex
+    justify-content: space-between
+    width: 100%
+    height: 146px
+    background: #4882FF
+
+#profile-picture-wrapper
+    cursor: pointer
+    min-width: 112px
+    max-width: 112px
+    height: 112px
+    margin: auto 0 auto 20px
+    background: #fff
+    overflow: hidden
+    border-radius: 50%
+
+#profile-picture
+    width: 100%
+    height: 100%
+    background: #fff
+
+#profile-info
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    color: #fff
+
+#profile-nameplate
+    display: flex
+    height: 40px
+    width: 242px
+    margin: 10px
+    align-items: center
+    justify-content: center
+    font-weight: bold
+    color: #2C2C2C
+    background: #ffffff
+    border-radius: 62px
+
+#profile-avatar-container
+    position: fixed
+    top: 160px
+    left: 5px
+    display: none
+
+#profile-avatar-modal
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr 1fr
+    border-radius: 6px
+    background: #4882FF
+
+#profile-avatar-modalarrow
+    position: absolute
+    z-index: -1
+    top: -10px
+    left: 62px
+    width: 20px
+    height: 20px
+    transform: rotate(45deg)
+    background: #4882FF
+
+.profile-avatar-button
+    display: inline-block
+    cursor: pointer
+    margin: 10px
+    width: 50px
+    height: 50px
+    border-radius: 6px
+    background: #fff
+
+.profile-avatar-button-image
+    width: 100%
+    height: 100%
+
+.profile-item
+    display: flex
+    cursor: pointer
+    box-sizing: border-box
+    align-items: center
+    font-size: 14px
+    padding: 10px
+    width: 100%
+    height: 150px
+    background: #ffffff
+    color: #2C2C2C
+
+.profile-item:nth-child(2n)
+    background: #F2DBED
+  
+.profile-item-emptycheckmark,
+.profile-item-checkmark
+    box-sizing: border-box
+    flex-shrink: 0
+    margin: 10px
+    width: 60px
+    height: 60px
+    background-image: 'url(/icons/check-square-solid.svg)'
+
+.profile-item-checkmark
+    background: #08e511
+    border: 3px solid #34AE21
+    border-radius: 50%
+    background-image: 'url(/icons/check-square-solid.svg)'
+.profile-item-emptycheckmark
+    background: #616161
+    border: 3px solid #000000
+    border-radius: 50%
+    background-image: 'url(/icons/check-square-solid.svg)'
+
+.profile-item-checkmark-img
+    width: 30px
+    display: block
+    margin: auto
+    margin-top: 10px
+    
+.profile-item-text
+    width: 100%
+    max-height: 80%
+    overflow: hidden
+    margin: 10px
+
+.profile-item-img
+    min-width: 120px
+    min-height: 90px
+    max-width: 120px
+    max-height: 90px
+    border-radius: 6px
+    margin: 10px
+
+#calculator-wrapper
+    height: 100%
+    width: 100%
+    display: flex
+    padding-bottom: 64px
+    position: absolute
+    iframe
+        height: 100%
+        bottom: 0
+
+#tab-bar
+    display: flex
+    flex-direction: row
+    justify-content: space-around
+    background-color: $primary-color
+    padding: 5px
+    position: fixed
+    bottom: 0
+    width: 100%
+    button
+        background-color: $primary-color
+        border: none
+        img
+            width: 50px
 #popup
     z-index: 99
     top: 0
@@ -148,15 +318,17 @@ button
     display: flex
     flex-direction: column
     align-items: center
+    min-height: 100vh
+    padding-bottom: 80px
     h2
-        margin-bottom: .5rem
+        margin-bottom: -0.5rem
         font-size: 2.5rem
 
 #logo
     height: 15vw
     position: fixed
-    left: 2rem
-    bottom: 2rem
+    left: 0.6rem
+    bottom: 5rem
     user-drag: none
     user-select: none
 
@@ -302,13 +474,26 @@ button
 
 #subject-title
     display: inline
+    color: #ff00c8
+    align-self: flex-end
+    margin: 0
 
 #title-container
     width: 800px
     padding: 10px 0px
-    display: inline-block
-    text-align: center
-
+    display: flex
+    justify-content: space-between
+    align-items: center
+    #chat-checkmark
+        height: 50px
+        width: 50px
+        margin: 0px
+        background-image: 'url(/icons/check-square-solid.svg)'
+    #chat-empty-checkmark
+        height: 50px
+        width: 50px
+        margin: 0px
+        background-image: 'url(/icons/check-square-solid.svg)'
 #new-question-button
     background-color: $primary-color
     background-repeat: no-repeat
@@ -395,7 +580,15 @@ button
     #subjects-container
         button
             width: 48%
+    #profile-wrapper
+        padding-bottom: 44px
+
 @media screen and ( max-width: 700px )
+    #popup-container
+        h3
+            font-size: 1.5rem
+        input
+            font-size: 1rem
     #subjects-container
         max-height: 90vh
         overflow-y: auto
@@ -404,11 +597,14 @@ button
         button
             margin: .5rem 0
             width: 100%
+    #tab-bar
+        button
+            margin-bottom: 20px
+            img
+                width: 40px
+    #calculator-wrapper
+        padding-bottom: 74px
 
-@media screen and ( max-width: 470px )
-    #popup-container
-        h3
-            font-size: 1.5rem
-        input
-            font-size: 1rem
-    
+@media all and (display-mode: standalone) 
+  #window-wrapper
+        padding-bottom: 10vh
