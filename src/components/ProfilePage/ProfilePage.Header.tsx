@@ -16,6 +16,19 @@ export const Header = (props: HeaderProps) => {
 
   return (
     <div id="profile-header">
+      <div
+        id="profile-picture-wrapper"
+        onClick={() => {
+          setDisplayModal((display) => !display);
+        }}
+      >
+        <img id="profile-picture" src={currentAvatarUrl} alt="avatar" />
+      </div>
+      <div id="profile-info">
+        <div id="profile-nameplate">
+          <p>{props.name}</p>
+        </div>
+      </div>
       {displayModal && (
         <AvatarModal
           availableAvatars={avatarUrls}
@@ -25,19 +38,6 @@ export const Header = (props: HeaderProps) => {
           }}
         />
       )}
-      <div
-        id="profile-picture-wrapper"
-        onClick={() => {
-          setDisplayModal((display) => !display);
-        }}
-      >
-        <img id="profile-picture" src={currentAvatarUrl} alt="profile" />
-      </div>
-      <div id="profile-info">
-        <div id="profile-nameplate">
-          <p>{props.name}</p>
-        </div>
-      </div>
     </div>
   );
 };
