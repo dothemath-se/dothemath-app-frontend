@@ -23,3 +23,7 @@ Runs the application locally.
 ### `yarn storybook`
 
 Runs the storybook locally.
+
+---
+
+[![Powered by Vercel](powered-by-vercel.svg "Powered by Vercel")](https://vercel.com/?utm_source=dothemath)
