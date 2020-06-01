@@ -38,37 +38,17 @@ export const Chat = (props: ChatProps) => {
 
   return (
     <>
-      <div id="window-wrapper">
-        <div id="title-container">
-          <h2 id="subject-title">{props.subject?.name}</h2>
-          <button id="new-question-button" onClick={handleNewQuestionClick}>
-            Ställ en ny fråga
-          </button>
+      <div id="title-container">
+        <h2 id="subject-title">{props.subject?.name}</h2>
+        <button id="new-question-button" onClick={handleNewQuestionClick}>
+          Ställ en ny fråga
+        </button>
+      </div>
+      <div id="content-wrapper">
+        <div id="chat-wrapper">
+          <ConversationContainer messages={messages} />
+          <InputContainer onSend={sendMessage} />
         </div>
-        <div id="content-wrapper">
-          <div id="chat-wrapper">
-            <ConversationContainer messages={messages} />
-            <InputContainer onSend={sendMessage} />
-          </div>
-        </div>
-        <img
-          id="logo"
-          src="img/logo_white.svg"
-          alt="Site Logo"
-          draggable="false"
-        />
-        <a
-          href="https://vercel.com/?utm_source=dothemath"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            id="logo-vercel"
-            src="img/powered-by-vercel.svg"
-            alt="Powered by Vercel"
-            draggable="false"
-          />
-        </a>
       </div>
       <LoadingIndicator loading={loading} />
     </>
