@@ -57,6 +57,18 @@ export const Chat = (props: ChatProps) => {
           alt="Site Logo"
           draggable="false"
         />
+        <a
+          href="https://vercel.com/?utm_source=dothemath"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            id="logo-vercel"
+            src="img/powered-by-vercel.svg"
+            alt="Powered by Vercel"
+            draggable="false"
+          />
+        </a>
       </div>
       <LoadingIndicator loading={loading} />
     </>
