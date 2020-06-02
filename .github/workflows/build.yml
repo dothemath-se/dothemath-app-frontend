@@ -30,3 +30,8 @@ jobs:
     - run: yarn build
 
     - run: yarn build-storybook --quiet
+
+    - name: run Lighthouse CI
+      run: |
+        npm install -g @lhci/cli@0.4.1
+        lhci autorun --rc-overrides.upload.target=temporary-public-storage
