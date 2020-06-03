@@ -67,9 +67,9 @@ export const App = () => {
           href="https://vercel.com/?utm_source=dothemath"
           target="_blank"
           rel="noopener noreferrer"
+          id="logo-vercel"
         >
           <img
-            id="logo-vercel"
             src="img/powered-by-vercel.svg"
             alt="Powered by Vercel"
             draggable="false"
