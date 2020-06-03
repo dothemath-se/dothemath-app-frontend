@@ -2,7 +2,7 @@ import io from 'socket.io-client';
 
 import { readAsArrayBuffer } from './readAsArrayBuffer';
 
-const socket = io('https://api.dothemath.app');
+const socket = io('https://dothemath-app-api.azurewebsites.net/');
 
 export const getSubjects = (): Promise<Subject[]> =>
   new Promise((resolve) => socket.emit('get_channels', resolve));
