@@ -38,9 +38,11 @@ describe('Popup', () => {
 const myRender = (ui: ReactElement) => {
   var utils = render(ui);
   return {
-    Smeknamn: utils.getByPlaceholderText(/smeknamn/i),
-    ServiceCheckbox: utils.getByAltText(/service checkbox/i),
-    CookiesCheckbox: utils.getByAltText(/cookies checkbox/i),
+    Smeknamn: utils.getByLabelText(/smeknamn/i),
+    CookiesCheckbox: utils.getByRole('checkbox', { name: /cookies/i }),
+    ServiceCheckbox: utils.getByRole('checkbox', {
+      name: /användarvillkoren/i,
+    }),
     BörjaButton: utils.getByRole('button', { name: /börja/i }),
   };
 };

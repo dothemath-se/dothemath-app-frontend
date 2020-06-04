@@ -60,6 +60,7 @@ export const InputContainer = (props: InputContainerProps) => {
         id="chat-input"
         autoComplete="off"
         placeholder="Skriv ditt meddelande här..."
+        aria-label="Skriv ditt meddelande här..."
         form="chat-container"
         style={{ height: 'initial' }}
         value={message}
@@ -75,6 +76,7 @@ export const InputContainer = (props: InputContainerProps) => {
       />
       <button
         id="select-image-button"
+        aria-label="Välj en bild att bifoga"
         onClick={onSelectImageClick}
         style={{
           ...(!image
@@ -84,7 +86,11 @@ export const InputContainer = (props: InputContainerProps) => {
       >
         {image && image.name}
       </button>
-      <button id="send-message-button" onClick={onSendMessageClick}></button>
+      <button
+        id="send-message-button"
+        aria-label="Skicka meddelande"
+        onClick={onSendMessageClick}
+      />
     </form>
   );
 };
