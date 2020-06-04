@@ -38,46 +38,41 @@ export const Popup = (props: PopupProps) => {
             maxLength={25}
             type="text"
             placeholder="Välj ett smeknamn"
+            aria-label="Välj ett smeknamn"
             onChange={(e) => setNickname(e.target.value.trim())}
           />
           <div id="checks-container">
-            <img // eslint-disable-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
-              alt="accept cookies checkbox"
-              src={
-                !acceptCookies
-                  ? 'icons/square-regular.svg'
-                  : 'icons/check-square-solid.svg'
-              }
-              onClick={() => setAcceptCookies((x) => !x)}
-              className="toggle-check"
-            />
-            <span>
-              Jag förstår och accepterar att{' '}
-              <Button link onClick={() => setCookiePolicyModalOpen(true)}>
-                Cookies
-              </Button>{' '}
-              används på den här webbplatsen
-            </span>
-            <img // eslint-disable-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
-              alt="accept terms of service checkbox"
-              src={
-                !acceptTerms
-                  ? 'icons/square-regular.svg'
-                  : 'icons/check-square-solid.svg'
-              }
-              onClick={() => setAcceptTerms((x) => !x)}
-              className="toggle-check"
-            />
-            <span>
-              Jag har läst och accepterar{' '}
-              <Button link onClick={() => setUserAgreementModalOpen(true)}>
-                Användarvillkoren
-              </Button>{' '}
-              och{' '}
-              <Button link onClick={() => setPrivacyPolicyModalOpen(true)}>
-                Integritetspolicyn
-              </Button>
-            </span>
+            <label htmlFor="acceptCookies">
+              <input
+                type="checkbox"
+                id="acceptCookies"
+                onClick={() => setAcceptCookies((x) => !x)}
+              />
+              <span>
+                Jag förstår och accepterar att{' '}
+                <Button link onClick={() => setCookiePolicyModalOpen(true)}>
+                  Cookies
+                </Button>{' '}
+                används på den här webbplatsen
+              </span>
+            </label>
+            <label htmlFor="acceptTerms">
+              <input
+                type="checkbox"
+                id="acceptTerms"
+                onClick={() => setAcceptTerms((x) => !x)}
+              />
+              <span>
+                Jag har läst och accepterar{' '}
+                <Button link onClick={() => setUserAgreementModalOpen(true)}>
+                  Användarvillkoren
+                </Button>{' '}
+                och{' '}
+                <Button link onClick={() => setPrivacyPolicyModalOpen(true)}>
+                  Integritetspolicyn
+                </Button>
+              </span>
+            </label>
           </div>
           {!props.disableCaptcha && (
             <ReCAPTCHA
