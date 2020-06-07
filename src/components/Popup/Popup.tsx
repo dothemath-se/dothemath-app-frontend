@@ -8,6 +8,9 @@ import {
   UserAgreementPopupModal,
 } from '../PopupModal';
 
+const RECAPTCHA_SITEKEY = process.env.REACT_APP_RECAPTCHA_SITEKEY;
+console.debug('RECAPTCHA_SITEKEY', RECAPTCHA_SITEKEY);
+
 interface PopupProps {
   disableCaptcha?: boolean;
   onComplete: (arg0: string) => void;
@@ -76,7 +79,7 @@ export const Popup = (props: PopupProps) => {
           </div>
           {!props.disableCaptcha && (
             <ReCAPTCHA
-              sitekey="6LdJiugUAAAAABme_rVvdcwmRAyQ0f8Fq7nMubcO"
+              sitekey={RECAPTCHA_SITEKEY!}
               onChange={(value) => setPassCaptcha(!!value)}
               // @ts-ignore
               style={{ marginBottom: '1rem' }}
