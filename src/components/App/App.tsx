@@ -3,7 +3,7 @@ import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 
 import { useCookie } from '../../useCookie';
 import { Chat } from '../Chat';
-import { Popup } from '../Popup';
+import { Registration } from '../Registration';
 import { SubjectList } from '../SubjectList';
 
 export const App = () => {
@@ -21,15 +21,15 @@ export const App = () => {
         <Switch>
           <Route exact path="/">
             {!name ? (
-              <Redirect to="/start" />
+              <Redirect to="/registration" />
             ) : !subject ? (
               <Redirect to="/subject" />
             ) : (
               <Redirect to="/chat" />
             )}
           </Route>
-          <Route path="/start">
-            <Popup
+          <Route path="/registration">
+            <Registration
               onComplete={(newName) => {
                 setName(newName);
                 history.replace('/subject');

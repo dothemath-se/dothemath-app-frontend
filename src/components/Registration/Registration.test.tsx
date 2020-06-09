@@ -2,20 +2,20 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React, { ReactElement } from 'react';
 
-import { Popup } from './Popup';
+import { Registration } from './Registration';
 
 const type = userEvent.type;
 const click = userEvent.click;
 
-describe('Popup', () => {
+describe('Registration', () => {
   test('button is initially disabled', () => {
-    const r = myRender(<Popup onComplete={() => {}} disableCaptcha />);
+    const r = myRender(<Registration onComplete={() => {}} disableCaptcha />);
 
     expect(r.BörjaButton).toBeDisabled();
   });
 
   test('filling out form enables button', () => {
-    const r = myRender(<Popup onComplete={() => {}} disableCaptcha />);
+    const r = myRender(<Registration onComplete={() => {}} disableCaptcha />);
 
     type(r.Smeknamn, 'nisse');
     click(r.CookiesCheckbox);
@@ -25,7 +25,7 @@ describe('Popup', () => {
   });
 
   test('captcha disables button', () => {
-    const r = myRender(<Popup onComplete={() => {}} />);
+    const r = myRender(<Registration onComplete={() => {}} />);
 
     type(r.Smeknamn, 'nisse');
     click(r.CookiesCheckbox);
