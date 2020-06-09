@@ -1,6 +1,8 @@
 import * as Sentry from '@sentry/browser';
 import React, { Component, ErrorInfo, PropsWithChildren } from 'react';
 
+import { Button } from '../Button';
+
 export class ErrorBoundary extends Component<PropsWithChildren<{}>> {
   state: any;
 
@@ -25,13 +27,14 @@ export class ErrorBoundary extends Component<PropsWithChildren<{}>> {
   render() {
     if (this.state.hasError) {
       return (
-        <button
+        <Button
+          primary
           onClick={() =>
             Sentry.showReportDialog({ eventId: this.state.eventId })
           }
         >
           Berätta vad som gick fel
-        </button>
+        </Button>
       );
     }
 
