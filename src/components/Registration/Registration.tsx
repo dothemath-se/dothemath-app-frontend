@@ -11,12 +11,12 @@ import {
 const RECAPTCHA_SITEKEY = process.env.REACT_APP_RECAPTCHA_SITEKEY;
 console.debug('RECAPTCHA_SITEKEY', RECAPTCHA_SITEKEY);
 
-interface PopupProps {
+interface RegistrationProps {
   disableCaptcha?: boolean;
   onComplete: (arg0: string) => void;
 }
 
-export const Popup = (props: PopupProps) => {
+export const Registration = (props: RegistrationProps) => {
   const [nickname, setNickname] = useState('');
   const [acceptCookies, setAcceptCookies] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
