@@ -59,16 +59,16 @@ button
     background: $primary-color
     color: #fff
 
-#popup
-    z-index: 99
-    top: 0
-    left: 0
-    width: 100vw
-    height: 100vh
-    position: fixed
-    background: rgba(0, 0, 0, .7)
-    opacity: 1
-    animation: fade-in .6s ease
+.popup
+  z-index: 99
+  top: 0
+  left: 0
+  width: 100vw
+  height: 100vh
+  position: fixed
+  background: rgba(0, 0, 0, .7)
+  opacity: 1
+  animation: fade-in .6s ease
 
 .registration-and-subjects-container
     z-index: 100
@@ -99,29 +99,6 @@ button
         font-size: 1.5rem
         background: none
         margin-bottom: 20px
-    #name-form
-        height: 100%
-        width: 90%
-        display: flex
-        flex-direction: column
-        align-items: center
-        justify-content: space-around
-
-#checks-container
-    display: flex
-    flex-wrap: wrap
-    align-items: center
-    margin-bottom: 10px
-    input
-        margin: 5px
-        width: 7%
-        height: 1.5rem
-        cursor: pointer
-    label
-        width: 93%
-        margin: 5px 0
-        display: flex
-        align-items: center
 
 #subjects-container
     flex-direction: row
@@ -160,16 +137,6 @@ button
 @media screen and ( max-width: 1250px )
     html
         font-size: 80%
-    #popup-container
-        width: 90vw
-        h3
-            font-size: 2rem
-        #checks-container
-            img
-                width: 15%
-            span
-                width: 75%
-    
     #subjects-container
         button
             width: 48%
@@ -182,11 +149,3 @@ button
         button
             margin: .5rem 0
             width: 100%
-
-@media screen and ( max-width: 470px )
-    #popup-container
-        h3
-            font-size: 1.5rem
-        input
-            font-size: 1rem
-    
