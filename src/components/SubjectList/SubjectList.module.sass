@@ -1,0 +1,32 @@
+.subjects-container
+  flex-direction: row
+  flex-wrap: wrap
+  justify-content: flex-start
+  position: fixed
+  left: 50%
+  top: 50%
+  transform: translateY(-50%) translateX(-50%)
+  width: 80vw
+  h2
+    width: 100%
+    text-align: center
+    margin-bottom: 10px
+  button
+    margin-right: 2%
+    width: 30%
+    margin-bottom: 1rem
+
+@media screen and ( max-width: 1250px )
+  .subjects-container
+    button
+      width: 48%
+
+@media screen and ( max-width: 700px )
+  .subjects-container
+    max-height: 90vh
+    overflow-y: auto
+    h2
+      font-size: 2rem
+    button
+      margin: .5rem 0
+      width: 100%

@@ -36,29 +36,6 @@ input, button, textarea
 button
     cursor: pointer
 
-[class^="btn"]
-    padding: 10px 20px
-    font-size: 1.2rem
-    border: none
-    border-radius: .5rem
-    transform: scale(1)
-    text-transform: none
-    transition: box-shadow, transform .05s ease
-    &:hover
-        box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3)
-        transform: scale(1.05)
-        transition: box-shadow, transform .15s ease
-    &:active
-        transform: scale(0.95)
-        box-shadow: none
-        transition: box-shadow, transform .05s ease
-    &:disabled
-        background: #aaa
-
-.btn--primary
-    background: $primary-color
-    color: #fff
-
 .popup
   z-index: 99
   top: 0
@@ -100,24 +77,6 @@ button
         background: none
         margin-bottom: 20px
 
-#subjects-container
-    flex-direction: row
-    flex-wrap: wrap
-    justify-content: flex-start
-    position: fixed
-    left: 50%
-    top: 50%
-    transform: translateY(-50%) translateX(-50%)
-    width: 80vw
-    h2
-        width: 100%
-        text-align: center
-        margin-bottom: 10px
-    button
-        margin-right: 2%
-        width: 30%
-        margin-bottom: 1rem
-
 // Animations
 
 @keyframes fade-in
@@ -137,15 +96,3 @@ button
 @media screen and ( max-width: 1250px )
     html
         font-size: 80%
-    #subjects-container
-        button
-            width: 48%
-@media screen and ( max-width: 700px )
-    #subjects-container
-        max-height: 90vh
-        overflow-y: auto
-        h2
-            font-size: 2rem
-        button
-            margin: .5rem 0
-            width: 100%
