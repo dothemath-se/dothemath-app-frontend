@@ -141,36 +141,6 @@ button
         width: 30%
         margin-bottom: 1rem
 
-#window-wrapper
-    overflow: hidden
-    width: 100%
-    height: 100%
-    padding: 1rem 20vw
-    position: fixed
-    display: flex
-    flex-direction: column
-    align-items: center
-    h2
-        margin-bottom: .5rem
-        font-size: 2.5rem
-
-#logo
-    height: 15vw
-    position: fixed
-    left: 2rem
-    bottom: 2rem
-    user-drag: none
-    user-select: none
-
-#logo-vercel
-    position: fixed
-    right: 2rem
-    bottom: 2rem
-    img
-        width: 15vw
-        user-drag: none
-        user-select: none
-
 #content-wrapper
     width: 800px
     flex-grow: 1
@@ -373,15 +343,10 @@ button
 @media screen and ( max-width: 1250px )
     html
         font-size: 80%
-    #window-wrapper
-        h2
-            font-size: 1.8rem
     #title-container
         width: 95vw
     #content-wrapper
         width: 95vw
-    #logo, #logo-vercel
-        display: none
     #conversation-container
         [class^="chat-bubble"]
             max-width: 90%
