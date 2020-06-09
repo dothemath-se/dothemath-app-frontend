@@ -1,5 +1,8 @@
 import React, { useRef, useState } from 'react';
 
+import { Button } from '../Button';
+import styles from './Chat.module.sass';
+
 interface InputContainerProps {
   onSend: (text: string, image?: File) => void;
 }
@@ -44,11 +47,12 @@ export const InputContainer = (props: InputContainerProps) => {
 
   return (
     <form
-      id="chat-container"
+      className={styles['input-container']}
       action=""
       onSubmit={(event) => event.preventDefault()}
     >
       <textarea
+        className={styles['chat-input']}
         onChange={(e) => setMessage(e.target.value)}
         onKeyDown={(e) => {
           if (e.keyCode === 13 && !e.shiftKey) {
@@ -57,25 +61,22 @@ export const InputContainer = (props: InputContainerProps) => {
           }
         }}
         rows={1}
-        id="chat-input"
         autoComplete="off"
         placeholder="Skriv ditt meddelande här..."
         aria-label="Skriv ditt meddelande här..."
-        form="chat-container"
         style={{ height: 'initial' }}
         value={message}
       />
       <input
-        id="file-input"
+        className={styles['file-input']}
         type="file"
-        name="file"
         accept="image/*"
-        style={{ display: 'none' }}
         onChange={(e) => onFileInputChange(e.target.files)}
         ref={fileInputRef}
       />
-      <button
-        id="select-image-button"
+      <Button
+        primary
+        className={styles['select-image-button']}
         aria-label="Välj en bild att bifoga"
         onClick={onSelectImageClick}
         style={{
@@ -85,9 +86,10 @@ export const InputContainer = (props: InputContainerProps) => {
         }}
       >
         {image && image.name}
-      </button>
-      <button
-        id="send-message-button"
+      </Button>
+      <Button
+        primary
+        className={styles['send-message-button']}
         aria-label="Skicka meddelande"
         onClick={onSendMessageClick}
       />

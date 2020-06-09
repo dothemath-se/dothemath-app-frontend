@@ -1,8 +1,10 @@
 import React from 'react';
 
+import { Button } from '../Button';
 import { LoadingIndicator } from '../LoadingIndicator';
 import { ConversationContainer } from './Chat.ConversationContainer';
 import { InputContainer } from './Chat.InputContainer';
+import styles from './Chat.module.sass';
 import { useChatService } from './useChatService';
 
 interface ChatProps {
@@ -37,14 +39,18 @@ export const Chat = (props: ChatProps) => {
 
   return (
     <>
-      <div id="title-container">
-        <h2 id="subject-title">{props.subject?.name}</h2>
-        <button id="new-question-button" onClick={handleNewQuestionClick}>
+      <div className={styles['title-container']}>
+        <h2 className={styles['subject-title']}>{props.subject?.name}</h2>
+        <Button
+          primary
+          className={styles['new-question-button']}
+          onClick={handleNewQuestionClick}
+        >
           Ställ en ny fråga
-        </button>
+        </Button>
       </div>
-      <div id="content-wrapper">
-        <div id="chat-wrapper">
+      <div className={styles['content-wrapper']}>
+        <div className={styles['chat-wrapper']}>
           <ConversationContainer messages={messages} />
           <InputContainer onSend={sendMessage} />
         </div>
