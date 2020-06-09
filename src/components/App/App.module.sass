@@ -1,0 +1,36 @@
+.window-wrapper
+  overflow: hidden
+  width: 100%
+  height: 100%
+  padding: 1rem 20vw
+  position: fixed
+  display: flex
+  flex-direction: column
+  align-items: center
+  h2
+    margin-bottom: .5rem
+    font-size: 2.5rem
+
+.logo
+  height: 15vw
+  position: fixed
+  left: 2rem
+  bottom: 2rem
+  user-drag: none
+  user-select: none
+
+.logo-vercel
+  position: fixed
+  right: 2rem
+  bottom: 2rem
+  img
+    width: 15vw
+    user-drag: none
+    user-select: none
+
+@media screen and ( max-width: 1250px )
+  .window-wrapper
+    h2
+      font-size: 1.8rem
+  .logo, .logo-vercel
+    display: none

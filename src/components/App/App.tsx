@@ -5,6 +5,7 @@ import { useCookie } from '../../useCookie';
 import { Chat } from '../Chat';
 import { Registration } from '../Registration';
 import { SubjectList } from '../SubjectList';
+import styles from './App.module.sass';
 
 export const App = () => {
   const [name, setName] = useCookie<string>('name');
@@ -17,7 +18,7 @@ export const App = () => {
 
   return (
     <>
-      <div id="window-wrapper">
+      <div className={styles['window-wrapper']}>
         <Switch>
           <Route exact path="/">
             {!name ? (
@@ -58,16 +59,16 @@ export const App = () => {
           </Route>
         </Switch>
         <img
-          id="logo"
           src="img/logo_white.svg"
           alt="Site Logo"
           draggable="false"
+          className={styles['logo']}
         />
         <a
           href="https://vercel.com/?utm_source=dothemath"
           target="_blank"
           rel="noopener noreferrer"
-          id="logo-vercel"
+          className={styles['logo-vercel']}
         >
           <img
             src="img/powered-by-vercel.svg"
