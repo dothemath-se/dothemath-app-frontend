@@ -14,7 +14,7 @@ export const SubjectList = (props: SubjectListProps) => {
     <>
       {!loading && (
         <div id="popup">
-          <div id="subjects-container">
+          <div id="subjects-container" className="popup-and-subjects-container">
             <h2>Välj ämne</h2>
             {subjects.map((item) => (
               <button
