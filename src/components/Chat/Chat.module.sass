@@ -1,0 +1,164 @@
+$primary-color: #4882ff
+
+.new-question-button
+  float: left
+  text-transform: none
+
+.title-container
+  width: 800px
+  padding: 10px 0px
+  display: inline-block
+  text-align: center
+
+.chat-wrapper
+  width: 100%
+  flex-grow: 1
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+
+.content-wrapper
+  width: 800px
+  flex-grow: 1
+  height: 100%
+  overflow-y: hidden
+  display: flex
+  justify-content: space-between
+
+.subject-title
+  display: inline
+
+.conversation-container
+  position: relative
+  display: flex
+  flex-direction: column-reverse
+  overflow-y: auto
+  overflow-x: hidden
+  flex-grow: 1
+  width: 100%
+  border-radius: 1rem
+  margin-bottom: 1rem
+  padding: 20px 40px
+  background: rgba(255, 255, 255, .7)
+
+  .chat-bubble--from, .chat-bubble--to
+    position: relative
+    margin: 1.1rem 0
+    width: fit-content
+    width: intrinsic
+    width: -moz-max-content
+    width: -webkit-max-content
+    max-width: 90%
+    border-radius: .5rem
+    display: flex
+    flex-shrink: 0
+    align-items: center
+    white-space: pre-wrap
+    overflow-wrap: anywhere
+    padding: 1.2rem
+    opacity: 1
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, .3)
+    &::after
+      content: ""
+      position: absolute
+      bottom: 1rem
+      width: 0 
+      height: 0 
+      border-top: 12px solid transparent
+      border-bottom: 12px solid transparent
+  .sending
+    opacity: .3
+  .chat-image
+    max-width: 90%
+    text-align: center
+    max-height: 50vh
+  .from-user
+    position: absolute
+    top: -1.5rem
+    font-size: 1.2rem
+    color: #666
+    white-space: nowrap
+  .chat-bubble--from
+    background: #fff
+    animation: bubble-left .4s ease
+    &::after
+        left: -12px
+        border-right: 12px solid #fff
+    img
+        max-width: 100%
+  .chat-bubble--to
+    margin-left: auto
+    background: $primary-color
+    animation: bubble-right .4s ease
+    .chat-text
+      color: #fff
+    .from-user
+      right: .5rem
+    &::after
+      right: -12px
+      border-left: 12px solid $primary-color
+    img
+      max-width: 100%
+
+.input-container
+  display: flex
+  flex-shrink: 0
+  align-items: center
+  padding: .5rem .6rem .5rem 1rem
+  width: 100%
+  height: fit-content
+  height: intrinsic
+  height: -moz-max-content
+  height: -webkit-max-content
+  border-radius: 1rem
+  background: rgba(255, 255, 255, .7)
+  .chat-input
+    margin: .5rem 0
+    border: none
+    border-radius: 0
+    width: 100%
+    font-size: 1.3rem
+    background: none
+    max-height: 18vh
+    overflow-y: auto
+    resize: none
+  .file-input
+    display: none
+  .select-image-button, .send-message-button
+    background-repeat: no-repeat
+    background-position: center
+    background-size: 60% 60%
+    padding: 1.5rem
+  .select-image-button
+    margin-right: .5rem
+  .send-message-button
+    background-image: url('/icons/paper-plane-solid.png')
+
+@media screen and ( max-width: 1250px )
+  .title-container
+    width: 95vw
+  .content-wrapper
+    width: 95vw
+  .conversation-container
+    .chat-bubble--from, .chat-bubble--to
+      max-width: 90%
+
+@keyframes bubble-left
+    0%
+        opacity: 0
+        transform: translateX(-100%)
+        filter: blur(20px)
+    100%
+        opacity: 1
+        transform: translateX(0)
+        filter: blur(0)
+
+@keyframes bubble-right
+    0%
+        opacity: 0
+        transform: translateX(100%)
+        filter: blur(20px)
+    100%
+        opacity: .3
+        transform: translateX(0)
+        filter: blur(0)
