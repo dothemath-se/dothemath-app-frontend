@@ -33,7 +33,7 @@ export const Registration = (props: RegistrationProps) => {
 
   return (
     <div id="popup">
-      <div id="popup-container">
+      <div id="popup-container" className="popup-and-subjects-container">
         <h3>Innan vi börjar...</h3>
         <form id="name-form" onSubmit={(e) => e.preventDefault()}>
           <input
