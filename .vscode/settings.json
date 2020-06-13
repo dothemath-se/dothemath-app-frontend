@@ -15,5 +15,6 @@
   },
   "search.exclude": {
     "yarn.lock": true
-  }
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
