@@ -18,7 +18,7 @@ export const App = () => {
 
   return (
     <>
-      <div className={styles['window-wrapper']}>
+      <div className={styles.windowWrapper}>
         <Switch>
           <Route exact path="/">
             {!name ? (
@@ -62,13 +62,13 @@ export const App = () => {
           src="img/logo_white.svg"
           alt="Site Logo"
           draggable="false"
-          className={styles['logo']}
+          className={styles.logo}
         />
         <a
           href="https://vercel.com/?utm_source=dothemath"
           target="_blank"
           rel="noopener noreferrer"
-          className={styles['logo-vercel']}
+          className={styles.logoVercel}
         >
           <img
             src="img/powered-by-vercel.svg"
