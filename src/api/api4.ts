@@ -1,6 +1,6 @@
 // betterSocket with Promise
 
-import { socket } from './api';
+import { socket, Subject } from './api';
 
 var betterSocket = function () {
   return {
@@ -18,4 +18,7 @@ var betterSocket = function () {
 
 const someBetterSocket = betterSocket();
 
-export const getSubjects = () => someBetterSocket.emit('get_channels') as any;
+export const getSubjects = async (): Promise<Subject[]> => {
+  await new Promise((r) => setTimeout(r, 2000));
+  return someBetterSocket.emit('get_channels') as any;
+};

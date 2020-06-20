@@ -7,8 +7,10 @@ console.debug('API_URL', API_URL);
 
 export const socket = io(API_URL!);
 
-export const getSubjects = (): Promise<Subject[]> =>
-  new Promise((resolve) => socket.emit('get_channels', resolve));
+export const getSubjects = async (): Promise<Subject[]> => {
+  await new Promise((r) => setTimeout(r, 2000));
+  return new Promise((resolve) => socket.emit('get_channels', resolve));
+};
 
 export const sendMessage = (text: string, image?: File): Promise<string> =>
   new Promise((resolve) => {
