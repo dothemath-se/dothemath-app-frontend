@@ -46,11 +46,13 @@ export const establishSession = (channelId: string, studentName: string) =>
     );
   });
 
-export const reestablishSession = (
+export const reestablishSession = async (
   channelId: string,
   threadId: string
-): Promise<ReestablishSessionResult> =>
-  new Promise((resolve, reject) => {
+): Promise<ReestablishSessionResult> => {
+  await new Promise((r) => setTimeout(r, 2000));
+
+  return new Promise((resolve, reject) => {
     socket.emit(
       'reestablish_session',
       {
@@ -90,6 +92,7 @@ export const reestablishSession = (
       }
     );
   });
+};
 
 export const cancelSession = () => {
   socket.disconnect();

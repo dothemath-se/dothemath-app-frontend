@@ -1,6 +1,9 @@
+// import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import useAsyncEffect from 'use-async-effect';
+import { useAsyncResource } from 'use-async-resource';
 
-import * as api from '../../api';
+import * as api from '../../api/api';
 import { useNamedState } from '../../useNamedState';
 
 export function useChatService(
@@ -17,8 +20,6 @@ export function useChatService(
     [] as api.OnMessageCallbackData[],
     'messages'
   );
-
-  const [loading, setLoading] = useNamedState(false, 'loading');
 
   useAsyncEffect(
     async () => {
@@ -48,14 +49,22 @@ export function useChatService(
       }
 
       async function establishSession() {
-        await api.establishSession(subjectId, name);
+        // getEstablishSessionResult(subjectId, name);
+        establishSessionResultReader();
+        // await api.establishSession(subjectId, name);
         console.info('chat session established');
       }
 
       async function reestablishSession() {
-        const result = await api.reestablishSession(subjectId, threadId);
+        // getReestablishSessionResult(subjectId, threadId);
+        const result = reestablishSessionResultReader();
+        console.log(result);
         console.info('chat session reestablished');
-        return result.messages;
+        return result!.messages;
+
+        // const result = await api.reestablishSession(subjectId, threadId);
+        // console.info('chat session reestablished');
+        // return result.messages;
       }
     },
     () => {
@@ -106,4 +115,42 @@ export function useChatService(
   }
 
   return [messages, sendMessage, loading];
+}
+
+export async function DoThings(
+  name: string,
+  subjectId: string,
+  threadId: string,
+  setThreadId: (threadId: string) => void
+) {
+  try {
+    if (!threadId) {
+      await establishSession();
+      return [];
+    } else {
+      try {
+        const existingMessages = await reestablishSession();
+        return existingMessages;
+      } catch (error) {
+        console.warn(error);
+        setThreadId('');
+        await establishSession();
+        return [];
+      }
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+
+  async function establishSession() {
+    await api.establishSession(subjectId, name);
+    console.info('chat session established');
+  }
+
+  async function reestablishSession() {
+    const result = await api.reestablishSession(subjectId, threadId);
+    console.info('chat session reestablished');
+    return result.messages;
+  }
 }

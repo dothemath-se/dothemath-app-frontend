@@ -2,6 +2,7 @@ import React from 'react';
 
 // import { OnMessageCallbackData } from '../../api/api';
 import { Button } from '../Button';
+import { ErrorBoundary } from '../ErrorBoundary';
 import { LoadingIndicator } from '../LoadingIndicator';
 import { ConversationContainer } from './Chat.ConversationContainer';
 import { InputContainer } from './Chat.InputContainer';
@@ -19,8 +20,16 @@ interface ChatProps {
   onNewQuestionClick: () => void;
 }
 
-export const Chat = (props: ChatProps) => {
-  const [messages, sendMessage, loading] = useChatService(
+export const Chat = (props: ChatProps) => (
+  <ErrorBoundary>
+    <React.Suspense fallback={<LoadingIndicator loading />}>
+      <SuspendableChat {...props} />
+    </React.Suspense>
+  </ErrorBoundary>
+);
+
+const SuspendableChat = (props: ChatProps) => {
+  const [messages, sendMessage] = useChatService(
     props.name,
     props.subject.id,
     props.threadId,
@@ -56,7 +65,7 @@ export const Chat = (props: ChatProps) => {
           <InputContainer onSend={sendMessage} />
         </div>
       </div>
-      <LoadingIndicator loading={loading} />
+      {/* <LoadingIndicator loading={loading} /> */}
     </>
   );
 };
