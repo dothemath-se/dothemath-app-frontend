@@ -27,11 +27,9 @@ interface ChatProps {
 }
 
 export const Chat = (props: ChatProps) => (
-  <ErrorBoundary>
-    <React.Suspense fallback={<LoadingIndicator loading />}>
-      <SuspendableChat {...props} />
-    </React.Suspense>
-  </ErrorBoundary>
+  <React.Suspense fallback={<LoadingIndicator loading />}>
+    <SuspendableChat {...props} />
+  </React.Suspense>
 );
 
 const SuspendableChat = (props: ChatProps) => {
@@ -44,7 +42,8 @@ const SuspendableChat = (props: ChatProps) => {
   );
 
   const [messages, setMessages] = useNamedState(
-    initialMessagesReader() as api.OnMessageCallbackData[],
+    // initialMessagesReader() as api.OnMessageCallbackData[],
+    [] as api.OnMessageCallbackData[],
     'messages'
   );
 
@@ -124,7 +123,10 @@ const SuspendableChat = (props: ChatProps) => {
       </div>
       <div className={styles['content-wrapper']}>
         <div className={styles['chat-wrapper']}>
-          <ConversationContainer messages={messages} />
+          <ConversationContainer
+            messages={messages}
+            messagesReader={initialMessagesReader}
+          />
           <InputContainer onSend={sendMessage} />
         </div>
       </div>

@@ -6,7 +6,7 @@ export default {
   title: 'Chat/ConversationContainer',
 };
 
-export const Default = () => <ConversationContainer messages={fakeMessages} />;
+// export const Default = () => <ConversationContainer messages={fakeMessages} />;
 
 const fakeMessages = [
   {
