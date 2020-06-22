@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // import { useEffect, useState } from 'react';
 import { useEffect } from 'react';
 import useAsyncEffect from 'use-async-effect';
@@ -17,59 +19,13 @@ export function useSomeThings(
     'messages'
   );
 
-  const [messagesReader] = useAsyncResource(
-    doOtherThings,
-    name,
-    subjectId,
-    threadId,
-    setThreadId
-  );
-
-  async function doOtherThings(
-    name: string,
-    subjectId: string,
-    threadId: string,
-    setThreadId: (threadId: string) => void
-  ) {
-    try {
-      const messages = getMessages();
-      api.onMessage((m) => {
-        setMessages((y) => [...y, m]);
-      });
-      return messages;
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
-
-    async function getMessages() {
-      if (!threadId) {
-        await establishSession();
-        return [];
-      } else {
-        try {
-          const existingMessages = await reestablishSession();
-          return existingMessages;
-        } catch (error) {
-          console.warn(error);
-          setThreadId('');
-          await establishSession();
-          return [];
-        }
-      }
-    }
-
-    async function establishSession() {
-      await api.establishSession(subjectId, name);
-      console.info('chat session established');
-    }
-
-    async function reestablishSession() {
-      const result = await api.reestablishSession(subjectId, threadId);
-      console.info('chat session reestablished');
-      return result.messages;
-    }
-  }
+  // const [messagesReader] = useAsyncResource(
+  //   doOtherThings,
+  //   name,
+  //   subjectId,
+  //   threadId,
+  //   setThreadId
+  // );
 
   async function sendMessage(text: string, image?: File) {
     try {
@@ -112,4 +68,50 @@ export function useSomeThings(
   }
 
   return [messages, sendMessage];
+}
+
+export async function fetchInitialMessages(
+  name: string,
+  subjectId: string,
+  threadId: string,
+  setThreadId: (threadId: string) => void
+) {
+  try {
+    const messages = getMessages();
+    // api.onMessage((m) => {
+    //   setMessages((y) => [...y, m]);
+    // });
+    return messages;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+
+  async function getMessages() {
+    if (!threadId) {
+      await establishSession();
+      return [];
+    } else {
+      try {
+        const existingMessages = await reestablishSession();
+        return existingMessages;
+      } catch (error) {
+        console.warn(error);
+        setThreadId('');
+        await establishSession();
+        return [];
+      }
+    }
+  }
+
+  async function establishSession() {
+    await api.establishSession(subjectId, name);
+    console.info('chat session established');
+  }
+
+  async function reestablishSession() {
+    const result = await api.reestablishSession(subjectId, threadId);
+    console.info('chat session reestablished');
+    return result.messages;
+  }
 }

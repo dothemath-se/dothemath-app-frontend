@@ -1,6 +1,6 @@
 import useAsyncEffect from 'use-async-effect';
 
-import * as api from '../../api';
+import * as api from '../../api/api';
 import { useNamedState } from '../../useNamedState';
 
 export function useChatService(
