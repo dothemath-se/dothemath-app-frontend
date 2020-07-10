@@ -6,7 +6,8 @@ import ReactDOM from 'react-dom';
 import { MemoryRouter } from 'react-router-dom';
 
 import { App } from './components/App';
-import { ErrorBoundary } from './components/ErrorBoundary';
+// import { ErrorBoundary } from './components/ErrorBoundary';
+import { SentryErrorBoundary } from './components/SentryErrorBoundary';
 
 Sentry.init({
   dsn:
@@ -15,11 +16,11 @@ Sentry.init({
 
 ReactDOM.render(
   <React.StrictMode>
-    <ErrorBoundary>
+    <SentryErrorBoundary>
       <MemoryRouter>
         <App />
       </MemoryRouter>
-    </ErrorBoundary>
+    </SentryErrorBoundary>
   </React.StrictMode>,
   document.getElementById('root')
 );

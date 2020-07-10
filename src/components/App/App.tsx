@@ -16,6 +16,8 @@ export const App = () => {
 
   const history = useHistory();
 
+  throw new Error('birk');
+
   return (
     <>
       <div className={styles['window-wrapper']}>
