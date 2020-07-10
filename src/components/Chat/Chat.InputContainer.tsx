@@ -23,6 +23,10 @@ export const InputContainer = (props: InputContainerProps) => {
 
   const onSelectImageClick = () => {
     if (image) {
+      const confirmed = window.confirm(
+        'Bilden du har valt att bifoga kommer tas bort. Är du säker?'
+      );
+      if (!confirmed) return;
       if (fileInputRef.current) {
         fileInputRef.current.value = '';
       }
