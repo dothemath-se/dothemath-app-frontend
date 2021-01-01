@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import io from 'socket.io-client';
 
 import { readAsArrayBuffer } from './readAsArrayBuffer';
@@ -75,7 +76,7 @@ export const reestablishSession = (
                 }
                 if (m.text) {
                   msgs.push({
-                    text: m.text,
+                    text: _.unescape(m.text),
                     name: m.name,
                     toFrom: m.isUser ? 'to' : 'from',
                   });
@@ -100,7 +101,7 @@ export const onMessage = (callback: OnMessageCallback) =>
       callback({ toFrom: 'from', name, text: '', image });
     }
     if (text) {
-      callback({ toFrom: 'from', name, text });
+      callback({ toFrom: 'from', name, text: _.unescape(text) });
     }
   });
 
