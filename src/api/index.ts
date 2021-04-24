@@ -8,6 +8,9 @@ const API_URL = import.meta.env.VITE_API_URL;
 console.debug('API_URL', API_URL);
 
 const socket = io(API_URL!);
+console.debug('socket', socket);
+
+socket.emit('get_channels');
 
 export const getSubjects = (): Promise<Subject[]> =>
   new Promise((resolve) => socket.emit('get_channels', resolve));
@@ -52,6 +55,8 @@ export const reestablishSession = (
   threadId: string
 ): Promise<ReestablishSessionResult> =>
   new Promise((resolve, reject) => {
+    console.log('5');
+
     socket.emit(
       'reestablish_session',
       {
@@ -60,8 +65,12 @@ export const reestablishSession = (
       },
       (data: { error: any; name: any; channel: any; messages: any[] }) => {
         if (data.error) {
+          console.log('6');
+
           reject(data.error);
         } else {
+          console.log('7');
+
           resolve({
             name: data.name,
             subject: data.channel,
