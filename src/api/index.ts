@@ -37,7 +37,6 @@ export const sendMessage = (text: string, image?: File): Promise<string> =>
 
 export const establishSession = (channelId: string, studentName: string) =>
   new Promise<void>((resolve) => {
-    console.log('hej');
     socket.emit(
       'establish_session',
       {
@@ -55,8 +54,6 @@ export const reestablishSession = (
   threadId: string
 ): Promise<ReestablishSessionResult> =>
   new Promise((resolve, reject) => {
-    console.log('5');
-
     socket.emit(
       'reestablish_session',
       {
@@ -65,12 +62,8 @@ export const reestablishSession = (
       },
       (data: { error: any; name: any; channel: any; messages: any[] }) => {
         if (data.error) {
-          console.log('6');
-
           reject(data.error);
         } else {
-          console.log('7');
-
           resolve({
             name: data.name,
             subject: data.channel,

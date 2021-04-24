@@ -22,16 +22,12 @@ export function useChatService(
 
   useAsyncEffect(
     async () => {
-      console.log('0');
       try {
-        console.log('1');
         setLoading(true);
-        console.log('2');
 
         if (!threadId) {
           await establishSession();
         } else {
-          console.log('3');
           try {
             const existingMessages = await reestablishSession();
             setMessages(existingMessages);
@@ -57,9 +53,7 @@ export function useChatService(
       }
 
       async function reestablishSession() {
-        console.log('4');
         const result = await api.reestablishSession(subjectId, threadId);
-        console.log('5');
         console.info('chat session reestablished');
         return result.messages;
       }
