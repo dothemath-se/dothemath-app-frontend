@@ -5,8 +5,8 @@
 
 ## Prerequisites
 
-- Node.js 12.x
-- Yarn 1.22.4
+- Node.js 14.x
+- Yarn >=1.22.4 <2
 
 ## Available scripts
 
