@@ -1,4 +1,3 @@
-import React from 'react';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 
 import { useCookie } from '../../useCookie';

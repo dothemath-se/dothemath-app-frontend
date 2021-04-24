@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { PopupModal, PopupModalProps } from './PopupModal';
 
 export const PrivacyPolicyPopupModal = (props: PopupModalProps) => (

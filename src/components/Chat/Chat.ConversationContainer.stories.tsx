@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { ConversationContainer } from './Chat.ConversationContainer';
 
 export default {

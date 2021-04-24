@@ -1,7 +1,7 @@
 import './index.sass';
 
 import * as Sentry from '@sentry/browser';
-import React from 'react';
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { MemoryRouter } from 'react-router-dom';
 
@@ -14,12 +14,12 @@ Sentry.init({
 });
 
 ReactDOM.render(
-  <React.StrictMode>
+  <StrictMode>
     <ErrorBoundary>
       <MemoryRouter>
         <App />
       </MemoryRouter>
     </ErrorBoundary>
-  </React.StrictMode>,
+  </StrictMode>,
   document.getElementById('root')
 );
