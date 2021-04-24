@@ -9,7 +9,7 @@ import {
 } from '../PopupModal';
 import styles from './Registration.module.sass';
 
-const RECAPTCHA_SITEKEY = ''; // process.env.REACT_APP_RECAPTCHA_SITEKEY;
+const RECAPTCHA_SITEKEY = import.meta.env.VITE_RECAPTCHA_SITEKEY;
 console.debug('RECAPTCHA_SITEKEY', RECAPTCHA_SITEKEY);
 
 interface RegistrationProps {
