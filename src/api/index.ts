@@ -32,7 +32,7 @@ export const sendMessage = (text: string, image?: File): Promise<string> =>
   });
 
 export const establishSession = (channelId: string, studentName: string) =>
-  new Promise((resolve) => {
+  new Promise<void>((resolve) => {
     socket.emit(
       'establish_session',
       {
