@@ -98,7 +98,7 @@
     "eslint-plugin-simple-import-sort": "^5.0.3",
     "node-sass": "^4.13.1",
     "prettier": "^2.0.4",
-    "react-scripts": "3.4.1",
+    "react-scripts": "4.0.3",
     "regenerator-runtime": "^0.13.5",
     "typescript": "^3.9.2",
     "typescript-plugin-css-modules": "^2.3.0",
