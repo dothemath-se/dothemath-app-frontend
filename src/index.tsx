@@ -1,11 +1,26 @@
 import React from 'react';
+import './index.sass';
+
+import * as Sentry from '@sentry/browser';
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
-// import './index.css';
+import { MemoryRouter } from 'react-router-dom';
+
 import { App } from './components/App';
+import { ErrorBoundary } from './components/ErrorBoundary';
+
+Sentry.init({
+  dsn:
+    'https://a63d74f600b4405fb2c93587717194ce@o376267.ingest.sentry.io/5196889',
+});
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <StrictMode>
+    <ErrorBoundary>
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    </ErrorBoundary>
+  </StrictMode>,
   document.getElementById('root')
 );
