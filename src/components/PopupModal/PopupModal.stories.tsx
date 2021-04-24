@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { CookiePolicyPopupModal } from './CookiePolicyPopupModal';
 import { PrivacyPolicyPopupModal } from './PrivacyPolicyPopupModal';
 import { UserAgreementPopupModal } from './UserAgreementPopupModal';

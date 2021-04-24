@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { SubjectList } from './SubjectList';
 
 export default {

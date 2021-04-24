@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { PopupModal, PopupModalProps } from './PopupModal';
 
 export const UserAgreementPopupModal = (props: PopupModalProps) => (

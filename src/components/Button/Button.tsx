@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { HTMLAttributes } from 'react';
+import React, { HTMLAttributes } from 'react';
 
 import styles from './Button.module.sass';
 
