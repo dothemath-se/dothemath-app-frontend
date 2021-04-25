@@ -16,13 +16,9 @@ In the project directory, you can run:
 
 Installs dependencies.
 
-### `yarn start`
+### `yarn dev`
 
 Runs the application locally.
-
-### `yarn storybook`
-
-Runs the storybook locally.
 
 ---
 
