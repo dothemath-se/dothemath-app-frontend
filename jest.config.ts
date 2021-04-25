@@ -7,7 +7,8 @@ const config: Config.InitialOptions = {
   transform: {},
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
   moduleNameMapper: {
-    '\\.(css|less|sass)$': '<rootDir>/src/styleMock.ts',
+    // '\\.(css|less|sass)$': '<rootDir>/src/styleMock.ts',
+    '\\.(css|less|sass)$': 'identity-obj-proxy',
   },
   // moduleDirectories: ['node_modules', '<rootDir>/node_modules', '.'],
 };
