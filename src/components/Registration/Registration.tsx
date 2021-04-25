@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
+import { getConfig } from '../../getConfig';
+
 import { Button } from '../Button';
 import {
   CookiePolicyPopupModal,
@@ -9,7 +11,7 @@ import {
 } from '../PopupModal';
 import styles from './Registration.module.sass';
 
-const RECAPTCHA_SITEKEY = import.meta.env.VITE_RECAPTCHA_SITEKEY as string;
+const RECAPTCHA_SITEKEY = getConfig().VITE_RECAPTCHA_SITEKEY;
 console.debug('RECAPTCHA_SITEKEY', RECAPTCHA_SITEKEY);
 
 interface RegistrationProps {
