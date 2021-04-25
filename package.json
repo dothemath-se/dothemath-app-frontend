@@ -3,10 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "eject": "react-scripts eject",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
-    "prettier": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
-    "start-local": "cross-env PORT=3001 REACT_APP_API_URL=http://localhost:3000/ react-scripts start",
+    "prettier": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,md}'",
+    "start-local": "cross-env PORT=3001 REACT_APP_API_URL=http://localhost:3000/ vite --port 3001 --open",
     "test": "jest",
     "dev": "vite --port 3001 --open",
     "build": "tsc && vite build",
