@@ -10,9 +10,9 @@
     "start-local": "cross-env PORT=3001 REACT_APP_API_URL=http://localhost:3000/ react-scripts start",
     "storybook": "start-storybook -p 9009 -s public",
     "test": "react-scripts test",
-    "dev": "vite",
+    "dev": "vite --port 3001 --open",
     "build": "tsc && vite build",
-    "serve": "vite preview"
+    "serve": "vite preview --port 3001 --open"
   },
   "browserslist": {
     "production": [
