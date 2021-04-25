@@ -14,4 +14,8 @@ export default defineConfig({
       'socket.io-client': 'socket.io-client/dist/socket.io.js',
     },
   },
+
+  build: {
+    sourcemap: true,
+  },
 });
