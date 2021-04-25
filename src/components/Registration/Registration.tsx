@@ -9,7 +9,7 @@ import {
 } from '../PopupModal';
 import styles from './Registration.module.sass';
 
-const RECAPTCHA_SITEKEY = import.meta.env.VITE_RECAPTCHA_SITEKEY;
+const RECAPTCHA_SITEKEY = import.meta.env.VITE_RECAPTCHA_SITEKEY as string;
 console.debug('RECAPTCHA_SITEKEY', RECAPTCHA_SITEKEY);
 
 interface RegistrationProps {
@@ -84,7 +84,7 @@ export const Registration = (props: RegistrationProps) => {
           </div>
           {!props.disableCaptcha && (
             <ReCAPTCHA
-              sitekey={RECAPTCHA_SITEKEY!}
+              sitekey={RECAPTCHA_SITEKEY}
               onChange={(value) => setPassCaptcha(!!value)}
               // @ts-ignore
               style={{ marginBottom: '1rem' }}

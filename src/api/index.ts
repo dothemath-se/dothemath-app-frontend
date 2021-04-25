@@ -3,10 +3,10 @@ import io from 'socket.io-client';
 
 import { readAsArrayBuffer } from './readAsArrayBuffer';
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL as string;
 console.debug('API_URL', API_URL);
 
-const socket = io(API_URL!);
+const socket = io(API_URL);
 console.debug('socket', socket);
 
 socket.emit('get_channels');
