@@ -19,40 +19,6 @@
   "prettier": {
     "singleQuote": true
   },
-  "eslintConfig": {
-    "settings": {
-      "react": {
-        "version": "detect"
-      }
-    },
-    "plugins": [
-      "prettier",
-      "jsx-a11y"
-    ],
-    "extends": [
-      "react-app",
-      "prettier",
-      "eslint:recommended",
-      "plugin:react/recommended",
-      "plugin:jsx-a11y/strict"
-    ],
-    "rules": {
-      "prettier/prettier": [
-        "warn"
-      ],
-      "react/react-in-jsx-scope": "off"
-    },
-    "overrides": [
-      {
-        "files": [
-          "src/**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      }
-    ]
-  },
   "dependencies": {
     "@sentry/browser": "^6.3.1",
     "classnames": "^2.3.1",
