@@ -1,15 +1,5 @@
-const { off } = require('node:process');
-
 module.exports = {
-  root: true,
   parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaVersion: 2020,
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
-    },
-  },
   settings: {
     react: {
       version: 'detect',
@@ -17,8 +7,6 @@ module.exports = {
   },
   env: {
     browser: true,
-    amd: true,
-    node: true,
     jest: true,
   },
   extends: [
@@ -29,8 +17,8 @@ module.exports = {
   ],
   plugins: ['simple-import-sort', 'prettier'],
   rules: {
-    'prettier/prettier': ['warn'],
-    // 'prettier/prettier': ['error', {}, { usePrettierrc: true }],
+    'prettier/prettier': ['error', {}, { usePrettierrc: true }],
+    'no-unused-vars': 'off',
   },
   overrides: [
     {
