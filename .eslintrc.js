@@ -8,6 +8,7 @@ module.exports = {
   env: {
     browser: true,
     jest: true,
+    node: true, // This allows module.exports syntax in config files.
   },
   extends: [
     'eslint:recommended',
@@ -15,12 +16,14 @@ module.exports = {
     'plugin:jsx-a11y/strict',
     'plugin:jest/recommended',
     'plugin:jest/style',
-    'plugin:prettier/recommended', // Make sure this is always the last element in the array.
+    'plugin:prettier/recommended', // Should always be last in the array.
   ],
-  plugins: ['simple-import-sort', 'prettier', 'jest'],
+  plugins: ['simple-import-sort'],
   rules: {
     'prettier/prettier': ['error', {}, { usePrettierrc: true }],
     'no-unused-vars': 'off',
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
   },
   overrides: [
     {

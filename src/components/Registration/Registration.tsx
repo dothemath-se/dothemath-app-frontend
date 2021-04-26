@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 import { getConfig } from '../../getConfig';
-
 import { Button } from '../Button';
 import {
   CookiePolicyPopupModal,

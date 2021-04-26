@@ -1,7 +1,7 @@
-import React from 'react';
 import './index.sass';
 
 import * as Sentry from '@sentry/browser';
+import React from 'react';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { MemoryRouter } from 'react-router-dom';
