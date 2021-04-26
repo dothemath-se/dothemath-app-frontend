@@ -5,14 +5,12 @@
   "scripts": {
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "prettier": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,md}'",
-    "start-local": "cross-env PORT=3001 REACT_APP_API_URL=http://localhost:3000/ vite --port 3001 --open",
+    "start-local": "not_workning=true VITE_API_URL=http://localhost:3000/ vite --port 3001 --open",
     "test": "jest",
     "dev": "vite --port 3001 --open",
     "build": "tsc && vite build",
     "serve": "vite preview --port 3001 --open"
   },
-  "type": "module",
-  "module": "esnext",
   "prettier": {
     "singleQuote": true
   },
@@ -30,14 +28,12 @@
     "use-async-effect": "^2.2.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.16",
     "@testing-library/dom": "^7.30.4",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^13.1.5",
     "@types/jest": "^26.0.22",
     "@types/lodash": "^4.14.168",
-    "@types/node": "^14.14.41",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
     "@types/react-google-recaptcha": "^2.1.0",
@@ -47,28 +43,20 @@
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "@vitejs/plugin-react-refresh": "^1.3.2",
-    "babel-eslint": "^10.1.0",
-    "cross-env": "^7.0.3",
     "eslint": "^7.25.0",
     "eslint-config-prettier": "^8.2.0",
-    "eslint-config-react-app": "^6.0.0",
-    "eslint-plugin-flowtype": "^5.7.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
-    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.6.3",
     "prettier": "^2.2.1",
-    "regenerator-runtime": "^0.13.7",
-    "sass": "^1.32.11",
     "ts-jest": "^26.5.5",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.4",
     "typescript-plugin-css-modules": "^3.2.0",
-    "vite": "^2.2.1",
-    "vite-plugin-react": "^4.0.1",
-    "webpack": "4.44.2"
+    "vite": "^2.2.1"
   }
 }
