@@ -7,14 +7,14 @@ import { Registration } from './Registration';
 const type = userEvent.type;
 const click = userEvent.click;
 
-describe('Registration', () => {
-  test('button is initially disabled', () => {
+describe('registration', () => {
+  it('button is initially disabled', () => {
     const r = myRender(<Registration onComplete={() => {}} disableCaptcha />);
 
     expect(r.BörjaButton).toBeDisabled();
   });
 
-  test('filling out form enables button', () => {
+  it('filling out form enables button', () => {
     const r = myRender(<Registration onComplete={() => {}} disableCaptcha />);
 
     type(r.Smeknamn, 'nisse');
@@ -24,7 +24,7 @@ describe('Registration', () => {
     expect(r.BörjaButton).toBeEnabled();
   });
 
-  test('captcha disables button', () => {
+  it('captcha disables button', () => {
     const r = myRender(<Registration onComplete={() => {}} />);
 
     type(r.Smeknamn, 'nisse');
