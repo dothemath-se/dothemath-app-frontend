@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "esnext",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
-    "allowJs": true,
-    "skipLibCheck": true,
+    "types": ["vite/client", "jest"],
+    "allowJs": false,
+    "skipLibCheck": false,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
@@ -19,9 +20,7 @@
     "noEmit": true,
     "jsx": "react",
     "noImplicitAny": false,
-    "plugins": [
-      { "name": "typescript-plugin-css-modules" }
-    ]
+    "noFallthroughCasesInSwitch": true
   },
   "include": [
     "src"

@@ -7,9 +7,9 @@
     "source.fixAll.eslint": true
   },
   "files.exclude": {
-    "**/.git": true,
     "**/.DS_Store": true,
-    "build": true,
+    "**/.git": true,
+    "dist": true,
     "node_modules": true,
     "yarn-error.log": true
   },

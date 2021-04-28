@@ -1,12 +1,13 @@
 import _ from 'lodash';
 import io from 'socket.io-client';
 
+import { getConfig } from '../getConfig';
 import { readAsArrayBuffer } from './readAsArrayBuffer';
 
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = getConfig().VITE_API_URL as string;
 console.debug('API_URL', API_URL);
 
-const socket = io(API_URL!);
+const socket = io(API_URL);
 
 export const getSubjects = (): Promise<Subject[]> =>
   new Promise((resolve) => socket.emit('get_channels', resolve));
@@ -32,7 +33,7 @@ export const sendMessage = (text: string, image?: File): Promise<string> =>
   });
 
 export const establishSession = (channelId: string, studentName: string) =>
-  new Promise((resolve) => {
+  new Promise<void>((resolve) => {
     socket.emit(
       'establish_session',
       {

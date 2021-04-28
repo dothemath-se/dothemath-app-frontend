@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
+import { getConfig } from '../../getConfig';
 import { Button } from '../Button';
 import {
   CookiePolicyPopupModal,
@@ -9,7 +10,7 @@ import {
 } from '../PopupModal';
 import styles from './Registration.module.sass';
 
-const RECAPTCHA_SITEKEY = process.env.REACT_APP_RECAPTCHA_SITEKEY;
+const RECAPTCHA_SITEKEY = getConfig().VITE_RECAPTCHA_SITEKEY;
 console.debug('RECAPTCHA_SITEKEY', RECAPTCHA_SITEKEY);
 
 interface RegistrationProps {
@@ -84,7 +85,7 @@ export const Registration = (props: RegistrationProps) => {
           </div>
           {!props.disableCaptcha && (
             <ReCAPTCHA
-              sitekey={RECAPTCHA_SITEKEY!}
+              sitekey={RECAPTCHA_SITEKEY}
               onChange={(value) => setPassCaptcha(!!value)}
               // @ts-ignore
               style={{ marginBottom: '1rem' }}
