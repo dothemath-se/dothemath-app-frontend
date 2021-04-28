@@ -2,9 +2,7 @@ node_modules
 
 coverage
 
-build
 dist
-storybook-static
 
 .DS_Store
 .env.local
