@@ -1,15 +1,13 @@
 import _ from 'lodash';
 import io from 'socket.io-client';
+import { getConfig } from '../getConfig';
 
 import { readAsArrayBuffer } from './readAsArrayBuffer';
 
-const API_URL = import.meta.env.VITE_API_URL as string;
+const API_URL = getConfig().VITE_API_URL as string;
 console.debug('API_URL', API_URL);
 
 const socket = io(API_URL);
-console.debug('socket', socket);
-
-socket.emit('get_channels');
 
 export const getSubjects = (): Promise<Subject[]> =>
   new Promise((resolve) => socket.emit('get_channels', resolve));

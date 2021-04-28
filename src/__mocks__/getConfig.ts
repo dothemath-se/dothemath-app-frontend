@@ -3,5 +3,5 @@ interface Config {
 }
 
 export const getConfig = (): Config => ({
-  VITE_RECAPTCHA_SITEKEY: 'abcd',
+  VITE_RECAPTCHA_SITEKEY: 'MOCK VALUE FOR JEST',
 });
