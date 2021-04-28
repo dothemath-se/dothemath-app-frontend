@@ -1,4 +1,4 @@
-interface Config {
+export interface Config {
   VITE_API_URL: string;
   VITE_RECAPTCHA_SITEKEY: string;
 }
