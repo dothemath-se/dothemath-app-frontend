@@ -25,12 +25,4 @@ module.exports = {
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
   },
-  overrides: [
-    {
-      files: ['src/**/*.stories.*'],
-      rules: {
-        'import/no-anonymous-default-export': 'off',
-      },
-    },
-  ],
 };
