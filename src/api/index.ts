@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import io from 'socket.io-client';
-import { getConfig } from '../getConfig';
 
+import { getConfig } from '../getConfig';
 import { readAsArrayBuffer } from './readAsArrayBuffer';
 
 const API_URL = getConfig().VITE_API_URL as string;
