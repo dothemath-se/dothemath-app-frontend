@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite --port 3001 --open",
+    "dev:local-api": "vite --port 3001 --open --mode local-api",
     "build": "tsc && vite build",
     "serve": "vite preview --port 3001 --open",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
