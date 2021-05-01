@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import io from 'socket.io-client';
+import { io } from 'socket.io-client';
 
 import { getConfig } from '../getConfig';
 import { readAsArrayBuffer } from './readAsArrayBuffer';

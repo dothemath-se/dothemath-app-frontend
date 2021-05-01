@@ -11,7 +11,6 @@ import {
 import styles from './Registration.module.sass';
 
 const RECAPTCHA_SITEKEY = getConfig().VITE_RECAPTCHA_SITEKEY;
-console.debug('RECAPTCHA_SITEKEY', RECAPTCHA_SITEKEY);
 
 interface RegistrationProps {
   disableCaptcha?: boolean;
