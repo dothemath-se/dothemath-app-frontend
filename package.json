@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite --port 3001 --open",
+    "dev": "vite --port 3001",
     "dev:local-api": "yarn dev --mode local-api",
     "build": "tsc && vite build",
-    "serve": "vite preview --port 3001 --open",
+    "serve": "vite preview --port 3001",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "prettier": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,md}'",
     "test": "jest"
