@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 
 import { Button } from '../Button';
 import styles from './Chat.module.sass';
+import imageSolid from './image-solid.png';
 
 interface InputContainerProps {
   onSend: (text: string, image?: File) => void;
@@ -85,7 +86,7 @@ export const InputContainer = (props: InputContainerProps) => {
         onClick={onSelectImageClick}
         style={{
           ...(!image
-            ? { backgroundImage: 'url(/icons/image-solid.png)' }
+            ? { backgroundImage: `url("${imageSolid}")` }
             : { padding: '.8rem' }),
         }}
       >

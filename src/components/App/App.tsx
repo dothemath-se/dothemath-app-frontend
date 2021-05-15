@@ -58,7 +58,7 @@ export const App = () => {
           </Route>
         </Switch>
         <img
-          src="img/logo_white.svg"
+          src="/img/logo_white.svg"
           alt="Site Logo"
           draggable="false"
           className={styles['logo']}
@@ -70,7 +70,7 @@ export const App = () => {
           className={styles['logo-vercel']}
         >
           <img
-            src="img/powered-by-vercel.svg"
+            src="/img/powered-by-vercel.svg"
             alt="Powered by Vercel"
             draggable="false"
           />
