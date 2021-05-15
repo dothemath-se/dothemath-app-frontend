@@ -10,10 +10,10 @@ import {
 } from '../PopupModal';
 import styles from './Registration.module.sass';
 
+const RECAPTCHA_DISABLE = getConfig().VITE_RECAPTCHA_DISABLE;
 const RECAPTCHA_SITEKEY = getConfig().VITE_RECAPTCHA_SITEKEY;
 
 interface RegistrationProps {
-  disableCaptcha?: boolean;
   onComplete: (arg0: string) => void;
 }
 
@@ -30,7 +30,7 @@ export const Registration = (props: RegistrationProps) => {
     !!nickname &&
     acceptCookies &&
     acceptTerms &&
-    (passCaptcha || !!props.disableCaptcha);
+    (passCaptcha || RECAPTCHA_DISABLE);
 
   return (
     <div className="popup">
@@ -82,7 +82,7 @@ export const Registration = (props: RegistrationProps) => {
               </span>
             </label>
           </div>
-          {!props.disableCaptcha && (
+          {!RECAPTCHA_DISABLE && (
             <ReCAPTCHA
               sitekey={RECAPTCHA_SITEKEY}
               onChange={(value) => setPassCaptcha(!!value)}
