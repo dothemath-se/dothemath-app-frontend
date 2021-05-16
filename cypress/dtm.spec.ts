@@ -13,7 +13,11 @@ describe('dothemath.app', () => {
     cy.get('[placeholder^="Välj ett"]').type('Cypress');
     cy.contains('förstår och accepterar').click();
     cy.contains('har läst och accepterar').click();
-    cy.contains('button', 'Börja').should('be.enabled').click();
+    cy.contains('button', 'Börja').should('be.enabled');
+
+    cy.percySnapshot();
+
+    cy.contains('button', 'Börja').click();
     cy.contains('Välj ämne');
     cy.contains('Bot-Test', { matchCase: false });
   });
@@ -21,6 +25,10 @@ describe('dothemath.app', () => {
   it('Subject List', () => {
     cy.visit('/');
     cy.contains('Välj ämne');
+    cy.contains('Bot-Test', { matchCase: false });
+
+    cy.percySnapshot();
+
     cy.contains('Bot-Test', { matchCase: false }).click();
     cy.contains('Ställ en ny');
   });
@@ -35,6 +43,8 @@ describe('dothemath.app', () => {
     cy.get('button[aria-label^="Skicka"]').click();
     cy.contains('p', 'testmeddelande 1');
     cy.contains('p', 'testmeddelande 2');
+
+    cy.percySnapshot();
   });
 
   it('Chat revisited', () => {
@@ -43,5 +53,7 @@ describe('dothemath.app', () => {
     cy.contains('Bot-Test', { matchCase: false });
     cy.contains('p', 'testmeddelande 1');
     cy.contains('p', 'testmeddelande 2');
+
+    cy.percySnapshot();
   });
 });

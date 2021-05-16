@@ -10,7 +10,7 @@
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "prettier": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,md}'",
     "test": "jest",
-    "test:e2e": "start-server-and-test 'yarn dev --mode cypress' http-get://localhost:3001 'cypress run'"
+    "test:e2e": "percy exec start-server-and-test 'VITE_RECAPTCHA_DISABLE=true yarn dev' http-get://localhost:3001 'cypress run'"
   },
   "dependencies": {
     "@sentry/browser": "^6.3.5",
@@ -26,6 +26,8 @@
     "use-async-effect": "^2.2.3"
   },
   "devDependencies": {
+    "@percy/cli": "^1.0.0-beta.49",
+    "@percy/cypress": "^3.1.0",
     "@testing-library/dom": "^7.30.4",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",

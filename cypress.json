@@ -3,7 +3,6 @@
   "integrationFolder": "cypress",
   "testFiles": "**/*.spec.ts",
   "pluginsFile": false,
-  "supportFile": false,
   "fixturesFolder": false,
   "video": false
 }
