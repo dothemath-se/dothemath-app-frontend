@@ -6,5 +6,6 @@ const config: Config.InitialOptions = {
   moduleNameMapper: {
     '\\.(css|sass)$': 'identity-obj-proxy',
   },
+  testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/cypress/'],
 };
 export default config;

@@ -6,6 +6,4 @@ export default {
   title: 'Registration',
 };
 
-export const Default = () => (
-  <Registration onComplete={() => {}} disableCaptcha />
-);
+export const Default = () => <Registration onComplete={() => {}} />;
