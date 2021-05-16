@@ -9,29 +9,19 @@ const click = userEvent.click;
 
 describe('registration', () => {
   it('button is initially disabled', () => {
-    const r = myRender(<Registration onComplete={() => {}} disableCaptcha />);
+    const r = myRender(<Registration onComplete={() => {}} />);
 
     expect(r.BörjaButton).toBeDisabled();
   });
 
   it('filling out form enables button', () => {
-    const r = myRender(<Registration onComplete={() => {}} disableCaptcha />);
-
-    type(r.Smeknamn, 'nisse');
-    click(r.CookiesCheckbox);
-    click(r.ServiceCheckbox);
-
-    expect(r.BörjaButton).toBeEnabled();
-  });
-
-  it('captcha disables button', () => {
     const r = myRender(<Registration onComplete={() => {}} />);
 
     type(r.Smeknamn, 'nisse');
     click(r.CookiesCheckbox);
     click(r.ServiceCheckbox);
 
-    expect(r.BörjaButton).toBeDisabled();
+    expect(r.BörjaButton).toBeEnabled();
   });
 });
 
