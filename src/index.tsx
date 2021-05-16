@@ -10,8 +10,7 @@ import { App } from './components/App';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
 Sentry.init({
-  dsn:
-    'https://a63d74f600b4405fb2c93587717194ce@o376267.ingest.sentry.io/5196889',
+  dsn: 'https://a63d74f600b4405fb2c93587717194ce@o376267.ingest.sentry.io/5196889',
 });
 
 ReactDOM.render(

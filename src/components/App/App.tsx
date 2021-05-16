@@ -9,9 +9,8 @@ import styles from './App.module.sass';
 
 export const App = () => {
   const [name, setName] = useCookie<string>('name');
-  const [subject, setSubject] = useCookie<{ name: string; id: string }>(
-    'subject'
-  );
+  const [subject, setSubject] =
+    useCookie<{ name: string; id: string }>('subject');
   const [threadId, setThreadId] = useCookie<string>('threadId');
 
   const history = useHistory();
