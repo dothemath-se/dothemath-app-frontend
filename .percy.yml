@@ -1,3 +1,7 @@
-version: 1
+version: 2
 snapshot:
-  widths: [400, 600, 1200, 1800]
+  widths:
+    - 400
+    - 600
+    - 1200
+    - 1800
