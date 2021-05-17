@@ -1,3 +1,4 @@
+import './tailwind.css';
 import './index.sass';
 
 import * as Sentry from '@sentry/browser';
