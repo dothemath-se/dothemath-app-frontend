@@ -42,8 +42,6 @@ module.exports = {
         '95vw': '95vw',
         '2%': '2%',
         '48%': '48%',
-      },
-      maxWidth: {
         '90%': '90%',
       },
       colors: {
