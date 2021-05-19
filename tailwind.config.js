@@ -46,6 +46,7 @@ module.exports = {
       },
       colors: {
         primary: '#4882ff',
+        'primary-disabled': '#7fa8ff;',
         aaa: '#aaa',
         666: '#666',
         '069': '#069',
