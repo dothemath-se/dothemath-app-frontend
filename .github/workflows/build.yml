@@ -23,6 +23,16 @@ jobs:
     - run: yarn test
     - run: yarn build
 
-    - run: yarn test
+  storybook:
+    runs-on: ubuntu-20.04
 
-    - run: yarn build
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        # Required to retrieve git history for Chromatic
+        fetch-depth: 0
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '14'
+    - run: yarn install
+    - run: yarn chromatic --project-token ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
