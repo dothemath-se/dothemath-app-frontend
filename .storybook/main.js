@@ -6,6 +6,7 @@ module.exports = {
   },
   async viteFinal(config, { configType }) {
     config.build.emptyOutDir = true;
+    config.build.chunkSizeWarningLimit = 1500;
 
     return config;
   },
