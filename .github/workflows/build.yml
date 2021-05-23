@@ -1,13 +1,6 @@
-name: build
+name: ci
 
-on:
-  push:
-    branches-ignore:
-      - master
-
-  pull_request:
-    branches:
-      - master
+on: [push]
 
 jobs:
   build:
