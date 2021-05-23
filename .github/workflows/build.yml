@@ -28,4 +28,4 @@ jobs:
       with:
         node-version: '14'
     - uses: bahmutov/npm-install@v1
-    - run: yarn chromatic --project-token ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+    - run: yarn chromatic --project-token ${{ secrets.CHROMATIC_PROJECT_TOKEN }} --auto-accept-changes master
