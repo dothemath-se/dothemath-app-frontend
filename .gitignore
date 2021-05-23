@@ -13,3 +13,5 @@ yarn-debug.log*
 yarn-error.log*
 
 cypress/screenshots
+storybook-static
+build-storybook.log
