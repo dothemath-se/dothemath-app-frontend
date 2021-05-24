@@ -1,36 +1,21 @@
 .window-wrapper
-  overflow: hidden
-  width: 100%
-  height: 100%
-  padding: 1rem 20vw
-  position: fixed
-  display: flex
-  flex-direction: column
-  align-items: center
+  @apply overflow-hidden w-full h-full fixed flex flex-col items-center py-4 px-20vw
   h2
-    margin-bottom: .5rem
-    font-size: 2.5rem
+    @apply mb-2 text-4xl
 
 .logo
-  height: 15vw
-  position: fixed
-  left: 2rem
-  bottom: 2rem
   user-drag: none
-  user-select: none
+  @apply h-15vw fixed left-8 bottom-8 select-none
 
 .logo-vercel
-  position: fixed
-  right: 2rem
-  bottom: 2rem
+  @apply fixed right-8 bottom-8
   img
-    width: 15vw
     user-drag: none
-    user-select: none
+    @apply w-15vw select-none
 
 @media screen and ( max-width: 1250px )
   .window-wrapper
     h2
-      font-size: 1.8rem
+      @apply text-3xl
   .logo, .logo-vercel
-    display: none
+    @apply hidden
