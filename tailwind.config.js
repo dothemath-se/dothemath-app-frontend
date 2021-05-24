@@ -44,6 +44,9 @@ module.exports = {
         '48%': '48%',
         '90%': '90%',
       },
+      maxWidth: {
+        '90%': '90%',
+      },
       colors: {
         primary: '#4882ff',
         'primary-disabled': '#7fa8ff;',

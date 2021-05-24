@@ -1,164 +1,88 @@
-$primary-color: #4882ff
-
 .new-question-button
-  float: left
-  text-transform: none
+  @apply float-left normal-case
 
 .title-container
-  width: 800px
-  padding: 10px 0px
-  display: inline-block
-  text-align: center
+  @apply py-10px px-0 w-800px inline-block text-center
 
 .chat-wrapper
-  width: 100%
-  flex-grow: 1
-  display: flex
-  flex-direction: column
-  justify-content: space-between
+  @apply w-full flex-grow flex flex-col justify-between
 
 .content-wrapper
-  width: 800px
-  flex-grow: 1
-  height: 100%
-  overflow-y: hidden
-  display: flex
-  justify-content: space-between
+  @apply w-800px flex-grow h-full overflow-y-hidden flex justify-between
 
 .subject-title
-  display: inline
+  @apply inline
 
 .conversation-container
-  position: relative
-  display: flex
-  flex-direction: column-reverse
-  overflow-y: auto
-  overflow-x: hidden
-  flex-grow: 1
-  width: 100%
-  border-radius: 1rem
-  margin-bottom: 1rem
-  padding: 20px 40px
-  background: rgba(255, 255, 255, .7)
+  @apply relative flex flex-col-reverse overflow-y-auto overflow-x-hidden flex-grow w-full rounded-2xl mb-4 py-20px px-40px bg-white bg-opacity-70
 
   .chat-bubble--from, .chat-bubble--to
-    position: relative
-    margin: 1.1rem 0
     width: fit-content
     width: intrinsic
     width: -moz-max-content
     width: -webkit-max-content
-    max-width: 90%
-    border-radius: .5rem
-    display: flex
-    flex-shrink: 0
-    align-items: center
-    white-space: pre-wrap
-    overflow-wrap: anywhere
-    padding: 1.2rem
-    opacity: 1
-    box-shadow: 0 0 15px 0 rgba(0, 0, 0, .3)
+    @apply break-words relative my-4 mx-0 max-w-90% rounded-lg flex flex-shrink-0 items-center whitespace-pre-wrap p-5 opacity-100 shadow-dtm-15px
     &::after
-      content: ""
-      position: absolute
-      bottom: 1rem
-      width: 0 
-      height: 0 
-      border-top: 12px solid transparent
-      border-bottom: 12px solid transparent
+      @apply absolute bottom-4 w-0 h-0 border-t-12 border-b-12 border-solid border-transparent
   .sending
-    opacity: .3
+    @apply bg-opacity-30
   .chat-image
-    max-width: 90%
-    text-align: center
-    max-height: 50vh
+    @apply max-w-90% text-center max-h-50vh
   .from-user
-    position: absolute
-    top: -1.5rem
-    font-size: 1.2rem
-    color: #666
-    white-space: nowrap
+    @apply absolute -top-6 text-lg text-666 whitespace-nowrap
   .chat-bubble--from
-    background: #fff
     animation: bubble-left .4s ease
+    @apply bg-white
     &::after
-        left: -12px
-        border-right: 12px solid #fff
+        @apply -left-12 border-r-12 border-solid border-white
     img
-        max-width: 100%
+        @apply max-w-full
   .chat-bubble--to
-    margin-left: auto
-    background: $primary-color
     animation: bubble-right .4s ease
+    @apply ml-auto bg-primary
     .chat-text
-      color: #fff
+      @apply text-white
     .from-user
-      right: .5rem
+      @apply right-2
     &::after
-      right: -12px
-      border-left: 12px solid $primary-color
+      @apply -right-3 border-l-12 border-solid border-primary
     img
-      max-width: 100%
+      @apply max-w-full
 
 .input-container
-  display: flex
-  flex-shrink: 0
-  align-items: center
-  padding: .5rem .6rem .5rem 1rem
-  width: 100%
   height: fit-content
   height: intrinsic
   height: -moz-max-content
   height: -webkit-max-content
-  border-radius: 1rem
-  background: rgba(255, 255, 255, .7)
+  @apply flex flex-shrink-0 items-center w-full rounded-2xl bg-white bg-opacity-70 pt-2 pr-2 pb-2 pl-4
   .chat-input
-    margin: .5rem 0
-    border: none
-    border-radius: 0
-    width: 100%
-    font-size: 1.3rem
-    background: none
-    max-height: 18vh
-    overflow-y: auto
-    resize: none
+    @apply my-2 mx-0 border-none rounded-none w-full text-2xl bg-transparent max-h-18vh overflow-y-auto resize-none 
   .file-input
-    display: none
+    @apply hidden
   .select-image-button, .send-message-button
-    background-repeat: no-repeat
-    background-position: center
-    background-size: 60% 60%
-    padding: 1.5rem
+    @apply bg-no-repeat bg-center bg-60% p-6
   .select-image-button
-    margin-right: .5rem
+    @apply mr-2
   .send-message-button
-    background-image: url('/icons/paper-plane-solid.png')
+    @apply bg-paper-plane-solid
 
 @media screen and ( max-width: 1250px )
   .title-container
-    width: 95vw
+    @apply w-95vw
   .content-wrapper
-    width: 95vw
+    @apply w-95vw
   .conversation-container
     .chat-bubble--from, .chat-bubble--to
-      max-width: 90%
+      @apply max-w-90%
 
 @keyframes bubble-left
     0%
-        opacity: 0
-        transform: translateX(-100%)
-        filter: blur(20px)
+        @apply opacity-0 blur-lg -translate-x-full
     100%
-        opacity: 1
-        transform: translateX(0)
-        filter: blur(0)
+        @apply opacity-100 translate-x-0 blur-0
 
 @keyframes bubble-right
     0%
-        opacity: 0
-        transform: translateX(100%)
-        filter: blur(20px)
+        @apply opacity-0 blur-lg translate-x-full
     100%
-        opacity: .3
-        transform: translateX(0)
-        filter: blur(0)
+        @apply bg-opacity-30 translate-x-0 blur-0
