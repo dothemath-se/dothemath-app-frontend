@@ -11,6 +11,7 @@
     "prettier": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,md}'",
     "test": "jest",
     "test:e2e": "percy exec start-server-and-test 'VITE_RECAPTCHA_DISABLE=true yarn dev' http-get://localhost:3001 'cypress run'",
+    "test:e2e-manual": "start-server-and-test 'VITE_RECAPTCHA_DISABLE=true yarn dev' http-get://localhost:3001 'cypress open'",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "chromatic": "chromatic"
