@@ -1,32 +1,19 @@
 .subjects-container
-  flex-direction: row
-  flex-wrap: wrap
-  justify-content: flex-start
-  position: fixed
-  left: 50%
-  top: 50%
-  transform: translateY(-50%) translateX(-50%)
-  width: 80vw
+  @apply flex-row flex-wrap justify-start fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-80vw
   h2
-    width: 100%
-    text-align: center
-    margin-bottom: 10px
+    @apply w-full text-center mb-10px
   button
-    margin-right: 2%
-    width: 30%
-    margin-bottom: 1rem
+    @apply mr-2% w-4/12 mb-4
 
 @media screen and ( max-width: 1250px )
   .subjects-container
     button
-      width: 48%
+      @apply w-48%
 
 @media screen and ( max-width: 700px )
   .subjects-container
-    max-height: 90vh
-    overflow-y: auto
+    @apply max-h-90vh overflow-y-auto
     h2
-      font-size: 2rem
+      @apply text-4xl
     button
-      margin: .5rem 0
-      width: 100%
+      @apply my-2 mx-0 w-full

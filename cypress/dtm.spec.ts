@@ -6,7 +6,7 @@ describe('dothemath.app', () => {
     Cypress.Cookies.preserveOnce('name', 'subject', 'threadId');
   });
 
-  it('Registration', () => {
+  it('1. Registration', () => {
     cy.visit('/');
     cy.contains('Innan vi börjar...');
     cy.contains('button', 'Börja').should('be.disabled');
@@ -22,7 +22,7 @@ describe('dothemath.app', () => {
     cy.contains('Bot-Test', { matchCase: false });
   });
 
-  it('Subject List', () => {
+  it('2. Subject List', () => {
     cy.visit('/');
     cy.contains('Välj ämne');
     cy.contains('Bot-Test', { matchCase: false });
@@ -33,7 +33,7 @@ describe('dothemath.app', () => {
     cy.contains('Ställ en ny');
   });
 
-  it('Chat', () => {
+  it('3. Chat', () => {
     cy.visit('/');
     cy.contains('Ställ en ny');
     cy.contains('Bot-Test', { matchCase: false });
@@ -47,7 +47,7 @@ describe('dothemath.app', () => {
     cy.percySnapshot();
   });
 
-  it('Chat revisited', () => {
+  it('4. Chat revisited', () => {
     cy.visit('/');
     cy.contains('Ställ en ny');
     cy.contains('Bot-Test', { matchCase: false });

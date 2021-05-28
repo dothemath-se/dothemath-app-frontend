@@ -1,41 +1,13 @@
-$primary-color: #4882ff
-
 .button
-  padding: 10px 20px
-  font-size: 1.2rem
-  border: none
-  border-radius: .5rem
-  transform: scale(1)
-  text-transform: capitalize
-  transition: box-shadow, transform .05s ease
-  &:hover
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3)
-    transform: scale(1.05)
-    transition: box-shadow, transform .15s ease
-  &:active
-    transform: scale(0.95)
-    box-shadow: none
-    transition: box-shadow, transform .05s ease
-  &.disabled
-    background: #aaa
-    transition: none
-    transform: none
-    box-shadow: none
-    cursor: default
+  @apply text-xl rounded-lg capitalize border-none py-10px px-20px scale-100 transform transition-shadow-transform ease-ease
+  line-height: normal
+  @apply hover:scale-105 hover:duration-150 hover:shadow-dtm-10px
+  @apply active:scale-95 active:duration-50 active:shadow-none
+  @apply disabled:bg-aaa disabled:transition-none disabled:transform-none disabled:shadow-none disabled:cursor-default
 
 .primary
-  background: $primary-color
-  color: #fff
-  &.disabled
-    background: scale-color($primary-color, $lightness: 30%)
-    
+  @apply bg-primary text-white
+  @apply disabled:bg-primary-disabled
 
 .link
-  background: none!important
-  border: none
-  padding: 0!important
-  color: #069
-  text-decoration: underline
-  cursor: pointer
-  font-size: 1em
-  
+  @apply p-0 underline cursor-pointer border-none bg-none text-069 text-base

@@ -1,98 +1,54 @@
-// Colors and Variables
-
-$primary-color: #4882ff
-
-// Main styling
-    
 *
-    box-sizing: border-box
-    margin: 0
-    padding: 0
+  @apply box-border m-0 p-0
 
 html
-    -webkit-text-size-adjust: none
+  -webkit-text-size-adjust: none
 
 body
-    background-size: cover
-    background-attachment: fixed
-    background-repeat: no-repeat
-    background-image: url("/img/bg.jpg")
+  @apply bg-cover bg-fixed bg-no-repeat bg-red-blue-gradient
 
 p, button, span, textarea
-    font-family: Arial, Helvetica, sans-serif
+  @apply font-arial-helvetica #{!important}
 
 h1, h2, h3
-    font-family: 'Nunito Sans', sans-serif
-    font-weight: 900
-    user-select: none
+  @apply font-nunito font-black select-none #{!important}
 
 h4, h5, h6
-    font-family: 'Nunito Sans', sans-serif
-    font-weight: 700
+  @apply font-nunito font-bold #{!important}
 
 input, button, textarea
-    outline: none
+  @apply outline-none
 
 button
-    cursor: pointer
+  @apply cursor-pointer
 
 .popup
-  z-index: 99
-  top: 0
-  left: 0
-  width: 100vw
-  height: 100vh
-  position: fixed
-  background: rgba(0, 0, 0, .7)
-  opacity: 1
+  @apply z-10 top-0 left-0 w-screen h-screen bg-black bg-opacity-70 opacity-100 fixed
   animation: fade-in .6s ease
 
 .registration-and-subjects-container
-    z-index: 100
-    position: fixed
-    background: #fff
-    border-radius: 1rem
-    padding: 20px 40px
-    display: flex
-    flex-direction: column
-    justify-content: space-around
-    align-items: center
-    top: 50%
-    left: 50%
-    transform: translateY(-50%) translateX(-50%)
-    animation: move-up 1s ease
-    h2
-        font-size: 3.2rem
-    h3
-        font-size: 3rem
-        text-align: center
-        margin-bottom: 20px
-    input
-        width: 100%
-        padding: 10px 10px
-        border: 2px solid #aaa
-        border-radius: .5
-        border-radius: 1rem
-        font-size: 1.5rem
-        background: none
-        margin-bottom: 20px
+  @apply z-20 fixed bg-white rounded-2xl py-20px px-40px flex flex-col justify-around items-center top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2
+  animation: move-up 1s ease
 
-// Animations
+  h2
+    @apply text-6xl
+  h3
+    @apply text-5xl text-center mb-20px
+  input
+    @apply w-full p-10px rounded-2xl text-2xl bg-none mb-20px border-solid border-2 border-aaa
 
 @keyframes fade-in
-    0%
-        opacity: 0
-    100%
-        opacity: 1
+  0%
+    @apply opacity-0
+  100%
+    @apply opacity-100
 
 @keyframes move-up
-    0%
-        transform: translateY(0%) translateX(-50%)
-    100%
-        transform: translateY(-50%) translateX(-50%)
-
-// Mobile and small screens support
+  0%
+    @apply translate-y-0 -translate-x-1/2
+  100%
+    @apply -translate-y-1/2 -translate-x-1/2
 
 @media screen and ( max-width: 1250px )
-    html
-        font-size: 80%
+  html
+    @apply text-80%

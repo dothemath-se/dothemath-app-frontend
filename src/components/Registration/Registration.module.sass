@@ -1,41 +1,27 @@
 .checks-container
-  display: flex
-  flex-wrap: wrap
-  align-items: center
-  margin-bottom: 10px
+  @apply flex flex-wrap items-center mb-2
   input
-    margin: 5px
-    width: 7%
-    height: 1.5rem
-    cursor: pointer
+    @apply m-5px h-6 cursor-pointer w-1/12
   label
-    width: 93%
-    margin: 5px 0
-    display: flex
-    align-items: center
+    @apply flex items-center my-5px mx-0 w-11/12
 
 .name-form
-  height: 100%
-  width: 90%
-  display: flex
-  flex-direction: column
-  align-items: center
-  justify-content: space-around
+  @apply h-full flex flex-col items-center justify-around w-90%
 
 @media screen and ( max-width: 1250px )
   .registration-container
-    width: 90vw
+    @apply w-90vw
     h3
-      font-size: 2rem
+      @apply text-3xl
     .checks-container
       img
-        width: 15%
+        @apply w-2/12
       span
-        width: 75%
+        @apply w-9/12 
 
 @media screen and ( max-width: 470px )
   .registration-container
     h3
-      font-size: 1.5rem
+      @apply text-2xl
     input
-      font-size: 1rem
+      @apply text-base
