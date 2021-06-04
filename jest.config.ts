@@ -7,5 +7,6 @@ const config: Config.InitialOptions = {
     '\\.(css|sass)$': 'identity-obj-proxy',
   },
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/cypress/'],
+  testEnvironment: 'jsdom',
 };
 export default config;
