@@ -1,7 +1,5 @@
 import React from 'react';
 
-import styles from './Chat.module.sass';
-
 interface ConversationContainerProps {
   messages: {
     toFrom: string;
@@ -13,13 +11,13 @@ interface ConversationContainerProps {
 
 export const ConversationContainer = (props: ConversationContainerProps) => {
   return (
-    <div className={styles['conversation-container']}>
+    <div className="chat--conversation-container">
       {props.messages
         .map((item, index) => (
-          <div className={styles['chat-bubble--' + item.toFrom]} key={index}>
+          <div className={'chat-bubble--' + item.toFrom} key={index}>
             {item.image && <img src={item.image} alt="" />}
-            <p className={styles['chat-text']}>{item.text}</p>
-            <p className={styles['from-user']}>{item.name}</p>
+            <p className="chat-text">{item.text}</p>
+            <p className="from-user">{item.name}</p>
           </div>
         ))
         // We are using 'flex-direction: column-reverse' and therefore we reverse the messages before render.

@@ -8,7 +8,6 @@ import {
   PrivacyPolicyPopupModal,
   UserAgreementPopupModal,
 } from '../PopupModal';
-import styles from './Registration.module.sass';
 
 const RECAPTCHA_DISABLE = getConfig().VITE_RECAPTCHA_DISABLE;
 const RECAPTCHA_SITEKEY = getConfig().VITE_RECAPTCHA_SITEKEY;
@@ -34,12 +33,10 @@ export const Registration = (props: RegistrationProps) => {
 
   return (
     <div className="popup">
-      <div
-        className={`${styles['registration-container']} registration-and-subjects-container`}
-      >
+      <div className="registration--registration-container registration-and-subjects-container">
         <h3>Innan vi börjar...</h3>
         <form
-          className={styles['name-form']}
+          className="registration--name-form"
           onSubmit={(e) => e.preventDefault()}
         >
           <input
@@ -49,7 +46,7 @@ export const Registration = (props: RegistrationProps) => {
             aria-label="Välj ett smeknamn"
             onChange={(e) => setNickname(e.target.value.trim())}
           />
-          <div className={styles['checks-container']}>
+          <div className="registration--checks-container">
             <label htmlFor="acceptCookies">
               <input
                 type="checkbox"

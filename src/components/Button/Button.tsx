@@ -1,8 +1,6 @@
 import cn from 'classnames';
 import React, { HTMLAttributes } from 'react';
 
-import styles from './Button.module.sass';
-
 interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   primary?: boolean;
   link?: boolean;
@@ -18,10 +16,10 @@ export const Button = ({
   ...rest
 }: ButtonProps) => {
   const classes = cn(
-    { [styles.button]: !link },
-    { [styles.primary]: primary },
-    { [styles.link]: link },
-    { [styles.disabled]: disabled },
+    { 'button--button': !link },
+    { 'button--primary': primary },
+    { 'button--link': link },
+    { 'button--disabled': disabled },
     className
   );
 
