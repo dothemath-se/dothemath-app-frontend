@@ -15,3 +15,7 @@ yarn-error.log*
 cypress/screenshots
 storybook-static
 build-storybook.log
+
+coverage-ts
+
+*.swp

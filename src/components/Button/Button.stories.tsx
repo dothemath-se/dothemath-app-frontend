@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 
 import { Button } from './Button';
 
@@ -37,4 +37,5 @@ export const Link = () => (
   </span>
 );
 
-const logClick = (e) => console.log(e.target);
+const logClick: MouseEventHandler<HTMLButtonElement> = (e) =>
+  console.log(e.target);

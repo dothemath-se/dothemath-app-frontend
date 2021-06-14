@@ -22,12 +22,14 @@ export const sendMessage = (text: string, image?: File): Promise<string> =>
             text,
             image: arrayBuffer,
           },
-          ({ threadId }) => resolve(threadId)
+          ({ threadId }: { threadId: string }) => resolve(threadId)
         )
       );
     } else {
-      socket.emit('send_message', { text }, ({ threadId }) =>
-        resolve(threadId)
+      socket.emit(
+        'send_message',
+        { text },
+        ({ threadId }: { threadId: string }) => resolve(threadId)
       );
     }
   });
@@ -57,7 +59,7 @@ export const reestablishSession = (
         threadId,
         channelId,
       },
-      (data: { error: any; name: any; channel: any; messages: any[] }) => {
+      (data: ReestablishSessionData) => {
         if (data.error) {
           reject(data.error);
         } else {
@@ -97,7 +99,7 @@ export const cancelSession = () => {
 };
 
 export const onMessage = (callback: OnMessageCallback) =>
-  socket.on('message', ({ text, name, image }) => {
+  socket.on('message', ({ name, text, image }: ServerMessageData) => {
     if (image) {
       callback({ toFrom: 'from', name, text: '', image });
     }
@@ -105,6 +107,23 @@ export const onMessage = (callback: OnMessageCallback) =>
       callback({ toFrom: 'from', name, text: _.unescape(text) });
     }
   });
+
+export type ReestablishSessionData = {
+  error: string;
+  name: string;
+  channel: {
+    id: string;
+    name: string;
+  };
+  messages: ServerMessageData[];
+};
+
+export type ServerMessageData = {
+  isUser: boolean;
+  text: string;
+  name: string;
+  image?: string;
+};
 
 type OnMessageCallback = (arg0: OnMessageCallbackData) => void;
 
