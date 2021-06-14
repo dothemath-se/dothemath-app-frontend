@@ -14,7 +14,8 @@
     "test:e2e-manual": "start-server-and-test 'VITE_RECAPTCHA_DISABLE=true yarn dev' http-get://localhost:3001 'cypress open'",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "chromatic": "chromatic"
+    "chromatic": "chromatic",
+    "ts-coverage": "typescript-coverage-report"
   },
   "dependencies": {
     "@sentry/browser": "^6.5.1",
@@ -74,6 +75,11 @@
     "ts-jest": "^27.0.2",
     "ts-node": "^10.0.0",
     "typescript": "^4.2.4",
+    "typescript-coverage-report": "^0.6.0",
     "vite": "^2.2.1"
+  },
+  "typeCoverage": {
+    "atLeast": 100,
+    "ignoreCatch": true
   }
 }
