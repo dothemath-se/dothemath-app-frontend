@@ -4,12 +4,10 @@ import React, { Component, ErrorInfo, PropsWithChildren } from 'react';
 import { Button } from '../Button';
 
 export class ErrorBoundary extends Component<PropsWithChildren<{}>> {
-  state: any;
-
-  constructor(props: PropsWithChildren<{}>) {
-    super(props);
-    this.state = { eventId: null };
-  }
+  public state: State = {
+    hasError: false,
+    eventId: '',
+  };
 
   static getDerivedStateFromError() {
     return { hasError: true };
@@ -40,4 +38,9 @@ export class ErrorBoundary extends Component<PropsWithChildren<{}>> {
 
     return this.props.children;
   }
+}
+
+interface State {
+  hasError: boolean;
+  eventId: string;
 }
