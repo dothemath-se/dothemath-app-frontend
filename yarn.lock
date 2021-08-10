@@ -2121,7 +2121,7 @@
     prop-types "^15.7.2"
     react-is "^16.6.3"
 
-"@storybook/addon-actions@6.3.0-alpha.38", "@storybook/addon-actions@^6.3.0-alpha.38":
+"@storybook/addon-actions@6.3.0-alpha.38":
   version "6.3.0-alpha.38"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-6.3.0-alpha.38.tgz#ea15bbb4d2a2ae0f68487c5cb3fa756313317cc6"
   integrity sha512-vZBugrbzhRoR4KgyHzDC0AxSjdVQsj06EY8Ez2MDVmj837nX3Xht3ijAHp63qBB/5Qi3NBGgZKyF5srtk+y8GA==
@@ -2224,7 +2224,7 @@
     ts-dedent "^2.0.0"
     util-deprecate "^1.0.2"
 
-"@storybook/addon-essentials@^6.3.0-alpha.38":
+"@storybook/addon-essentials@6.3.0-alpha.38":
   version "6.3.0-alpha.38"
   resolved "https://registry.yarnpkg.com/@storybook/addon-essentials/-/addon-essentials-6.3.0-alpha.38.tgz#489fb643f072a2c2b50ae7efa137a9d2ab2af902"
   integrity sha512-p41V/L5PkuyZOG9V19tCk86u+KqPL0j5ZDVCfTQF9odpv1OAWgx2Y7AzfYyAG9fWWBDsTYNGX5mZGlxTGa33nA==
@@ -2242,7 +2242,7 @@
     regenerator-runtime "^0.13.7"
     ts-dedent "^2.0.0"
 
-"@storybook/addon-links@^6.3.0-alpha.38":
+"@storybook/addon-links@6.3.0-alpha.38":
   version "6.3.0-alpha.38"
   resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-6.3.0-alpha.38.tgz#620c9bf825d967a96132ab53df2abb68c259c3fb"
   integrity sha512-g66ToIFBeXkesyNe1QhNfcMag+eEb8b6AvqaLMNBoVD1Ffjblw3gooMW3w14KGXNsWabExSvSPmGQOv0KChI5g==
@@ -2874,7 +2874,7 @@
     tslib "^2.0.0"
     webpack-sources "^2.2.0"
 
-"@storybook/react@^6.3.0-alpha.38":
+"@storybook/react@6.3.0-alpha.38":
   version "6.3.0-alpha.38"
   resolved "https://registry.yarnpkg.com/@storybook/react/-/react-6.3.0-alpha.38.tgz#5672cad792d7400c84fb818e8d55b45013afb9f8"
   integrity sha512-iO9gD/cWFA17gjZDbFxmxK5gKKf76krdF8yfRQG5hxCoi9X5VC9vQoL4l8YGTPEoguU7rBDIbXmGmFoqo6QM+Q==
@@ -13012,7 +13012,7 @@ store2@^2.12.0:
   resolved "https://registry.yarnpkg.com/store2/-/store2-2.12.0.tgz#e1f1b7e1a59b6083b2596a8d067f6ee88fd4d3cf"
   integrity sha512-7t+/wpKLanLzSnQPX8WAcuLCCeuSHoWdQuh9SB3xD0kNOM38DNf+0Oa+wmvxmYueRzkmh6IcdKFtvTa+ecgPDw==
 
-storybook-builder-vite@^0.0.6:
+storybook-builder-vite@0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/storybook-builder-vite/-/storybook-builder-vite-0.0.6.tgz#e136cb2e626f3505dffc5622ad7aba60c6add865"
   integrity sha512-lBG0K2HSRr6Ff6PYdFlZLU+724hW/eHZqJkMWTuAwM/BmufVsC3mcltiexckMWuxPYAc+TAEJzpyux77KN81aA==
