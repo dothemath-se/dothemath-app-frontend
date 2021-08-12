@@ -2,39 +2,39 @@
   @apply float-left normal-case
 
 .title-container
-  @apply py-10px px-0 w-800px inline-block text-center
+  @apply py-[10px] px-0 w-[800px] inline-block text-center
 
 .chat-wrapper
   @apply w-full flex-grow flex flex-col justify-between
 
 .content-wrapper
-  @apply w-800px flex-grow h-full overflow-y-hidden flex justify-between
+  @apply w-[800px] flex-grow h-full overflow-y-hidden flex justify-between
 
 .subject-title
   @apply inline
 
 .conversation-container
-  @apply relative flex flex-col-reverse overflow-y-auto overflow-x-hidden flex-grow w-full rounded-2xl mb-4 py-20px px-40px bg-white bg-opacity-70
+  @apply relative flex flex-col-reverse overflow-y-auto overflow-x-hidden flex-grow w-full rounded-2xl mb-4 py-[20px] px-[40px] bg-white bg-opacity-70
 
   .chat-bubble--from, .chat-bubble--to
     width: fit-content
     width: intrinsic
     width: -moz-max-content
     width: -webkit-max-content
-    @apply break-words relative my-4 mx-0 max-w-90% rounded-lg flex flex-shrink-0 items-center whitespace-pre-wrap p-5 opacity-100 shadow-dtm-15px
+    @apply break-words relative my-4 mx-0 max-w-[90%] rounded-lg flex flex-shrink-0 items-center whitespace-pre-wrap p-5 opacity-100 shadow-dtm-15px
     &::after
-      @apply absolute bottom-4 w-0 h-0 border-t-12 border-b-12 border-solid border-transparent
+      @apply absolute bottom-4 w-0 h-0 border-t-[12px] border-b-[12px] border-solid border-transparent
   .sending
     @apply bg-opacity-30
   .chat-image
-    @apply max-w-90% text-center max-h-50vh
+    @apply max-w-[90%] text-center max-h-[50vh]
   .from-user
-    @apply absolute -top-6 text-lg text-666 whitespace-nowrap
+    @apply absolute -top-6 text-lg text-[#666] whitespace-nowrap
   .chat-bubble--from
     animation: bubble-left .4s ease
     @apply bg-white
     &::after
-        @apply -left-12 border-r-12 border-solid border-white
+        @apply -left-12 border-r-[12px] border-solid border-white
     img
         @apply max-w-full
   .chat-bubble--to
@@ -45,7 +45,7 @@
     .from-user
       @apply right-2
     &::after
-      @apply -right-3 border-l-12 border-solid border-primary
+      @apply -right-3 border-l-[12px] border-solid border-primary
     img
       @apply max-w-full
 
@@ -56,7 +56,7 @@
   height: -webkit-max-content
   @apply flex flex-shrink-0 items-center w-full rounded-2xl bg-white bg-opacity-70 pt-2 pr-2 pb-2 pl-4
   .chat-input
-    @apply my-2 mx-0 border-none rounded-none w-full text-2xl bg-transparent max-h-18vh overflow-y-auto resize-none 
+    @apply my-2 mx-0 border-none rounded-none w-full text-2xl bg-transparent max-h-[18vh] overflow-y-auto resize-none 
   .file-input
     @apply hidden
   .select-image-button, .send-message-button
@@ -68,21 +68,21 @@
 
 @media screen and ( max-width: 1250px )
   .title-container
-    @apply w-95vw
+    @apply w-[95vw]
   .content-wrapper
-    @apply w-95vw
+    @apply w-[95vw]
   .conversation-container
     .chat-bubble--from, .chat-bubble--to
-      @apply max-w-90%
+      @apply max-w-[90%]
 
 @keyframes bubble-left
     0%
         @apply opacity-0 blur-lg -translate-x-full
     100%
-        @apply opacity-100 translate-x-0 blur-0
+        @apply opacity-100 translate-x-0 blur-none
 
 @keyframes bubble-right
     0%
         @apply opacity-0 blur-lg translate-x-full
     100%
-        @apply bg-opacity-30 translate-x-0 blur-0
+        @apply bg-opacity-30 translate-x-0 blur-none
