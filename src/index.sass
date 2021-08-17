@@ -222,20 +222,20 @@ button
 
 
 .subject-list--subjects-container
-  @apply flex-row flex-wrap justify-start fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-80vw
+  @apply flex-row flex-wrap justify-start fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw]
   h2
     @apply w-full text-center mb-[10px]
   button
-    @apply mr-2% w-4/12 mb-4
+    @apply mr-[2%] w-4/12 mb-4
 
 @media screen and ( max-width: 1250px )
   .subject-list--subjects-container
     button
-      @apply w-48%
+      @apply w-[48%]
 
 @media screen and ( max-width: 700px )
   .subject-list--subjects-container
-    @apply max-h-90vh overflow-y-auto
+    @apply max-h-[90vh] overflow-y-auto
     h2
       @apply text-4xl
     button
